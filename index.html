@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+    <html>
+
+    <head>
+
+        <meta charset="UTF-8">
+
+        <title>Red Cross</title>
+
+
+
+        <style type="text/css">
+
+            #content{
+
+                width: 25%;
+
+                margin: 20px auto;
+
+                border: 1px solid #cbcbcb;
+
+
+
+            }
+
+
+
+            #grad {
+
+                background-image: linear-gradient(to bottom, #ffffff , #e6e6e6);
+
+            }
+
+
+
+        </style>
+
+
+
+
+
+    </head>
+
+
+
+
+
+    <header>
+
+
+
+        <link rel="stylesheet" href="footer.css">
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+        <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+
+        <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
+
+        <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase.js"></script>
+
+
+
+        <script src="https://cdn.firebase.com/libs/firebaseui/4.2.0/firebaseui.js"></script>
+
+        <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/4.2.0/firebaseui.css" />
+
+
+
+        <script src="bundle.js"></script>
+
+
+
+        <script src="app.js"></script>
+
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+
+
+        </div>
+
+
+
+    </header>
+
+    <img src='images/LogoRC.png' style='
+
+  margin-left: 42%; width:250px; height:250px;'/>
+
+
+
+
+
+    <body id = "grad" style="background-color:#ffffff;">
+
+
+
+    <div id = "error_type"> </div>
+
+
+
+    <h1 style="margin-left: 47%; margin-top: 100px">Login</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="firebaseui-auth-container"></div>
+
+    <script type="text/javascript">
+
+        // FirebaseUI config.
+
+        var uiConfig = {
+
+            //signInSuccessUrl:false,
+            signInSuccessUrl: 'index.html',
+
+            signInOptions: [
+
+                {
+
+                    provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+
+                    recaptchaParameters: {
+
+                        type: 'image', // 'audio'
+
+                        size: 'normal', // 'invisible' or 'compact'
+
+                    },
+
+                    defaultCountry: 'LB',
+
+                }
+
+            ]
+
+
+
+
+
+        };
+
+
+
+
+        //alert(window.location.href);
+
+        // Initialize the FirebaseUI Widget using Firebase.
+
+        var ui = new firebaseui.auth.AuthUI(firebase.auth());
+
+        // The start method will wait until the DOM is loaded.
+
+        ui.start('#firebaseui-auth-container', uiConfig);
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //document.getElementById('hiddenCurrentUser').value = firebase.auth().currentUser.uid;
+
+        //var favoritemovie = document.getElementById('hiddenCurrentUser').value;
+
+        //sessionStorage.setItem("favoriteMovie", favoritemovie);
+
+    </script>
+
+
+
+
+
+    </body>
+
+
+
+
+
+    <footer class="footer-basic-centered" style="margin-top: 150px; background-color:#e6e6e6; bottom: 0; width: 100%">
+
+ 
+
+        <p class="footer-company-motto" style = "color: #000000">Lebanese Red Cross</p>
+
+                                  
+
+        <div class="container2" style="margin-top:10px;">
+
+
+
+                     <div class="b">
+
+                    
+
+                     <p style="color:#000000;font-family:Tahoma;text-align:left;font-size: 16px;">Per Humanitatem ad Pacem - With Humanity, Towards Peace</p>
+
+                     <br><br>
+
+                     <p style="color:#000000;font-family:Tahoma;text-align:left;font-size: 16px;"><a href="mailto:ahmad_kassabieh@msn.com" style="text-decoration: none;color:#000000;">ahmad_kassabieh@msn.com</a><br>
+
+                     Lebanese Red Cross</p>
+
+                    
+
+                     </div>
+
+                    
+
+                     
+
+                     <div class="a">
+
+                    
+
+                     <img src='images/LogoRC.png' style="width:150px; height: 150px;"></img>
+
+                     <br>
+
+                     <a  style="color:#000000;" href="https://www.facebook.com/ahmad.kassabieh.3"><i class="icon-facebook">&nbsp</i></a>
+
+
+
+                     <a style="color:#000000;" href="https://www.instagram.com/ahmadkassabieh/"><i class="fab fa-instagram">&nbsp</i></a>
+
+                    
+
+                     <a style="color:#000000;" href="https://github.com/"><i class="icon-github"></i></a><br><br>
+
+                
+
+                     </div>
+
+                    
+
+        </div>
+
+       
+
+        <br><br>
+
+        <p class="footer-company-name" style="color: black">Lebanese Red Cross &copy; 2019. All Rights Reserved.</p>
+
+
+
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+    </html>
+

@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Red Cross</title>
+
+
+
+    <style type="text/css">
+
+        #content{
+
+            width: 50%;
+
+            margin: 20px auto;
+
+            border: 1px solid #cbcbcb;
+
+        }
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+    </style>
+
+    <style>
+
+        * {
+
+            box-sizing: border-box;
+
+        }
+
+
+
+        body {
+
+            font-family: Arial, Helvetica, sans-serif;
+
+        }
+
+
+
+        /* Float four columns side by side */
+
+        .columnn {
+
+            width: 70%;
+
+            padding: 10px 0px 10px 0px;
+
+        }
+
+
+
+        /* Remove extra left and right margins, due to padding */
+
+
+
+
+
+        /* Clear floats after the columns */
+
+        .roww:after {
+
+            content: "";
+
+            display: table;
+
+            clear: both;
+
+        }
+
+
+
+        /* Responsive columns */
+
+        @media screen and (max-width: 600px) {
+
+            .columnn {
+
+                width: 100%;
+
+                display: block;
+
+                margin-bottom: 20px;
+
+            }
+
+        }
+
+
+
+        /* Style the counter cards */
+
+        .cardd {
+
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+            padding: 16px;
+
+            text-align: center;
+
+            background-color: #f1f1f1;
+
+        }
+
+
+
+        .redCard {
+
+            box-shadow: 0 4px 8px 0 rgba(178, 15, 23, 1);
+
+            padding: 16px;
+
+            text-align: center;
+
+            background-color: #b20f17;
+
+            margin-bottom: 5px;
+
+            color:#e6e6e6;
+
+        }
+
+
+
+        .orangeCard {
+
+            box-shadow: 0 4px 8px 0 rgba(234, 133, 0, 1);
+
+            padding: 16px;
+
+            text-align: center;
+
+            background-color: #ea8500;
+
+            margin-bottom: 5px;
+
+            color:#e6e6e6;
+
+        }
+
+
+
+        .greenCard {
+
+            box-shadow: 0 4px 8px 0 rgba(0, 140, 33, 1);
+
+            padding: 16px;
+
+            text-align: center;
+
+            background-color: #008c21;
+
+            margin-bottom: 5px;
+
+            color:#e6e6e6;
+
+        }
+
+
+
+
+
+        .reportDate {
+
+            font-size: .67em;
+
+            font-weight: normal;
+
+        }
+
+
+
+        .reportTitle {
+
+            font-size: 88px;
+
+        }
+
+
+
+        #allReports{
+
+            left: 50%;
+
+        }
+
+
+
+        #grad {
+
+            background-image: linear-gradient(to bottom, #ffffff , #e6e6e6);
+
+        }
+
+
+
+
+
+
+
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            -webkit-animation: spin 2s linear infinite; /* Safari */
+            animation: spin 2s linear infinite;
+        }
+
+        /* Safari */
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+    </style>
+
+
+
+</head>
+
+
+
+
+
+<header>
+
+    <div id="branding">
+
+        <a onclick="logout()" style = "cursor: pointer; text-decoration: none; color: blue; float: right; margin-right: 10px; margin-top: 5px; margin-bottom: 20px;">Logout</a>
+
+        <a href="admin.html" style="text-decoration: none; color: blue; float: right; margin-right: 15px; margin-top: 5px;">Manage Users</a>
+
+    </div>
+
+
+
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase.js"></script>
+
+    <script src="https://cdn.firebase.com/libs/firebaseui/4.2.0/firebaseui.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/4.2.0/firebaseui.css" />
+
+    <script src="bundle.js"></script>
+
+    <script src="app.js"></script>
+
+
+
+    <link rel="stylesheet" href="footer.css">
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+
+
+    <!-- Latest compiled and minified CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+
+    <!-- jQuery library -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+    <!-- Popper JS -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+
+
+    <!-- Latest compiled JavaScript -->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+
+    <script>
+
+        var favoritemovie = sessionStorage.getItem("favoriteMovie");
+
+            
+         function checkPr() {
+
+
+//var leadss = firebase.database().ref('user');
+
+var privChecker = -1;
+
+
+            var isUserAdmin = sessionStorage.getItem("isUAdmin");
+
+            if(isUserAdmin !== "1"){
+
+                //logout();
+
+                window.location.href = 'index.html';
+
+            }
+
+
+
+}
+
+
+
+    </script>
+
+</header>
+
+
+
+
+
+
+
+<body id = "grad" style="background-color:#ffffff;" onload="checkPr()">
+
+
+
+
+
+<div id = "entries"></div>
+
+<img src='images/LogoRC.png' style='
+
+  margin-left: 42%; width:250px; height:250px;'/>
+
+
+
+
+
+<div id = "allBody"></div>
+
+<h1 id = "pageTitle" align="center" style="margin-top: 50px; margin-bottom: 50px"></h1>
+
+<div id = "allReports" align="center"></div>
+
+
+
+<div class="loader" id="PreLoaderBar" style="margin-left:47%; text-align: center"></div>
+
+
+
+
+
+
+
+
+
+
+<script>
+
+ 
+
+ 
+
+    var favoritemovie = sessionStorage.getItem("favoriteMovie");
+
+ 
+
+ 
+
+    //var leadsRef = firebase.database().ref('user/LoR41MjKKz4V5V3UIdG');
+
+ 
+
+ 
+
+ 
+
+    var currentID;
+
+    var currentCenter;
+
+ 
+
+ 
+
+ 
+
+    var favoritemovie = sessionStorage.getItem("favoriteMovie");
+
+ 
+
+ 
+
+    firebase.database().ref('user/').child(favoritemovie).once('value', (snapshot) => {
+
+        var data = snapshot.val();
+
+        if(snapshot.exists()){
+
+            for(let key in data){
+
+               console.log("data[key]",data["Center"]);
+
+                currentCenter = data["Center"];
+
+                //this.intVal.push(data[key]);
+
+                //console.log("intVal",this.intVal);
+
+ 
+
+            }
+
+ 
+
+            firebase.database().ref('Centers/'+currentCenter+'/reports/').once('value', (snapshott) => {
+
+                //alert(snapshott);
+
+                var dataa = snapshott.val();
+
+                if(snapshott.exists()){
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+                        //alert("123" + key);
+
+ 
+
+ 
+
+ 
+
+ 
+
+                        firebase.database().ref('Centers/'+currentCenter+'/reports/high').once('value', (snapshott) => {
+
+                            //alert(snapshott);
+
+                            var dataas = snapshott.val();
+
+                            if(snapshott.exists()){
+
+                                                                                                            
+
+                                                                                                             //alert(snapshott.key);
+
+ 
+
+                                for(let keyy in dataas){
+
+ 
+
+ 
+
+                                    //alert("456"+keyy);
+
+ 
+
+ 
+
+ 
+
+                                    var bd = document.getElementById("allReports");
+
+ 
+
+                                    firebase.database().ref('Centers/'+currentCenter+'/reports/high/' + keyy).once('value', (snapshott) => {
+
+                                        //alert(snapshott);
+
+                                        var dataass = snapshott.val();
+
+                                        if(snapshott.exists()){
+
+ 
+
+ 
+
+ 
+
+                                            for(let keyyy in dataass){
+
+ 
+
+                                                //alert(dataass["description"] + " DESCRIPTION");
+
+ 
+
+ 
+
+                                               var createDivRow = document.createElement('div');
+
+                                                createDivRow.className =  "row";
+
+ 
+
+                                                var createDivColumn = document.createElement('div');
+
+                                                createDivColumn.className =  "column";
+
+ 
+
+                                                var createDivCard = document.createElement('div');
+
+ 
+
+ 
+
+ 
+
+                                                //if(key === "high" ){
+
+                                                    createDivCard.className =  "redCard";
+
+                                                //}
+
+                                                //else if(key === "medium" ){
+
+                                                    //createDivCard.className =  "orangeCard";
+
+                                                //}
+
+                                                //else{
+
+                                                    //createDivCard.className =  "greenCard";
+
+                                                //}
+
+                                                                                                                                                     
+
+                                                                                                                                                      var tempp = keyy;
+
+                                                                                                                                                      var res = tempp.substring(1);
+
+                                                                                                                                                      var year = res.substring(0,4);
+
+                                                                                                                                                      //alert(year);
+
+                                                                                                                                                      var month = res.substring(4,6);
+
+                                                                                                                                                       //alert(month);
+
+                                                                                                                                                      var day = res.substring(6);
+
+                                                                                                                                                      //alert(day);
+
+                                                                                                                                                      var reportTime = new Date(year, month, day).toDateString();
+
+                                                                                                                                                      //alert(new Date(year, month, day).toDateString());
+
+                                                                                                                                                     
+
+                                                                                                                                                     
+
+                                                                                                                                                     
+
+                                                var createInfo = document.createElement('div');
+
+                                                createInfo.className = "high";
+
+                                                createInfo.id = keyy;
+
+                                                createInfo.onclick = function(){test(createInfo.id,createInfo.className)};
+
+                                                createInfo.style.maxWidth = "36rem";
+
+ 
+
+ 
+
+                                                var allContent = document.createElement('div');
+
+ 
+
+                                                //if(key === "high" ){
+
+                                                    allContent.className =  "card text-black bg-danger mb-3";
+
+                                                //}
+
+                                                //else if(key === "medium" ){
+
+                                                    //allContent.className =  "card text-black bg-warning mb-3";
+
+                                                //}
+
+                                                //else{
+
+                                                    //allContent.className =  "card text-black bg-success mb-3";
+
+                                                //}
+
+ 
+
+ 
+
+                                                var cardB = document.createElement('div');
+
+                                                cardB.className = "card-body";
+
+ 
+
+                                                var titleC = document.createElement('h5');
+
+                                                titleC.className = "card-title";
+
+                                                titleC.style.fontWeight = "bolder";
+
+                                                titleC.innerHTML = dataass["title"] + "<h6>"+reportTime+"</h6>";
+
+ 
+
+ 
+
+                                                var cardD = document.createElement('p');
+
+                                                cardD.className = "card-text";
+
+                                                cardD.style.marginTop = "30px";
+
+                                                cardD.style.fontWeight = "normal";
+
+                                                cardD.style.textAlign = "left";
+
+                                                cardD.innerHTML = dataass["description"];
+
+ 
+
+ 
+
+ 
+
+ 
+
+                                            }
+                                            document.getElementById("pageTitle").innerHTML = "Reports";
+                                            document.getElementById("PreLoaderBar").style.display = "none";
+
+                                            bd.appendChild(createInfo).appendChild(allContent).appendChild(cardB).appendChild(titleC).appendChild(cardD);
+
+                                        }
+
+                                    })
+
+                                }
+
+ 
+
+                            }
+
+ 
+
+                        })
+
+                                                                                 
+
+                                                                                 
+
+                                                                                 
+
+                                                                                  firebase.database().ref('Centers/'+currentCenter+'/reports/medium/').once('value', (snapshott) => {
+
+                            //alert(snapshott);
+
+                            var dataas = snapshott.val();
+
+                            if(snapshott.exists()){
+
+                                                                                                             //alert(snapshott.key);
+
+ 
+
+                                for(let keyy in dataas){
+
+ 
+
+ 
+
+                                    //alert("456"+keyy);
+
+ 
+
+ 
+
+ 
+
+                                    var bd = document.getElementById("allReports");
+
+ 
+
+                                    firebase.database().ref('Centers/'+currentCenter+'/reports/medium/' + keyy).once('value', (snapshott) => {
+
+                                        //alert(snapshott);
+
+                                        var dataass = snapshott.val();
+
+                                        if(snapshott.exists()){
+
+ 
+
+ 
+
+ 
+
+                                            for(let keyyy in dataass){
+
+ 
+
+                                                //alert(dataass["description"] + " DESCRIPTION");
+
+ 
+
+ 
+
+                                                var createDivRow = document.createElement('div');
+
+                                                createDivRow.className =  "row";
+
+ 
+
+                                                var createDivColumn = document.createElement('div');
+
+                                                createDivColumn.className =  "column";
+
+ 
+
+                                                var createDivCard = document.createElement('div');
+
+ 
+
+ 
+
+ 
+
+                                                //if(key === "high" ){
+
+                                                //    createDivCard.className =  "redCard";
+
+                                                //}
+
+                                                //else if(key === "medium" ){
+
+                                                    createDivCard.className =  "orangeCard";
+
+                                                //}
+
+                                                //else{
+
+                                                //    createDivCard.className =  "greenCard";
+
+                                                //}
+
+ 
+
+ 
+
+                                                                                                                                                      var tempp = keyy;
+
+                                                                                                                                                      var res = tempp.substring(1);
+
+                                                                                                                                                      var year = res.substring(0,4);
+
+                                                                                                                                                      //alert(year);
+
+                                                                                                                                                      var month = res.substring(4,6);
+
+                                                                                                                                                       //alert(month);
+
+                                                                                                                                                      var day = res.substring(6);
+
+                                                                                                                                                      //alert(day);
+
+                                                                                                                                                      var reportTime = new Date(year, month, day).toDateString();
+
+                                                                                                                                                      //alert(new Date(year, month, day).toDateString());
+
+ 
+
+                                                var createInfo = document.createElement('div');
+
+                                                createInfo.className = "medium";
+
+                                                createInfo.id = keyy;
+
+                                                createInfo.onclick = function(){test(createInfo.id,createInfo.className)};
+
+                                                createInfo.style.maxWidth = "36rem";
+
+ 
+
+ 
+
+                                                var allContent = document.createElement('div');
+
+ 
+
+                                     
+
+                                                    allContent.className =  "card text-black bg-warning mb-3";
+
+                                            
+
+ 
+
+ 
+
+                                                var cardB = document.createElement('div');
+
+                                                cardB.className = "card-body";
+
+ 
+
+                                                var titleC = document.createElement('h5');
+
+                                                titleC.className = "card-title";
+
+                                                titleC.style.fontWeight = "bolder";
+
+                                                titleC.innerHTML = dataass["title"] + "<h6>"+reportTime+"</h6>";
+
+ 
+
+ 
+
+                                                var cardD = document.createElement('p');
+
+                                                cardD.className = "card-text";
+
+                                                cardD.style.marginTop = "30px";
+
+                                                cardD.style.fontWeight = "normal";
+
+                                                cardD.style.textAlign = "left";
+
+                                                cardD.innerHTML = dataass["description"];
+
+ 
+
+ 
+
+ 
+
+ 
+
+                                            }
+                                            document.getElementById("pageTitle").innerHTML = "Reports";
+                                            document.getElementById("PreLoaderBar").style.display = "none";
+
+                                            bd.appendChild(createInfo).appendChild(allContent).appendChild(cardB).appendChild(titleC).appendChild(cardD);
+
+ 
+
+                                        }
+
+                                    })
+
+                                                                                                                          
+
+                                                                                                                          
+
+                                                                                                                          
+
+                                        
+
+                                                                                                                          
+
+                                                                                                firebase.database().ref('Centers/'+currentCenter+'/reports/low/').once('value', (snapshott) => {
+
+                            //alert(snapshott);
+
+                            var dataas = snapshott.val();
+
+                            if(snapshott.exists()){
+
+                                                                                                            
+
+                                                                                                             //alert(snapshott.key);
+
+ 
+
+                                for(let keyy in dataas){
+
+
+
+
+
+                                    //alert("456"+keyy);
+
+
+
+
+
+ 
+
+                                    var bd = document.getElementById("allReports");
+
+ 
+
+                                    firebase.database().ref('Centers/'+currentCenter+'/reports/low/' + keyy).once('value', (snapshott) => {
+
+                                        //alert(snapshott);
+
+                                        var dataass = snapshott.val();
+
+                                        if(snapshott.exists()){
+
+
+
+
+
+
+
+                                            for(let keyyy in dataass){
+
+
+
+                                                //alert(dataass["description"] + " DESCRIPTION");
+
+
+
+ 
+
+                                                var createDivRow = document.createElement('div');
+
+                                                createDivRow.className =  "row";
+
+ 
+
+                                                var createDivColumn = document.createElement('div');
+
+                                                createDivColumn.className =  "column";
+
+ 
+
+                                                var createDivCard = document.createElement('div');
+
+ 
+
+ 
+
+                                                    createDivCard.className =  "greenCard";
+
+
+
+
+
+                                                                                                                                                      var tempp = keyy;
+
+                                                                                                                                                      var res = tempp.substring(1);
+
+                                                                                                                                                      var year = res.substring(0,4);
+
+                                                                                                                                                      //alert(year);
+
+                                                                                                                                                      var month = res.substring(4,6);
+
+                                                                                                                                                       //alert(month);
+
+                                                                                                                                                      var day = res.substring(6);
+
+                                                                                                                                                      //alert(day);
+
+                                                                                                                                                      var reportTime = new Date(year, month, day).toDateString();
+
+                                                                                                                                                      //alert(new Date(year, month, day).toDateString());
+
+
+
+                                                var createInfo = document.createElement('div');
+
+                                                createInfo.className = "low";
+
+                                                createInfo.id = keyy;
+
+                                                createInfo.onclick = function(){test(createInfo.id,createInfo.className)};
+
+                                                createInfo.style.maxWidth = "36rem";
+
+ 
+
+ 
+
+                                                var allContent = document.createElement('div');
+
+ 
+
+                                                    allContent.className =  "card text-black bg-success mb-3";
+
+ 
+
+ 
+
+                                                var cardB = document.createElement('div');
+
+                                                cardB.className = "card-body";
+
+ 
+
+                                                var titleC = document.createElement('h5');
+
+                                                titleC.className = "card-title";
+
+                                                titleC.style.fontWeight = "bolder";
+
+                                                titleC.innerHTML = dataass["title"] + "<h6>"+reportTime+"</h6>";
+
+ 
+
+ 
+
+                                                var cardD = document.createElement('p');
+
+                                                cardD.className = "card-text";
+
+                                                cardD.style.marginTop = "30px";
+
+                                                cardD.style.fontWeight = "normal";
+
+                                                cardD.style.textAlign = "left";
+
+                                                cardD.innerHTML = dataass["description"];
+
+
+
+                                                //createInfo.innerHTML = "<h3 style='padding-bottom:25px'><strong>"+dataass["title"]+"</strong></h3>"+dataass["description"];
+
+
+
+
+
+                                                /*
+
+
+
+                                            <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+
+                                                    <div class="card-body">
+
+                                                    <h5 class="card-title">Primary card title</h5>
+
+                                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+                                                </div>
+
+                                                </div>
+
+
+
+
+
+                                                var createInfo = document.createElement('div');
+
+                                                createInfo.className = key;
+
+                                                createInfo.id = keyy;
+
+                                                createInfo.onclick = function(){test(createInfo.id,createInfo.className)};
+
+                                                createInfo.innerHTML = "<h3 style='padding-bottom:25px'><strong>"+dataass["title"]+"</strong></h3>"+dataass["description"];
+
+
+
+
+
+                                                */
+
+
+
+
+
+
+
+
+
+                                            }
+                                            document.getElementById("pageTitle").innerHTML = "Reports";
+                                            document.getElementById("PreLoaderBar").style.display = "none";
+                                            bd.appendChild(createInfo).appendChild(allContent).appendChild(cardB).appendChild(titleC).appendChild(cardD);
+
+ 
+
+                                            //bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
+
+ 
+
+                                        }
+
+                                    })
+
+ 
+
+ 
+
+ 
+
+                                }
+
+ 
+
+                            }
+
+ 
+
+                        })
+
+ 
+
+ 
+
+ 
+
+                                }
+
+ 
+
+                            }
+
+ 
+
+                        })
+
+ 
+
+                   
+
+ 
+
+                }
+
+            })
+
+        }
+
+    })
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+    function test(id,classn){
+
+        //alert(id);
+
+        //alert(classn);
+
+        //alert(currentCenter);
+
+        firebase.database().ref('Centers/'+currentCenter+'/reports/'+classn + '/' + id + '/didntcome/').once('value', (snapshotts) => {
+
+ 
+
+            var createnewA = document.createElement('a');
+
+            createnewA.href = "reports.html";
+
+            createnewA.style.textDecoration = "none";
+
+            createnewA.style.color = "blue";
+
+            createnewA.style.cssFloat = "right";
+
+            createnewA.style.marginRight = "15px";
+
+            createnewA.style.marginTop = "5px";
+
+            createnewA.innerHTML = "Reports";
+
+            var bdd = document.getElementById("branding");
+
+            bdd.appendChild(createnewA);
+
+ 
+
+ 
+
+            var dataass = snapshotts.val();
+
+            if(snapshotts.exists()){
+
+ 
+
+                document.getElementById("allReports").innerHTML = "";
+
+                document.getElementById("pageTitle").innerHTML = "Didn't Come";
+
+                document.getElementById("pageTitle").style.marginBottom = "25px";
+
+ 
+
+                var bd = document.getElementById("allReports");
+
+ 
+
+ 
+
+ 
+
+                for(let keyysy in dataass){
+
+                    //alert(keyysy);
+
+ 
+
+ 
+
+ 
+
+                    firebase.database().ref('user/'+keyysy).once('value', (snapshottss) => {
+
+ 
+
+                        var dataasss = snapshottss.val();
+
+                        if(snapshottss.exists()){
+
+ 
+
+                            //document.getElementById("allReports").innerHTML = "";
+
+ 
+
+                            //var bd = document.getElementById("allReports");
+
+ 
+
+ 
+
+ 
+
+                            for(let keyysys in dataasss){
+
+ 
+
+                                var createDivRow = document.createElement('div');
+
+                                createDivRow.className =  "roww";
+
+ 
+
+                                var createDivColumn = document.createElement('div');
+
+                                createDivColumn.className =  "columnn";
+
+ 
+
+                                var createDivCard = document.createElement('div');
+
+ 
+
+ 
+
+ 
+
+                                if(classn === "high" ){
+
+                                    //createDivCard.className =  "redCard";
+
+                                    createDivCard.className =  "cardd";
+
+ 
+
+                                }
+
+                                else if(classn === "medium" ){
+
+                                    //createDivCard.className =  "orangeCard";
+
+                                    createDivCard.className =  "cardd";
+
+                                }
+
+                                else{
+
+                                    //createDivCard.className =  "greenCard";
+
+                                    createDivCard.className =  "cardd";
+
+                                }
+
+ 
+
+ 
+
+ 
+
+                                var createInfo = document.createElement('div');
+
+                                createInfo.innerHTML = "<h3>"+dataasss["Name"]+"</h3><p style = 'color: blue;'>"+dataasss["Phone Number"]+"</p><p>Home Address: "+dataasss["Home Address"]+"</p><p>ICE: <span style='color: blue;'>"
+
+                                    +dataasss["ICE"]+"</span></p><p>Position: "+dataasss["Position"];
+
+ 
+
+                            }
+
+                            bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
+
+ 
+
+                        }
+
+                    })
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+                }
+
+            }
+
+        })
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+    }
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+    /*
+
+ 
+
+ 
+
+ 
+
+        var leadsRef = firebase.database().ref('user/LoR41MjKKz4V5V3UIdG');
+
+ 
+
+ 
+
+        var reportsSnap = firebase.database().ref('reports');
+
+        //var ulList = document.createElement('list');
+
+ 
+
+        reportsSnap.on('child_added', snap => {
+
+ 
+
+            //var liList = document.createElement('li');
+
+ 
+
+            var bd = document.getElementById("allReports");
+
+ 
+
+ 
+
+ 
+
+            var data = snap.val();
+
+ 
+
+            for(let key in data){
+
+                if(data["Admin"] === 1){
+
+                    //alert(data["Email"]);
+
+                }
+
+ 
+
+                //liList.innerText = data["Email"];
+
+                //liList.id = snap.key;
+
+ 
+
+ 
+
+                var createDivRow = document.createElement('div');
+
+                createDivRow.className =  "row";
+
+ 
+
+                var createDivColumn = document.createElement('div');
+
+                createDivColumn.className =  "column";
+
+ 
+
+                var createDivCard = document.createElement('div');
+
+ 
+
+ 
+
+ 
+
+                if(data["urgency"] === 2 ){
+
+                    createDivCard.className =  "redCard";
+
+                }
+
+                else{
+
+                    createDivCard.className =  "greenCard";
+
+                }
+
+ 
+
+ 
+
+ 
+
+                var createInfo = document.createElement('div');
+
+                createInfo.innerHTML = "<h3>"+data["title"]+" - <span class='reportDate'>"+data["date"]+"</span></h3>"+data["description"];
+
+ 
+
+                //console.log("data[key]",data["Email"]);
+
+ 
+
+            }
+
+ 
+
+            bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
+
+ 
+
+ 
+
+            // ulList.appendChild(liList);
+
+            //entr.appendChild(ulList);
+
+ 
+
+        });
+
+ 
+
+ 
+
+    */
+
+ 
+
+ 
+
+</script>
+
+
+
+<script>
+
+    function logout(){
+
+        firebase.auth().signOut()
+
+            .then(function() {
+
+                sessionStorage.clear();
+
+                window.location.href = 'index.html';
+
+                //location.reload();
+
+
+
+                // Sign-out successful.
+
+            })
+
+            .catch(function(error) {
+
+                alert("SIGN OUT ERROR");
+
+                // An error happened
+
+            });
+
+    }
+
+
+
+</script>
+
+
+
+
+
+
+
+</body>
+
+<footer class="footer-basic-centered" style="margin-top: 350px; background-color:#e6e6e6; bottom: 0; width: 100%">
+
+ 
+
+    <p class="footer-company-motto" style = "color: #000000">Lebanese Red Cross</p>
+
+                              
+
+    <div class="container2" style="margin-top:10px;">
+
+
+
+                 <div class="b">
+
+                
+
+                 <p style="color:#000000;font-family:Tahoma;text-align:left;font-size: 16px;">Per Humanitatem ad Pacem - With Humanity, Towards Peace</p>
+
+                 <br><br>
+
+                 <p style="color:#000000;font-family:Tahoma;text-align:left;font-size: 16px;"><a href="mailto:ahmad_kassabieh@msn.com" style="text-decoration: none;color:#000000;">ahmad_kassabieh@msn.com</a><br>
+
+                 Lebanese Red Cross</p>
+
+                
+
+                 </div>
+
+                
+
+                 
+
+                 <div class="a">
+
+                
+
+                    <img src='images/LogoRC.png' style="width:150px; height: 150px;"></img>
+
+                    <br>
+
+                    <a style="color:#000000;" onmouseover="style='text-decoration:none; color:#000000;'" onmouseout="style='text-decoration:none; color:#000000;'" href="https://www.facebook.com/ahmad.kassabieh.3"><i class="icon-facebook">&nbsp</i></a>
+
+
+
+                    <a style="color:#000000;" onmouseover="style='text-decoration:none; color:#000000;'" onmouseout="style='text-decoration:none; color:#000000;'" href="https://www.instagram.com/ahmadkassabieh/"><i class="fab fa-instagram">&nbsp</i></a>
+
+                   
+
+                    <a style="color:#000000;" onmouseover="style='text-decoration:none; color:#000000;'" onmouseout="style='text-decoration:none; color:#000000;'" href="https://github.com/"><i class="icon-github"></i></a><br><br>
+
+                 </div>
+
+                
+
+    </div>
+
+   
+
+    <br><br>
+
+    <p class="footer-company-name" style="color: black">Lebanese Red Cross &copy; 2019. All Rights Reserved.</p>
+
+
+
+</footer>
+
+</html>
