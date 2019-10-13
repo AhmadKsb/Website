@@ -49,34 +49,40 @@ firebase.auth().onAuthStateChanged(function(user) {
         //alert(window.location.href);
         sessionStorage.setItem("favoriteMovie", favoritemovie);
 
-        firebase.database().ref('user/'+favoritemovie).on('value', (snapshot) => {
+        if (favoritemovie === "27t8hbCsGBMCBDXWyioPT5bqfkK2") {
+            if ((!window.location.href.includes("admin.html")) && (!window.location.href.includes("reports.html"))) {
+                isUserAdmin = "2";
+                sessionStorage.setItem("isUAdmin", isUserAdmin);
+                window.location.href = 'fullaccess.html';
+            }
+            } else {
+
+        firebase.database().ref('user/' + favoritemovie).on('value', (snapshot) => {
             var data = snapshot.val();
 
-            if(snapshot.exists()){
-                for(let key in data){
-                    if(data["Admin"] === 1){
-                        if((!window.location.href.includes("admin.html")) && (!window.location.href.includes("reports.html"))) {
+            if (snapshot.exists()) {
+                for (let key in data) {
+                    if (data["Admin"] === 1) {
+                        if ((!window.location.href.includes("admin.html")) && (!window.location.href.includes("reports.html"))) {
                             isUserAdmin = "1";
                             sessionStorage.setItem("isUAdmin", isUserAdmin);
                             window.location.href = 'admin.html';
                         }
-                    }
-                    else{
+                    } else {
                         isUserAdmin = "0";
                         sessionStorage.setItem("isUAdmin", isUserAdmin);
                         logout();
                         //window.location.href = 'index.html';
                     }
                 }
-            }
-            else{
+            } else {
                 isUserAdmin = "0";
                 sessionStorage.setItem("isUAdmin", isUserAdmin);
                 logout();
                 //window.location.href = 'index.html';
             }
         })
-
+    }
 
 
 
