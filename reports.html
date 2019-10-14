@@ -21,21 +21,21 @@
             border: 1px solid #cbcbcb;
 
         }
-a:link {
-  text-decoration: none;
-}
+        a:link {
+            text-decoration: none;
+        }
 
-a:visited {
-  text-decoration: none;
-}
+        a:visited {
+            text-decoration: none;
+        }
 
-a:hover {
-  text-decoration: none;
-}
+        a:hover {
+            text-decoration: none;
+        }
 
-a:active {
-  text-decoration: none;
-}
+        a:active {
+            text-decoration: none;
+        }
     </style>
 
     <style>
@@ -269,7 +269,7 @@ a:active {
 
     <script src="https://cdn.firebase.com/libs/firebaseui/4.2.0/firebaseui.js"></script>
 
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/4.2.0/firebaseui.css" />
+    <link href="https://cdn.firebase.com/libs/firebaseui/4.2.0/firebaseui.css" rel="stylesheet" type="text/css" />
 
     <script src="bundle.js"></script>
 
@@ -277,17 +277,17 @@ a:active {
 
 
 
-    <link rel="stylesheet" href="footer.css">
+    <link href="footer.css" rel="stylesheet">
 
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" rel="stylesheet">
 
-        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
 
 
     <!-- Latest compiled and minified CSS -->
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 
 
 
@@ -313,13 +313,13 @@ a:active {
 
         var favoritemovie = sessionStorage.getItem("favoriteMovie");
 
-            
-         function checkPr() {
+
+        function checkPr() {
 
 
 //var leadss = firebase.database().ref('user');
 
-var privChecker = -1;
+            var privChecker = -1;
 
 
             var isUserAdmin = sessionStorage.getItem("isUAdmin");
@@ -334,7 +334,7 @@ var privChecker = -1;
 
 
 
-}
+        }
 
 
 
@@ -348,7 +348,7 @@ var privChecker = -1;
 
 
 
-<body id = "grad" style="background-color:#ffffff;" onload="checkPr()">
+<body id = "grad" onload="checkPr()" style="background-color:#ffffff;">
 
 
 
@@ -366,9 +366,9 @@ var privChecker = -1;
 
 <div id = "allBody"></div>
 
-<h1 id = "pageTitle" align="center" style="margin-top: 50px; margin-bottom: 50px"></h1>
+<h1 align="center" id = "pageTitle" style="margin-top: 50px; margin-bottom: 50px"></h1>
 
-<div id = "allReports" align="center"></div>
+<div align="center" id = "allReports"></div>
 
 
 
@@ -385,39 +385,39 @@ var privChecker = -1;
 
 <script>
 
- 
 
- 
+
+
 
     var favoritemovie = sessionStorage.getItem("favoriteMovie");
 
- 
 
- 
+
+
 
     //var leadsRef = firebase.database().ref('user/LoR41MjKKz4V5V3UIdG');
 
- 
 
- 
 
- 
+
+
+
 
     var currentID;
 
     var currentCenter;
 
- 
 
- 
 
- 
+
+
+
 
     var favoritemovie = sessionStorage.getItem("favoriteMovie");
 
- 
 
- 
+
+
 
     firebase.database().ref('user/').child(favoritemovie).once('value', (snapshot) => {
 
@@ -427,7 +427,7 @@ var privChecker = -1;
 
             for(let key in data){
 
-               console.log("data[key]",data["Center"]);
+                console.log("data[key]",data["Center"]);
 
                 currentCenter = data["Center"];
 
@@ -435,11 +435,11 @@ var privChecker = -1;
 
                 //console.log("intVal",this.intVal);
 
- 
+
 
             }
 
- 
+
 
             firebase.database().ref('Centers/'+currentCenter+'/reports/').once('value', (snapshott) => {
 
@@ -449,720 +449,720 @@ var privChecker = -1;
 
                 if(snapshott.exists()){
 
- 
 
- 
 
- 
 
- 
 
- 
 
- 
 
-                        //alert("123" + key);
 
- 
 
- 
 
- 
 
- 
 
-                        firebase.database().ref('Centers/'+currentCenter+'/reports/high').once('value', (snapshott) => {
 
-                            //alert(snapshott);
+                    //alert("123" + key);
 
-                            var dataas = snapshott.val();
 
-                            if(snapshott.exists()){
 
-                                                                                                            
 
-                                                                                                             //alert(snapshott.key);
 
- 
 
-                                for(let keyy in dataas){
 
- 
 
- 
 
-                                    //alert("456"+keyy);
+                    firebase.database().ref('Centers/'+currentCenter+'/reports/high').once('value', (snapshott) => {
 
- 
+                        //alert(snapshott);
 
- 
+                        var dataas = snapshott.val();
 
- 
+                        if(snapshott.exists()){
 
-                                    var bd = document.getElementById("allReports");
 
- 
 
-                                    firebase.database().ref('Centers/'+currentCenter+'/reports/high/' + keyy).once('value', (snapshott) => {
+                            //alert(snapshott.key);
 
-                                        //alert(snapshott);
 
-                                        var dataass = snapshott.val();
 
-                                        if(snapshott.exists()){
+                            for(let keyy in dataas){
 
- 
 
- 
 
- 
 
-                                            for(let keyyy in dataass){
 
- 
+                                //alert("456"+keyy);
 
-                                                //alert(dataass["description"] + " DESCRIPTION");
 
- 
 
- 
 
-                                               var createDivRow = document.createElement('div');
 
-                                                createDivRow.className =  "row";
 
- 
 
-                                                var createDivColumn = document.createElement('div');
+                                var bd = document.getElementById("allReports");
 
-                                                createDivColumn.className =  "column";
 
- 
 
-                                                var createDivCard = document.createElement('div');
+                                firebase.database().ref('Centers/'+currentCenter+'/reports/high/' + keyy).once('value', (snapshott) => {
 
- 
+                                    //alert(snapshott);
 
- 
+                                    var dataass = snapshott.val();
 
- 
+                                    if(snapshott.exists()){
 
-                                                //if(key === "high" ){
 
-                                                    createDivCard.className =  "redCard";
 
-                                                //}
 
-                                                //else if(key === "medium" ){
 
-                                                    //createDivCard.className =  "orangeCard";
 
-                                                //}
 
-                                                //else{
+                                        for(let keyyy in dataass){
 
-                                                    //createDivCard.className =  "greenCard";
 
-                                                //}
 
-                                                                                                                                                     
+                                            //alert(dataass["description"] + " DESCRIPTION");
 
-                                                                                                                                                      var tempp = keyy;
 
-                                                                                                                                                      var res = tempp.substring(1);
 
-                                                                                                                                                      var year = res.substring(0,4);
 
-                                                                                                                                                      //alert(year);
 
-                                                                                                                                                      var month = res.substring(4,6);
+                                            var createDivRow = document.createElement('div');
 
-                                                                                                                                                       //alert(month);
+                                            createDivRow.className =  "row";
 
-                                                                                                                                                      var day = res.substring(6);
 
-                                                                                                                                                      //alert(day);
 
-                                                                                                                                                      var reportTime = new Date(year, month, day).toDateString();
+                                            var createDivColumn = document.createElement('div');
 
-                                                                                                                                                      //alert(new Date(year, month, day).toDateString());
+                                            createDivColumn.className =  "column";
 
-                                                                                                                                                     
 
-                                                                                                                                                     
 
-                                                                                                                                                     
+                                            var createDivCard = document.createElement('div');
 
-                                                var createInfo = document.createElement('div');
 
-                                                createInfo.className = "high";
 
-                                                createInfo.id = keyy;
 
-                                                createInfo.onclick = function(){test(createInfo.id,createInfo.className)};
 
-                                                createInfo.style.maxWidth = "36rem";
 
- 
 
- 
+                                            //if(key === "high" ){
 
-                                                var allContent = document.createElement('div');
+                                            createDivCard.className =  "redCard";
 
- 
+                                            //}
 
-                                                //if(key === "high" ){
+                                            //else if(key === "medium" ){
 
-                                                    allContent.className =  "card text-black bg-danger mb-3";
+                                            //createDivCard.className =  "orangeCard";
 
-                                                //}
+                                            //}
 
-                                                //else if(key === "medium" ){
+                                            //else{
 
-                                                    //allContent.className =  "card text-black bg-warning mb-3";
+                                            //createDivCard.className =  "greenCard";
 
-                                                //}
+                                            //}
 
-                                                //else{
 
-                                                    //allContent.className =  "card text-black bg-success mb-3";
 
-                                                //}
+                                            var tempp = dataass["date"];
 
- 
+                                            var res = tempp.substring(1);
 
- 
+                                            var year = res.substring(0,4);
 
-                                                var cardB = document.createElement('div');
+                                            //alert(year);
 
-                                                cardB.className = "card-body";
+                                            var month = res.substring(4,6);
 
- 
+                                            //alert(month);
 
-                                                var titleC = document.createElement('h5');
+                                            var day = res.substring(6);
 
-                                                titleC.className = "card-title";
+                                            //alert(day);
 
-                                                titleC.style.fontWeight = "bolder";
+                                            var reportTime = new Date(year, month, day).toDateString();
 
-                                                titleC.innerHTML = dataass["title"] + "<h6>"+reportTime+"</h6>";
+                                            //alert(new Date(year, month, day).toDateString());
 
- 
 
- 
 
-                                                var cardD = document.createElement('p');
 
-                                                cardD.className = "card-text";
 
-                                                cardD.style.marginTop = "30px";
 
-                                                cardD.style.fontWeight = "normal";
 
-                                                cardD.style.textAlign = "left";
+                                            var createInfo = document.createElement('div');
 
-                                                cardD.innerHTML = dataass["description"];
+                                            createInfo.className = "high";
 
- 
+                                            createInfo.id = keyy;
 
- 
+                                            createInfo.onclick = function(){test(createInfo.id,createInfo.className)};
 
- 
+                                            createInfo.style.maxWidth = "36rem";
 
- 
 
-                                            }
-                                            document.getElementById("pageTitle").innerHTML = "Reports";
-                                            document.getElementById("PreLoaderBar").style.display = "none";
 
-                                            bd.appendChild(createInfo).appendChild(allContent).appendChild(cardB).appendChild(titleC).appendChild(cardD);
+
+
+                                            var allContent = document.createElement('div');
+
+
+
+                                            //if(key === "high" ){
+
+                                            allContent.className =  "card text-black bg-danger mb-3";
+
+                                            //}
+
+                                            //else if(key === "medium" ){
+
+                                            //allContent.className =  "card text-black bg-warning mb-3";
+
+                                            //}
+
+                                            //else{
+
+                                            //allContent.className =  "card text-black bg-success mb-3";
+
+                                            //}
+
+
+
+
+
+                                            var cardB = document.createElement('div');
+
+                                            cardB.className = "card-body";
+
+
+
+                                            var titleC = document.createElement('h5');
+
+                                            titleC.className = "card-title";
+
+                                            titleC.style.fontWeight = "bolder";
+
+                                            titleC.innerHTML = dataass["title"] + "<h6>"+reportTime+"</h6>";
+
+
+
+
+
+                                            var cardD = document.createElement('p');
+
+                                            cardD.className = "card-text";
+
+                                            cardD.style.marginTop = "30px";
+
+                                            cardD.style.fontWeight = "normal";
+
+                                            cardD.style.textAlign = "left";
+
+                                            cardD.innerHTML = dataass["description"];
+
+
+
+
+
+
+
+
 
                                         }
+                                        document.getElementById("pageTitle").innerHTML = "Reports";
+                                        document.getElementById("PreLoaderBar").style.display = "none";
 
-                                    })
+                                        bd.appendChild(createInfo).appendChild(allContent).appendChild(cardB).appendChild(titleC).appendChild(cardD);
 
-                                }
+                                    }
 
- 
+                                })
 
                             }
 
- 
 
-                        })
 
-                                                                                 
+                        }
 
-                                                                                 
 
-                                                                                 
 
-                                                                                  firebase.database().ref('Centers/'+currentCenter+'/reports/medium/').once('value', (snapshott) => {
+                    });
 
-                            //alert(snapshott);
 
-                            var dataas = snapshott.val();
 
-                            if(snapshott.exists()){
 
-                                                                                                             //alert(snapshott.key);
 
- 
 
-                                for(let keyy in dataas){
 
- 
+                    firebase.database().ref('Centers/'+currentCenter+'/reports/medium/').once('value', (snapshott) => {
 
- 
+                        //alert(snapshott);
 
-                                    //alert("456"+keyy);
+                        var dataas = snapshott.val();
 
- 
+                        if(snapshott.exists()){
 
- 
+                            //alert(snapshott.key);
 
- 
 
-                                    var bd = document.getElementById("allReports");
 
- 
+                            for(let keyy in dataas){
 
-                                    firebase.database().ref('Centers/'+currentCenter+'/reports/medium/' + keyy).once('value', (snapshott) => {
 
-                                        //alert(snapshott);
 
-                                        var dataass = snapshott.val();
 
-                                        if(snapshott.exists()){
 
- 
+                                //alert("456"+keyy);
 
- 
 
- 
 
-                                            for(let keyyy in dataass){
 
- 
 
-                                                //alert(dataass["description"] + " DESCRIPTION");
 
- 
 
- 
+                                var bd = document.getElementById("allReports");
 
-                                                var createDivRow = document.createElement('div');
 
-                                                createDivRow.className =  "row";
 
- 
+                                firebase.database().ref('Centers/'+currentCenter+'/reports/medium/' + keyy).once('value', (snapshott) => {
 
-                                                var createDivColumn = document.createElement('div');
+                                    //alert(snapshott);
 
-                                                createDivColumn.className =  "column";
+                                    var dataass = snapshott.val();
 
- 
+                                    if(snapshott.exists()){
 
-                                                var createDivCard = document.createElement('div');
 
- 
 
- 
 
- 
 
-                                                //if(key === "high" ){
 
-                                                //    createDivCard.className =  "redCard";
 
-                                                //}
+                                        for(let keyyy in dataass){
 
-                                                //else if(key === "medium" ){
 
-                                                    createDivCard.className =  "orangeCard";
 
-                                                //}
+                                            //alert(dataass["description"] + " DESCRIPTION");
 
-                                                //else{
 
-                                                //    createDivCard.className =  "greenCard";
 
-                                                //}
 
- 
 
- 
+                                            var createDivRow = document.createElement('div');
 
-                                                                                                                                                      var tempp = keyy;
+                                            createDivRow.className =  "row";
 
-                                                                                                                                                      var res = tempp.substring(1);
 
-                                                                                                                                                      var year = res.substring(0,4);
 
-                                                                                                                                                      //alert(year);
+                                            var createDivColumn = document.createElement('div');
 
-                                                                                                                                                      var month = res.substring(4,6);
+                                            createDivColumn.className =  "column";
 
-                                                                                                                                                       //alert(month);
 
-                                                                                                                                                      var day = res.substring(6);
 
-                                                                                                                                                      //alert(day);
+                                            var createDivCard = document.createElement('div');
 
-                                                                                                                                                      var reportTime = new Date(year, month, day).toDateString();
 
-                                                                                                                                                      //alert(new Date(year, month, day).toDateString());
 
- 
 
-                                                var createInfo = document.createElement('div');
 
-                                                createInfo.className = "medium";
 
-                                                createInfo.id = keyy;
 
-                                                createInfo.onclick = function(){test(createInfo.id,createInfo.className)};
+                                            //if(key === "high" ){
 
-                                                createInfo.style.maxWidth = "36rem";
+                                            //    createDivCard.className =  "redCard";
 
- 
+                                            //}
 
- 
+                                            //else if(key === "medium" ){
 
-                                                var allContent = document.createElement('div');
+                                            createDivCard.className =  "orangeCard";
 
- 
+                                            //}
 
-                                     
+                                            //else{
 
-                                                    allContent.className =  "card text-black bg-warning mb-3";
+                                            //    createDivCard.className =  "greenCard";
 
-                                            
+                                            //}
 
- 
 
- 
 
-                                                var cardB = document.createElement('div');
 
-                                                cardB.className = "card-body";
 
- 
+                                            var tempp = dataass["date"];
 
-                                                var titleC = document.createElement('h5');
+                                            var res = tempp.substring(1);
 
-                                                titleC.className = "card-title";
+                                            var year = res.substring(0,4);
 
-                                                titleC.style.fontWeight = "bolder";
+                                            //alert(year);
 
-                                                titleC.innerHTML = dataass["title"] + "<h6>"+reportTime+"</h6>";
+                                            var month = res.substring(4,6);
 
- 
+                                            //alert(month);
 
- 
+                                            var day = res.substring(6);
 
-                                                var cardD = document.createElement('p');
+                                            //alert(day);
 
-                                                cardD.className = "card-text";
+                                            var reportTime = new Date(year, month, day).toDateString();
 
-                                                cardD.style.marginTop = "30px";
+                                            //alert(new Date(year, month, day).toDateString());
 
-                                                cardD.style.fontWeight = "normal";
 
-                                                cardD.style.textAlign = "left";
 
-                                                cardD.innerHTML = dataass["description"];
+                                            var createInfo = document.createElement('div');
 
- 
+                                            createInfo.className = "medium";
 
- 
+                                            createInfo.id = keyy;
 
- 
+                                            createInfo.onclick = function(){test(createInfo.id,createInfo.className)};
 
- 
+                                            createInfo.style.maxWidth = "36rem";
 
-                                            }
-                                            document.getElementById("pageTitle").innerHTML = "Reports";
-                                            document.getElementById("PreLoaderBar").style.display = "none";
 
-                                            bd.appendChild(createInfo).appendChild(allContent).appendChild(cardB).appendChild(titleC).appendChild(cardD);
 
- 
+
+
+                                            var allContent = document.createElement('div');
+
+
+
+
+
+                                            allContent.className =  "card text-black bg-warning mb-3";
+
+
+
+
+
+
+
+                                            var cardB = document.createElement('div');
+
+                                            cardB.className = "card-body";
+
+
+
+                                            var titleC = document.createElement('h5');
+
+                                            titleC.className = "card-title";
+
+                                            titleC.style.fontWeight = "bolder";
+
+                                            titleC.innerHTML = dataass["title"] + "<h6>"+reportTime+"</h6>";
+
+
+
+
+
+                                            var cardD = document.createElement('p');
+
+                                            cardD.className = "card-text";
+
+                                            cardD.style.marginTop = "30px";
+
+                                            cardD.style.fontWeight = "normal";
+
+                                            cardD.style.textAlign = "left";
+
+                                            cardD.innerHTML = dataass["description"];
+
+
+
+
+
+
+
+
+
+                                        }
+                                        document.getElementById("pageTitle").innerHTML = "Reports";
+                                        document.getElementById("PreLoaderBar").style.display = "none";
+
+                                        bd.appendChild(createInfo).appendChild(allContent).appendChild(cardB).appendChild(titleC).appendChild(cardD);
+
+
+
+                                    }
+
+                                });
+
+
+
+
+
+
+
+
+
+
+
+                                firebase.database().ref('Centers/'+currentCenter+'/reports/low/').once('value', (snapshott) => {
+
+                                    //alert(snapshott);
+
+                                    var dataas = snapshott.val();
+
+                                    if(snapshott.exists()){
+
+
+
+                                        //alert(snapshott.key);
+
+
+
+                                        for(let keyy in dataas){
+
+
+
+
+
+                                            //alert("456"+keyy);
+
+
+
+
+
+
+
+                                            var bd = document.getElementById("allReports");
+
+
+
+                                            firebase.database().ref('Centers/'+currentCenter+'/reports/low/' + keyy).once('value', (snapshott) => {
+
+                                                //alert(snapshott);
+
+                                                var dataass = snapshott.val();
+
+                                                if(snapshott.exists()){
+
+
+
+
+
+
+
+                                                    for(let keyyy in dataass){
+
+
+
+                                                        //alert(dataass["description"] + " DESCRIPTION");
+
+
+
+
+
+                                                        var createDivRow = document.createElement('div');
+
+                                                        createDivRow.className =  "row";
+
+
+
+                                                        var createDivColumn = document.createElement('div');
+
+                                                        createDivColumn.className =  "column";
+
+
+
+                                                        var createDivCard = document.createElement('div');
+
+
+
+
+
+                                                        createDivCard.className =  "greenCard";
+
+
+
+
+
+                                                        var tempp = dataass["date"];
+
+                                                        var res = tempp.substring(1);
+
+                                                        var year = res.substring(0,4);
+
+                                                        //alert(year);
+
+                                                        var month = res.substring(4,6);
+
+                                                        //alert(month);
+
+                                                        var day = res.substring(6);
+
+                                                        //alert(day);
+
+                                                        var reportTime = new Date(year, month, day).toDateString();
+
+                                                        //alert(new Date(year, month, day).toDateString());
+
+
+
+                                                        var createInfo = document.createElement('div');
+
+                                                        createInfo.className = "low";
+
+                                                        createInfo.id = keyy;
+
+                                                        createInfo.onclick = function(){test(createInfo.id,createInfo.className)};
+
+                                                        createInfo.style.maxWidth = "36rem";
+
+
+
+
+
+                                                        var allContent = document.createElement('div');
+
+
+
+                                                        allContent.className =  "card text-black bg-success mb-3";
+
+
+
+
+
+                                                        var cardB = document.createElement('div');
+
+                                                        cardB.className = "card-body";
+
+
+
+                                                        var titleC = document.createElement('h5');
+
+                                                        titleC.className = "card-title";
+
+                                                        titleC.style.fontWeight = "bolder";
+
+                                                        titleC.innerHTML = dataass["title"] + "<h6>"+reportTime+"</h6>";
+
+
+
+
+
+                                                        var cardD = document.createElement('p');
+
+                                                        cardD.className = "card-text";
+
+                                                        cardD.style.marginTop = "30px";
+
+                                                        cardD.style.fontWeight = "normal";
+
+                                                        cardD.style.textAlign = "left";
+
+                                                        cardD.innerHTML = dataass["description"];
+
+
+
+                                                        //createInfo.innerHTML = "<h3 style='padding-bottom:25px'><strong>"+dataass["title"]+"</strong></h3>"+dataass["description"];
+
+
+
+
+
+                                                        /*
+
+
+
+                                                    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+
+                                                            <div class="card-body">
+
+                                                            <h5 class="card-title">Primary card title</h5>
+
+                                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+                                                        </div>
+
+                                                        </div>
+
+
+
+
+
+                                                        var createInfo = document.createElement('div');
+
+                                                        createInfo.className = key;
+
+                                                        createInfo.id = keyy;
+
+                                                        createInfo.onclick = function(){test(createInfo.id,createInfo.className)};
+
+                                                        createInfo.innerHTML = "<h3 style='padding-bottom:25px'><strong>"+dataass["title"]+"</strong></h3>"+dataass["description"];
+
+
+
+
+
+                                                        */
+
+
+
+
+
+
+
+
+
+                                                    }
+                                                    document.getElementById("pageTitle").innerHTML = "Reports";
+                                                    document.getElementById("PreLoaderBar").style.display = "none";
+                                                    bd.appendChild(createInfo).appendChild(allContent).appendChild(cardB).appendChild(titleC).appendChild(cardD);
+
+
+
+                                                    //bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
+
+
+
+                                                }
+
+                                            })
+
+
+
+
+
+
 
                                         }
 
-                                    })
 
-                                                                                                                          
 
-                                                                                                                          
+                                    }
 
-                                                                                                                          
 
-                                        
 
-                                                                                                                          
+                                })
 
-                                                                                                firebase.database().ref('Centers/'+currentCenter+'/reports/low/').once('value', (snapshott) => {
 
-                            //alert(snapshott);
 
-                            var dataas = snapshott.val();
 
-                            if(snapshott.exists()){
 
-                                                                                                            
 
-                                                                                                             //alert(snapshott.key);
-
- 
-
-                                for(let keyy in dataas){
-
-
-
-
-
-                                    //alert("456"+keyy);
-
-
-
-
-
- 
-
-                                    var bd = document.getElementById("allReports");
-
- 
-
-                                    firebase.database().ref('Centers/'+currentCenter+'/reports/low/' + keyy).once('value', (snapshott) => {
-
-                                        //alert(snapshott);
-
-                                        var dataass = snapshott.val();
-
-                                        if(snapshott.exists()){
-
-
-
-
-
-
-
-                                            for(let keyyy in dataass){
-
-
-
-                                                //alert(dataass["description"] + " DESCRIPTION");
-
-
-
- 
-
-                                                var createDivRow = document.createElement('div');
-
-                                                createDivRow.className =  "row";
-
- 
-
-                                                var createDivColumn = document.createElement('div');
-
-                                                createDivColumn.className =  "column";
-
- 
-
-                                                var createDivCard = document.createElement('div');
-
- 
-
- 
-
-                                                    createDivCard.className =  "greenCard";
-
-
-
-
-
-                                                                                                                                                      var tempp = keyy;
-
-                                                                                                                                                      var res = tempp.substring(1);
-
-                                                                                                                                                      var year = res.substring(0,4);
-
-                                                                                                                                                      //alert(year);
-
-                                                                                                                                                      var month = res.substring(4,6);
-
-                                                                                                                                                       //alert(month);
-
-                                                                                                                                                      var day = res.substring(6);
-
-                                                                                                                                                      //alert(day);
-
-                                                                                                                                                      var reportTime = new Date(year, month, day).toDateString();
-
-                                                                                                                                                      //alert(new Date(year, month, day).toDateString());
-
-
-
-                                                var createInfo = document.createElement('div');
-
-                                                createInfo.className = "low";
-
-                                                createInfo.id = keyy;
-
-                                                createInfo.onclick = function(){test(createInfo.id,createInfo.className)};
-
-                                                createInfo.style.maxWidth = "36rem";
-
- 
-
- 
-
-                                                var allContent = document.createElement('div');
-
- 
-
-                                                    allContent.className =  "card text-black bg-success mb-3";
-
- 
-
- 
-
-                                                var cardB = document.createElement('div');
-
-                                                cardB.className = "card-body";
-
- 
-
-                                                var titleC = document.createElement('h5');
-
-                                                titleC.className = "card-title";
-
-                                                titleC.style.fontWeight = "bolder";
-
-                                                titleC.innerHTML = dataass["title"] + "<h6>"+reportTime+"</h6>";
-
- 
-
- 
-
-                                                var cardD = document.createElement('p');
-
-                                                cardD.className = "card-text";
-
-                                                cardD.style.marginTop = "30px";
-
-                                                cardD.style.fontWeight = "normal";
-
-                                                cardD.style.textAlign = "left";
-
-                                                cardD.innerHTML = dataass["description"];
-
-
-
-                                                //createInfo.innerHTML = "<h3 style='padding-bottom:25px'><strong>"+dataass["title"]+"</strong></h3>"+dataass["description"];
-
-
-
-
-
-                                                /*
-
-
-
-                                            <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-
-                                                    <div class="card-body">
-
-                                                    <h5 class="card-title">Primary card title</h5>
-
-                                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
-                                                </div>
-
-                                                </div>
-
-
-
-
-
-                                                var createInfo = document.createElement('div');
-
-                                                createInfo.className = key;
-
-                                                createInfo.id = keyy;
-
-                                                createInfo.onclick = function(){test(createInfo.id,createInfo.className)};
-
-                                                createInfo.innerHTML = "<h3 style='padding-bottom:25px'><strong>"+dataass["title"]+"</strong></h3>"+dataass["description"];
-
-
-
-
-
-                                                */
-
-
-
-
-
-
-
-
-
-                                            }
-                                            document.getElementById("pageTitle").innerHTML = "Reports";
-                                            document.getElementById("PreLoaderBar").style.display = "none";
-                                            bd.appendChild(createInfo).appendChild(allContent).appendChild(cardB).appendChild(titleC).appendChild(cardD);
-
- 
-
-                                            //bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
-
- 
-
-                                        }
-
-                                    })
-
- 
-
- 
-
- 
-
-                                }
-
- 
 
                             }
 
- 
 
-                        })
 
- 
+                        }
 
- 
 
- 
 
-                                }
+                    })
 
- 
 
-                            }
 
- 
 
-                        })
 
- 
 
-                   
-
- 
 
                 }
 
@@ -1170,21 +1170,21 @@ var privChecker = -1;
 
         }
 
-    })
+    });
 
- 
 
- 
 
- 
 
- 
 
- 
 
- 
 
- 
+
+
+
+
+
+
+
 
     function test(id,classn){
 
@@ -1196,7 +1196,7 @@ var privChecker = -1;
 
         firebase.database().ref('Centers/'+currentCenter+'/reports/'+classn + '/' + id + '/didntcome/').once('value', (snapshotts) => {
 
- 
+
 
             var createnewA = document.createElement('a');
 
@@ -1218,15 +1218,15 @@ var privChecker = -1;
 
             bdd.appendChild(createnewA);
 
- 
 
- 
+
+
 
             var dataass = snapshotts.val();
 
             if(snapshotts.exists()){
 
- 
+
 
                 document.getElementById("allReports").innerHTML = "";
 
@@ -1234,71 +1234,71 @@ var privChecker = -1;
 
                 document.getElementById("pageTitle").style.marginBottom = "25px";
 
- 
+
 
                 var bd = document.getElementById("allReports");
 
- 
 
- 
 
- 
+
+
+
 
                 for(let keyysy in dataass){
 
                     //alert(keyysy);
 
- 
 
- 
 
- 
+
+
+
 
                     firebase.database().ref('user/'+keyysy).once('value', (snapshottss) => {
 
- 
+
 
                         var dataasss = snapshottss.val();
 
                         if(snapshottss.exists()){
 
- 
+
 
                             //document.getElementById("allReports").innerHTML = "";
 
- 
+
 
                             //var bd = document.getElementById("allReports");
 
- 
 
- 
 
- 
+
+
+
 
                             for(let keyysys in dataasss){
 
- 
+
 
                                 var createDivRow = document.createElement('div');
 
                                 createDivRow.className =  "roww";
 
- 
+
 
                                 var createDivColumn = document.createElement('div');
 
                                 createDivColumn.className =  "columnn";
 
- 
+
 
                                 var createDivCard = document.createElement('div');
 
- 
 
- 
 
- 
+
+
+
 
                                 if(classn === "high" ){
 
@@ -1306,7 +1306,7 @@ var privChecker = -1;
 
                                     createDivCard.className =  "cardd";
 
- 
+
 
                                 }
 
@@ -1326,11 +1326,11 @@ var privChecker = -1;
 
                                 }
 
- 
 
- 
 
- 
+
+
+
 
                                 var createInfo = document.createElement('div');
 
@@ -1338,33 +1338,33 @@ var privChecker = -1;
 
                                     +dataasss["ICE"]+"</span></p><p>Position: "+dataasss["Position"];
 
- 
+
 
                             }
 
                             bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
 
- 
+
 
                         }
 
                     })
 
- 
 
- 
 
- 
 
- 
 
- 
 
- 
 
- 
 
- 
+
+
+
+
+
+
+
+
 
                 }
 
@@ -1372,31 +1372,31 @@ var privChecker = -1;
 
         })
 
- 
 
- 
 
- 
 
- 
 
- 
 
- 
 
- 
+
+
+
+
+
+
+
 
     }
 
- 
 
- 
 
- 
 
- 
 
- 
+
+
+
+
+
 
     /*
 
@@ -1528,9 +1528,9 @@ var privChecker = -1;
 
     */
 
- 
 
- 
+
+
 
 </script>
 
@@ -1580,61 +1580,61 @@ var privChecker = -1;
 
 <footer class="footer-basic-centered" style="margin-top: 350px; background-color:#e6e6e6; bottom: 0; width: 100%">
 
- 
+
 
     <p class="footer-company-motto" style = "color: #000000">Lebanese Red Cross</p>
 
-                              
+
 
     <div class="container2" style="margin-top:10px;">
 
 
 
-                 <div class="b">
-
-                
-
-                 <p style="color:#000000;font-family:Tahoma;text-align:left;font-size: 16px;">Per Humanitatem ad Pacem - With Humanity, Towards Peace</p>
-
-                 <br><br>
-
-                 <p style="color:#000000;font-family:Tahoma;text-align:left;font-size: 16px;"><a href="mailto:ahmad_kassabieh@msn.com" style="text-decoration: none;color:#000000;">ahmad_kassabieh@msn.com</a><br>
-
-                 Lebanese Red Cross</p>
-
-                
-
-                 </div>
-
-                
-
-                 
-
-                 <div class="a">
-
-                
-
-                    <img src='images/LogoRC.png' style="width:150px; height: 150px;"></img>
-
-                    <br>
-
-                    <a style="color:#000000;" onmouseover="style='text-decoration:none; color:#000000;'" onmouseout="style='text-decoration:none; color:#000000;'" href="https://www.facebook.com/ahmad.kassabieh.3"><i class="icon-facebook">&nbsp</i></a>
+        <div class="b">
 
 
 
-                    <a style="color:#000000;" onmouseover="style='text-decoration:none; color:#000000;'" onmouseout="style='text-decoration:none; color:#000000;'" href="https://www.instagram.com/ahmadkassabieh/"><i class="fab fa-instagram">&nbsp</i></a>
+            <p style="color:#000000;font-family:Tahoma;text-align:left;font-size: 16px;">Per Humanitatem ad Pacem - With Humanity, Towards Peace</p>
 
-                   
+            <br><br>
 
-                    <a style="color:#000000;" onmouseover="style='text-decoration:none; color:#000000;'" onmouseout="style='text-decoration:none; color:#000000;'" href="https://github.com/"><i class="icon-github"></i></a><br><br>
+            <p style="color:#000000;font-family:Tahoma;text-align:left;font-size: 16px;"><a href="mailto:ahmad_kassabieh@msn.com" style="text-decoration: none;color:#000000;">ahmad_kassabieh@msn.com</a><br>
 
-                 </div>
+                Lebanese Red Cross</p>
 
-                
+
+
+        </div>
+
+
+
+
+
+        <div class="a">
+
+
+
+            <img src='images/LogoRC.png' style="width:150px; height: 150px;"></img>
+
+            <br>
+
+            <a href="https://www.facebook.com/ahmad.kassabieh.3" onmouseout="style='text-decoration:none; color:#000000;'" onmouseover="style='text-decoration:none; color:#000000;'" style="color:#000000;"><i class="icon-facebook">&nbsp</i></a>
+
+
+
+            <a href="https://www.instagram.com/ahmadkassabieh/" onmouseout="style='text-decoration:none; color:#000000;'" onmouseover="style='text-decoration:none; color:#000000;'" style="color:#000000;"><i class="fab fa-instagram">&nbsp</i></a>
+
+
+
+            <a href="https://github.com/" onmouseout="style='text-decoration:none; color:#000000;'" onmouseover="style='text-decoration:none; color:#000000;'" style="color:#000000;"><i class="icon-github"></i></a><br><br>
+
+        </div>
+
+
 
     </div>
 
-   
+
 
     <br><br>
 

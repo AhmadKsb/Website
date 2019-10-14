@@ -49,7 +49,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         sessionStorage.setItem("favoriteMovie", favoritemovie);
 
         if (favoritemovie === "27t8hbCsGBMCBDXWyioPT5bqfkK2") {
-            if ((!window.location.href.includes("admin.html")) && (!window.location.href.includes("reports.html"))) {
+            if ((!window.location.href.includes("fullaccess.html"))) {
                 isUserAdmin = "2";
                 sessionStorage.setItem("isUAdmin", isUserAdmin);
                 window.location.href = 'fullaccess.html';

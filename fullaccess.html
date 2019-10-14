@@ -1,10 +1,813 @@
 <!DOCTYPE html>
-<html lang="en">
+
+
+
+<html>
+
 <head>
+
     <meta charset="UTF-8">
-    <title>Full Access</title>
+
+    <title>Red Cross</title>
+
+
+
+    <style type="text/css">
+
+        #content{
+
+            width: 50%;
+
+            margin: 20px auto;
+
+            border: 1px solid #cbcbcb;
+
+        }
+        a:link {
+            text-decoration: none;
+        }
+
+        a:visited {
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        a:active {
+            text-decoration: none;
+        }
+    </style>
+
+    <style>
+
+        * {
+
+            box-sizing: border-box;
+
+        }
+
+
+
+        body {
+
+            font-family: Arial, Helvetica, sans-serif;
+
+        }
+
+
+
+        /* Float four columns side by side */
+
+        .columnn {
+
+            width: 70%;
+
+            padding: 10px 0px 10px 0px;
+
+        }
+
+
+
+        /* Remove extra left and right margins, due to padding */
+
+
+
+
+
+        /* Clear floats after the columns */
+
+        .roww:after {
+
+            content: "";
+
+            display: table;
+
+            clear: both;
+
+        }
+
+
+
+        /* Responsive columns */
+
+        @media screen and (max-width: 600px) {
+
+            .columnn {
+
+                width: 100%;
+
+                display: block;
+
+                margin-bottom: 20px;
+
+            }
+
+        }
+
+
+
+        /* Style the counter cards */
+
+        .cardd {
+
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+            padding: 48px;
+
+            text-align: center;
+
+            background-color: #f1f1f1;
+
+        }
+
+
+
+        .redCard {
+
+            box-shadow: 0 4px 8px 0 rgba(178, 15, 23, 1);
+
+            padding: 16px;
+
+            text-align: center;
+
+            background-color: red;
+
+        }
+
+
+
+        .greenCard {
+
+            box-shadow: 0 4px 8px 0 rgba(0, 140, 33, 1);
+
+            padding: 16px;
+
+            text-align: center;
+
+            background-color: green;
+
+        }
+
+
+
+
+
+        .reportDate {
+
+            font-size: .67em;
+
+            font-weight: normal;
+
+        }
+
+
+
+        .reportTitle {
+
+            font-size: 88px;
+
+        }
+
+
+
+        #allUsers{
+
+            left: 50%;
+
+        }
+
+
+
+        #grad {
+
+            background-image: linear-gradient(to bottom, #ffffff , #e6e6e6);
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            -webkit-animation: spin 2s linear infinite; /* Safari */
+            animation: spin 2s linear infinite;
+        }
+
+        /* Safari */
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+
+
+    </style>
+
+
+
 </head>
-<body>
+
+
+
+
+
+<header>
+
+    <div id="branding" >
+
+        <a onclick="logout()" style = "cursor: pointer;text-decoration: none; color: blue; float: right; margin-right: 10px; margin-top: 5px; margin-bottom: 20px;">Logout</a>
+
+
+    </div>
+
+
+
+    <link rel="stylesheet" href="footer.css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+
+
+
+
+
+
+    <!-- Latest compiled and minified CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+
+    <!-- jQuery library -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+    <!-- Popper JS -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+
+
+    <!-- Latest compiled JavaScript -->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase.js"></script>
+
+    <script src="https://cdn.firebase.com/libs/firebaseui/4.2.0/firebaseui.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/4.2.0/firebaseui.css" />
+
+    <script src="bundle.js"></script>
+
+    <script src="app.js"></script>
+
+
+
+
+
+    <script>
+
+        var favoritemovie = sessionStorage.getItem("favoriteMovie");
+
+
+        function checkPr() {
+
+
+
+
+
+            //var leadss = firebase.database().ref('user');
+
+            var privChecker = -1;
+
+
+
+
+            var isUserAdmin = sessionStorage.getItem("isUAdmin");
+
+
+            if(isUserAdmin !== "2"){
+
+                //logout();
+
+                window.location.href = 'index.html';
+
+            }
+
+
+
+
+
+
+            //document.getElementById("PreLoaderBar").style.display = "none";
+
+
+
+        }
+
+    </script>
+
+
+
+
+
+</header>
+
+
+
+
+
+
+
+<body id = "grad" style="background-color:#ffffff;" onload="checkPr()">
+
+
+
+
+<div class="indeterminate"></div>
+
+</div>
+
+
+
+
+
+
+<div id = "entries"></div>
+
+<img src='images/LogoRC.png' style='
+
+  margin-left: 42%; width:250px; height:250px;'/>
+
+<h1 id = "titlee" align="center" style="margin-top: 50px; margin-bottom: 50px"></h1>
+
+<div id = "allUsers" align="center"></div>
+
+<div class="loader" id="PreLoaderBar" style="margin-left:47%; text-align: center"></div>
+
+<script>
+
+    var leadsRef = firebase.database().ref('user/LoR41MjKKz4V5V3UIdG');
+
+
+
+
+
+    //firebase.auth().currentUser.uid
+
+
+
+    var currentID;
+
+    var currentCenter;
+
+
+
+
+
+    var favoritemovie = sessionStorage.getItem("favoriteMovie");
+
+    //alert('user/'+favoritemovie);
+
+
+
+    if(favoritemovie != null){
+
+
+
+
+
+        firebase.database().ref('user/').child(favoritemovie).once('value', (snapshot) => {
+
+            var data = snapshot.val();
+
+            if(snapshot.exists()){
+
+                for(let key in data){
+
+                    console.log("data[key]",data["Center"]);
+
+                    currentCenter = data["Center"];
+
+                    //this.intVal.push(data[key]);
+
+                    //console.log("intVal",this.intVal);
+
+
+
+                }
+
+
+
+                firebase.database().ref('user/').once('value', (snapshott) => {
+
+                    //alert(snapshott);
+
+                    var dataa = snapshott.val();
+
+                    var bd = document.getElementById("allUsers");
+
+                    // var createT = document.createElement('h1');
+                    // createT.style.align = "center";
+                    // createT.style.marginTop = "50px";
+                    // createT.style.marginBottom = "50px";
+                    //         createT.className =  "roww";
+                    //         createT.innerHTML = "Users";
+
+                    // <h1 align="center" style="margin-top: 50px; margin-bottom: 50px">Users</h1>
+
+                    if(snapshott.exists()){
+
+
+
+
+
+
+
+                        for(let key in dataa){
+
+
+
+                            firebase.database().ref('user/').child(key).once('value', (snapshottt) => {
+
+                                //alert(snapshott);
+
+                                var dataaa = snapshottt.val();
+
+                                var bd = document.getElementById("allUsers");
+
+                                if(snapshottt.exists()){
+
+
+
+                                    for(let key in dataaa){
+
+
+
+                                        if(snapshottt.key != favoritemovie){
+
+
+
+                                            var createDivRow = document.createElement('div');
+
+                                            createDivRow.className =  "roww";
+
+
+
+                                            var createDivColumn = document.createElement('div');
+
+                                            createDivColumn.className =  "columnn";
+
+
+
+                                            var createDivCard = document.createElement('div');
+
+                                            createDivCard.className =  "cardd";
+
+
+
+                                            var createInfo = document.createElement('div');
+
+
+
+
+
+                                            createInfo.innerHTML = "<h3>"+dataaa["Name"]+"</h3><p style='color: blue;'>"+dataaa["Phone Number"]+"</p><p>Home Address: "+dataaa["Home Address"]+"</p><p>ICE: <span style='color: blue;'>"
+
+                                                +dataaa["ICE"]+"</span></p><p>Position: "+dataaa["Position"] + "<p>Center: <span style='color: red;'><b>" + dataaa["Center"] + "</b></span></p>";
+
+
+
+                                            createInfo.innerHTML +=
+
+                                                "<button onClick=deleteUser(this.id,this.className) id ="+snapshottt.key+"  class = "+data['Center']+"  style='color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-danger btn-xs'> Delete User </span> </button>"
+
+                                                +
+
+                                                "<button onClick=removeAdmin(this.id,this.className) id ="+snapshottt.key+" style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-warning btn-xs'> Remove admin </span></button>"
+
+                                                +
+
+                                                "<button onClick=makeAdmin(this.id)   id ="+snapshottt.key+" style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-primary btn-xs'> Make admin </span></button>";
+
+
+
+                                        }
+
+                                        //alert(dataaa["Center"]);
+
+                                    }
+
+
+                                    document.getElementById("PreLoaderBar").style.display = "none";
+                                    document.getElementById("titlee").innerHTML = "Users";
+                                    bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
+
+                                }
+
+                            })
+
+
+
+
+                            //console.log("data[key]",data["Email"]);
+
+
+
+                        }
+
+
+
+                    }
+
+
+                })
+
+
+
+            }
+
+        })
+
+
+
+    }
+
+
+
+    else{
+
+
+
+    }
+
+
+
+
+</script>
+
+
+
+
+
+<script>
+
+    function removeAdmin(userID){
+
+
+
+
+
+
+
+        if (confirm('Are you sure you want to remove ADMIN from this user?')) {
+
+
+
+
+
+            //if(isAdmin == true){
+
+            firebase.database().ref('user/'+ userID).update({
+
+                Admin: 0
+
+            });
+
+            location.reload();
+
+
+
+            //}
+
+
+
+        } else {
+
+
+
+        }
+
+
+
+
+
+    }
+
+
+
+</script>
+
+<script>
+
+    function makeAdmin(userID){
+
+
+
+
+
+        if (confirm('Are you sure you want to make this user an admin?')) {
+
+            firebase.database().ref('user/'+ userID).update({
+
+                Admin: 1
+
+            });
+
+            location.reload();
+
+
+
+        } else {
+
+
+
+        }
+
+
+
+
+
+    }
+
+</script>
+
+
+
+<script>
+
+    function deleteUser(userID,centerLoc){
+
+
+
+        if (confirm('Are you sure you want to delete this user?')) {
+
+            firebase.database().ref('user/').child(userID).remove();
+
+            firebase.database().ref('Centers/'+centerLoc+'/members/').child(userID).remove();
+            //firebase.database().ref('Centers/'+centerLoc+'/members/').hasChild(userID);
+
+            location.reload();
+
+        } else {
+
+
+
+        }
+
+
+
+
+
+    }
+
+</script>
+
+
+
+<script>
+
+    function logout(){
+
+        firebase.auth().signOut()
+
+            .then(function() {
+
+                sessionStorage.clear();
+
+                window.location.href = 'index.html';
+
+                //location.reload();
+
+
+
+                // Sign-out successful.
+
+            })
+
+            .catch(function(error) {
+
+                alert("SIGN OUT ERROR");
+
+                // An error happened
+
+            });
+
+    }
+
+
+
+</script>
+
+
 
 </body>
+
+
+
+<footer class="footer-basic-centered" style="margin-top: 350px; background-color:#e6e6e6; bottom: 0; width: 100%">
+
+
+
+    <p class="footer-company-motto" style = "color: #000000">Lebanese Red Cross</p>
+
+
+
+    <div class="container2" style="margin-top:10px;">
+
+
+
+        <div class="b">
+
+
+
+            <p style="color:#000000;font-family:Tahoma;text-align:left;font-size: 16px;">Per Humanitatem ad Pacem - With Humanity, Towards Peace</p>
+
+            <br><br>
+
+            <p style="color:#000000;font-family:Tahoma;text-align:left;font-size: 16px;"><a href="mailto:ahmad_kassabieh@msn.com" style="text-decoration: none;color:#000000;">ahmad_kassabieh@msn.com</a><br>
+
+                Lebanese Red Cross</p>
+
+
+
+        </div>
+
+
+
+
+
+        <div class="a">
+
+
+
+            <img src='images/LogoRC.png' style="width:150px; height: 150px;"></img>
+
+            <br>
+
+            <a style="color:#000000;" onmouseover="style='text-decoration:none; color:#000000;'" onmouseout="style='text-decoration:none; color:#000000;'" href="https://www.facebook.com/ahmad.kassabieh.3"><i class="icon-facebook">&nbsp</i></a>
+
+
+
+            <a style="color:#000000;" onmouseover="style='text-decoration:none; color:#000000;'" onmouseout="style='text-decoration:none; color:#000000;'" href="https://www.instagram.com/ahmadkassabieh/"><i class="fab fa-instagram">&nbsp</i></a>
+
+
+
+            <a style="color:#000000;" onmouseover="style='text-decoration:none; color:#000000;'" onmouseout="style='text-decoration:none; color:#000000;'" href="https://github.com/"><i class="icon-github"></i></a><br><br>
+
+        </div>
+
+
+
+    </div>
+
+
+
+    <br><br>
+
+    <p class="footer-company-name" style="color: black">Lebanese Red Cross &copy; 2019. All Rights Reserved.</p>
+
+
+
+</footer>
+
+
+
+
+
 </html>
