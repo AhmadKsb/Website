@@ -2,6 +2,7 @@
 
 
 
+<!--suppress ALL -->
 <html>
 
 <head>
@@ -225,8 +226,141 @@
 
 
 
+        .header {
+            overflow: hidden;
+
+            padding: 20px 10px;
+            color:blue;
+        }
+
+        .header a {
+            float: left;
+            color: black;
+            text-align: center;
+            padding: 12px;
+            text-decoration: none;
+            font-size: 18px;
+            line-height: 25px;
+            border-radius: 4px;
+        }
+
+        /*noinspection ALL*/
+        .header a.logo {
+            text-decoration: none;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .header a:hover {
+            text-decoration: none;
+            background-color: #ddd;
+            color: black;
+        }
+
+        .header a.active {
+            text-decoration: none;
+            background-color: dodgerblue;
+            color: white;
+        }
+
+        .header-right {
+            background-color: #f1f1f1;
+            float: right;
+        }
+
+        @media screen and (max-width: 500px) {
+            .header a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+
+            .header-right {
+                float: none;
+            }
+        }
+
+
+        /*noinspection ALL*/
+        h1 {
+            font-family: "Playfair Display";
+            letter-spacing: 5px;
+        }
+
+
     </style>
 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<style>
+    /*** COLORS ***/
+    /*** DEMO ***/
+
+    p {
+        margin-top: 30px;
+    }
+    .cntr {
+        font: 13px monospace;
+        color: black;
+        display: table;
+        width: 100%;
+        height: 100%;
+    }
+    .cntr .cntr-innr {
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+    }
+    /*** STYLES ***/
+    .search {
+        display: inline-block;
+        position: relative;
+        height: 35px;
+        width: 35px;
+        box-sizing: border-box;
+        margin: 0px 8px 7px 0px;
+        padding: 7px 9px 0px 9px;
+        border: 3px solid black;
+        border-radius: 25px;
+        transition: all 200ms ease;
+        cursor: text;
+    }
+    .search:after {
+        content: "";
+        position: absolute;
+        width: 3px;
+        height: 20px;
+        right: -5px;
+        top: 21px;
+        background: black;
+        border-radius: 3px;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        transition: all 200ms ease;
+    }
+    .search.active,
+    .search:hover {
+        width: 200px;
+        margin-right: 0px;
+    }
+    .search.active:after,
+    .search:hover:after {
+        height: 0px;
+    }
+    .search input {
+        width: 100%;
+        border: none;
+        box-sizing: border-box;
+        font-family: Helvetica;
+        font-size: 15px;
+        color: inherit;
+        background: transparent;
+        outline-width: 0px;
+    }
+
+</style>
 
 
 </head>
@@ -237,67 +371,28 @@
 
 <header>
 
-    <div id="branding" >
+<!--    <div id="branding" >-->
 
-        <a onclick="logout()" style = "cursor: pointer;text-decoration: none; color: blue; float: right; margin-right: 10px; margin-top: 5px; margin-bottom: 20px;">Logout</a>
-
-
-    </div>
+<!--        <a onclick="logout()" style = "cursor: pointer;text-decoration: none; color: blue; float: right; margin-right: 10px; margin-top: 5px; margin-bottom: 20px;">Logout</a>-->
 
 
+
+<!--    </div>-->
 
     <link rel="stylesheet" href="footer.css">
-
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-
-
-
-
-
-
-
-    <!-- Latest compiled and minified CSS -->
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
-
-
-    <!-- jQuery library -->
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-
-
-    <!-- Popper JS -->
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-
-
-
-    <!-- Latest compiled JavaScript -->
-
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-
-
     <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
-
     <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
-
     <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase.js"></script>
-
     <script src="https://cdn.firebase.com/libs/firebaseui/4.2.0/firebaseui.js"></script>
-
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/4.2.0/firebaseui.css" />
-
     <script src="bundle.js"></script>
-
     <script src="app.js"></script>
-
-
-
 
 
     <script>
@@ -305,17 +400,11 @@
         var favoritemovie = sessionStorage.getItem("favoriteMovie");
 
 
+
+
         function checkPr() {
-
-
-
-
-
-            //var leadss = firebase.database().ref('user');
-
+            console.clear();
             var privChecker = -1;
-
-
 
 
             var isUserAdmin = sessionStorage.getItem("isUAdmin");
@@ -328,16 +417,6 @@
                 window.location.href = 'index.html';
 
             }
-
-
-
-
-
-
-            //document.getElementById("PreLoaderBar").style.display = "none";
-
-
-
         }
 
     </script>
@@ -356,12 +435,24 @@
 
 <body id = "grad" style="background-color:#ffffff;" onload="checkPr()">
 
+<div class="header" style="text-decoration: none">
+
+    <div class="header-right">
+
+        <a onclick="logout()" style="cursor: pointer">Logout</a>
+
+
+    </div>
+    <img src='images/LogoRC.png' style='
+
+  margin-left: 42%; width:250px; height:250px;'/>
+</div>
 
 
 
 <div class="indeterminate"></div>
 
-</div>
+
 
 
 
@@ -370,46 +461,203 @@
 
 <div id = "entries"></div>
 
-<img src='images/LogoRC.png' style='
+<!--<img src='images/LogoRC.png' style='-->
 
-  margin-left: 42%; width:250px; height:250px;'/>
+<!--  margin-left: 42%; width:250px; height:250px;'/>-->
 
 <h1 id = "titlee" align="center" style="margin-top: 50px; margin-bottom: 50px"></h1>
+
+<div class="cntr">
+    <div class="cntr-innr">
+        <label class="search" for="inpt_search">
+            <input id="inpt_search" type="text" />
+        </label>
+    </div>
+</div>
+<br>
 
 <div id = "allUsers" align="center"></div>
 
 <div class="loader" id="PreLoaderBar" style="margin-left:47%; text-align: center"></div>
 
 <script>
+    var oncee = "false";
+    $("#inpt_search").unbind("on").on('change textInput input', function (e) {
+
+        document.getElementById("allUsers").innerHTML = "";
+        $(this).parent('label').addClass('active');
+
+
+        if($("#inpt_search").val().toString() !== "") {
+            if (oncee === "false"){
+            //alert($("#inpt_search").val());
+                $("#inpt_search").unbind("on");
+            //alert($("#inpt_search").val().toString());
+
+            var keyz;
+
+
+            //firebase.database().ref('user/').orderByChild($("#inpt_search").val().toString()).once('value', (snapshott) => {
+
+            //snapshott.forEach(function(data) {
+            //alert(data.key);
+            //keyz = data.key;
+
+
+            var leadsRef = firebase.database().ref('user/LoR41MjKKz4V5V3UIdG');
+            var currentID;
+            var currentCenter;
+
+            var favoritemovie = sessionStorage.getItem("favoriteMovie");
+
+            if (favoritemovie != null) {
+
+                var bd = document.getElementById("allUsers");
+                var createDivRow = document.createElement('div');
+
+
+                firebase.database().ref('user/').child(favoritemovie).once('value', (snapshot) => {
+                    oncee = "true";
+                    var data = snapshot.val();
+
+                    if (snapshot.exists()) {
+
+                        for (let key in data) {
+
+                            //console.log("data[key]", data["Center"]);
+
+                            currentCenter = data["Center"];
+
+
+                        }
+
+
+                        firebase.database().ref('user/').orderByChild('Name').equalTo($("#inpt_search").val().toString()).once('value', (snapshott) => {
+
+
+
+                            var dataa = snapshott.val();
+
+
+                            var k = 0;
+
+                            if (snapshott.exists()) {
+
+
+
+                                snapshott.forEach(function (child) {
+
+                                    firebase.database().ref('user/').child(child.key).once('value', (snapshottt) => {
+                                        //alert(key);
+                                        //alert(snapshott);
+
+                                        var dataaa = snapshottt.val();
+
+
+                                        if (snapshottt.exists()) {
+
+
+                                            for (let key in dataaa) {
+                                                //alert(dataaa["Name"]);
+
+
+                                                if (snapshottt.key != favoritemovie) {
+
+
+                                                    createDivRow.className = "roww";
+
+
+                                                    var createDivColumn = document.createElement('div');
+
+                                                    createDivColumn.className = "columnn";
+
+
+                                                    var createDivCard = document.createElement('div');
+
+                                                    createDivCard.className = "cardd";
+
+
+                                                    var createInfo = document.createElement('div');
+
+
+                                                    createInfo.innerHTML = "<h3>" + dataaa["Name"] + "</h3><p style='color: blue;'>" + dataaa["Phone Number"] + "</p><p>Home Address: " + dataaa["Home Address"] + "</p><p>ICE: <span style='color: blue;'>"
+
+                                                        + dataaa["ICE"] + "</span></p><p>Position: " + dataaa["Position"] + "<p>Center: <span style='color: red;'><b>" + dataaa["Center"] + "</b></span></p>";
+
+
+                                                    createInfo.innerHTML +=
+
+                                                        "<button onClick=deleteUser(this.id,this.className) id =" + snapshottt.key + "  class = " + data['Center'] + "  style='color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-danger btn-xs'> Delete User </span> </button>"
+
+                                                        +
+
+                                                        "<button onClick=removeAdmin(this.id,this.className) id =" + snapshottt.key + " style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-warning btn-xs'> Remove admin </span></button>"
+
+                                                        +
+
+                                                        "<button onClick=makeAdmin(this.id)   id =" + snapshottt.key + " style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-primary btn-xs'> Make admin </span></button>";
+
+
+                                                }
+
+                                                //alert(dataaa["Center"]);
+
+                                            }
+
+                                            document.getElementById("allUsers").innerHTML = "";
+                                            document.getElementById("PreLoaderBar").style.display = "none";
+                                            document.getElementById("titlee").innerHTML = "Users";
+                                            bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
+                                            console.clear();
+                                        }
+
+                                    })
+
+
+                                    //console.log("data[key]",data["Email"]);
+
+
+                                });
+
+
+                            }
+
+
+                        })
+
+
+                    }
+
+                })
+
+            } else {
+
+            }
+        }
+            oncee = "false";
+        }
+        else{
+            oncee = "false";
+            $(this).parent('label').removeClass('active');
+        }
+
+
+    });
+
+</script>
+
+<script>
 
     var leadsRef = firebase.database().ref('user/LoR41MjKKz4V5V3UIdG');
-
-
-
-
-
-    //firebase.auth().currentUser.uid
-
-
-
     var currentID;
-
     var currentCenter;
-
-
-
-
 
     var favoritemovie = sessionStorage.getItem("favoriteMovie");
 
-    //alert('user/'+favoritemovie);
-
-
-
     if(favoritemovie != null){
 
-
-
+        var bd = document.getElementById("allUsers");
+        var createDivRow = document.createElement('div');
 
 
         firebase.database().ref('user/').child(favoritemovie).once('value', (snapshot) => {
@@ -420,7 +668,7 @@
 
                 for(let key in data){
 
-                    console.log("data[key]",data["Center"]);
+                    //console.log("data[key]",data["Center"]);
 
                     currentCenter = data["Center"];
 
@@ -434,13 +682,15 @@
 
 
 
-                firebase.database().ref('user/').once('value', (snapshott) => {
+                firebase.database().ref('user/').orderByChild('Name').once('value', (snapshott) => {
 
                     //alert(snapshott);
 
+
+
                     var dataa = snapshott.val();
 
-                    var bd = document.getElementById("allUsers");
+
 
                     // var createT = document.createElement('h1');
                     // createT.style.align = "center";
@@ -455,35 +705,41 @@
 
 
 
+                        //firebase.database().ref('user/').child(key).once('value', (snapshottt) => {
 
 
+                        //});
 
 
-                        for(let key in dataa){
+                        snapshott.forEach(function(child) {
+                            //alert(child.key);
+                        //});
+                        //for(let key in dataa){
+                            //alert(key);
 
-
-
-                            firebase.database().ref('user/').child(key).once('value', (snapshottt) => {
-
+                            firebase.database().ref('user/').child(child.key).once('value', (snapshottt) => {
+                                //alert(key);
                                 //alert(snapshott);
 
                                 var dataaa = snapshottt.val();
 
-                                var bd = document.getElementById("allUsers");
+
+
+
 
                                 if(snapshottt.exists()){
 
 
 
                                     for(let key in dataaa){
-
+                                        //alert(dataaa["Name"]);
 
 
                                         if(snapshottt.key != favoritemovie){
 
 
 
-                                            var createDivRow = document.createElement('div');
+
 
                                             createDivRow.className =  "roww";
 
@@ -537,7 +793,7 @@
                                     document.getElementById("PreLoaderBar").style.display = "none";
                                     document.getElementById("titlee").innerHTML = "Users";
                                     bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
-
+                                    console.clear();
                                 }
 
                             })
@@ -549,7 +805,7 @@
 
 
 
-                        }
+                        });
 
 
 

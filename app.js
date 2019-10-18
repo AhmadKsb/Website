@@ -12,40 +12,11 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 
-
-/*
-function login(){
-
-    var userEmail = document.getElementById("email").value;
-
-    var userPass = document.getElementById("password").value;
-
-
-    firebase.auth().signInWithEmailAndPassword(userEmail, userPass).then(function(firebaseUser) {
-        alert("SUCCESS");
-    })
-        .catch(function(error) {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-
-            window.alert("Error : " + errorMessage);
-        });
-
-}
-*/
-
-
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
 
-
-        console.log(user);
-
-//alert("TEST 1 " + user.uid);
         var favoritemovie = user.uid;
-//alert("TEST 2 " + favoritemovie);
         var isUserAdmin;
-        //alert(window.location.href);
         sessionStorage.setItem("favoriteMovie", favoritemovie);
 
         if (favoritemovie === "27t8hbCsGBMCBDXWyioPT5bqfkK2") {
@@ -71,14 +42,12 @@ firebase.auth().onAuthStateChanged(function(user) {
                         isUserAdmin = "0";
                         sessionStorage.setItem("isUAdmin", isUserAdmin);
                         logout();
-                        //window.location.href = 'index.html';
                     }
                 }
             } else {
                 isUserAdmin = "0";
                 sessionStorage.setItem("isUAdmin", isUserAdmin);
                 logout();
-                //window.location.href = 'index.html';
             }
         })
     }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-
+<!--suppress ALL -->
 
 <html>
 
@@ -225,6 +225,65 @@ a:active {
 
 
 
+
+
+        .header {
+            overflow: hidden;
+
+            padding: 20px 10px;
+        }
+
+        .header a {
+            float: left;
+            color: black;
+            text-align: center;
+            padding: 12px;
+            text-decoration: none;
+            font-size: 18px;
+            line-height: 25px;
+            border-radius: 4px;
+        }
+
+        .header a.logo {
+            text-decoration: none;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .header a:hover {
+            text-decoration: none;
+            background-color: #ddd;
+            color: black;
+        }
+
+        .header a.active {
+            text-decoration: none;
+            background-color: dodgerblue;
+            color: white;
+        }
+
+        .header-right {
+            background-color: #f1f1f1;
+            float: right;
+        }
+
+        @media screen and (max-width: 500px) {
+            .header a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+
+            .header-right {
+                float: none;
+            }
+        }
+
+
+        h1, h6 {
+            font-family: "Playfair Display";
+            letter-spacing: 5px;
+        }
     </style>
 
 
@@ -237,13 +296,13 @@ a:active {
 
 <header>
 
-    <div id="branding" >
+<!--    <div id="branding" >-->
 
-		<a onclick="logout()" style = "cursor: pointer;text-decoration: none; color: blue; float: right; margin-right: 10px; margin-top: 5px; margin-bottom: 20px;">Logout</a>
+<!--		<a onclick="logout()" style = "cursor: pointer;text-decoration: none; color: blue; float: right; margin-right: 10px; margin-top: 5px; margin-bottom: 20px;">Logout</a>-->
 
-        <a href="reports.html" style="text-decoration: none; color: blue; float: right; margin-right: 15px; margin-top: 5px;">Reports</a>
+<!--        <a href="reports.html" style="text-decoration: none; color: blue; float: right; margin-right: 15px; margin-top: 5px;">Reports</a>-->
 
-    </div>
+<!--    </div>-->
 
 
 
@@ -358,22 +417,27 @@ a:active {
 <body id = "grad" style="background-color:#ffffff;" onload="checkPr()">
 
 
+<div class="header" style="text-decoration: none">
+
+    <div class="header-right">
+        <a href="reports.html">Reports</a>
+        <a class="active" href="admin.html">Manage Users</a>
+        <a onclick="logout()" style="cursor: pointer">Logout</a>
+
+    </div>
+    <img src='images/LogoRC.png' style='
+
+  margin-left: 42%; width:250px; height:250px;'/>
+</div>
 
 
         <div class="indeterminate"></div>
 
-    </div>
-
-
-
-
-
-
 <div id = "entries"></div>
 
-<img src='images/LogoRC.png' style='
+<!--<img src='images/LogoRC.png' style='-->
 
-  margin-left: 42%; width:250px; height:250px;'/>
+<!--  margin-left: 42%; width:250px; height:250px;'/>-->
 
 <h1 id = "titlee" align="center" style="margin-top: 50px; margin-bottom: 50px"></h1>
 
@@ -423,7 +487,7 @@ firebase.database().ref('user/').child(favoritemovie).once('value', (snapshot) =
 
     for(let key in data){
 
-      console.log("data[key]",data["Center"]);
+      //console.log("data[key]",data["Center"]);
 
 	  currentCenter = data["Center"];
 
