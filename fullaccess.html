@@ -467,7 +467,7 @@
 
 <h1 id = "titlee" align="center" style="margin-top: 50px; margin-bottom: 50px"></h1>
 
-<div class="cntr">
+<div id = "inpt_hide_" class="cntr">
     <div class="cntr-innr">
         <label class="search" for="inpt_search">
             <input id="inpt_search" type="text" />
@@ -621,6 +621,7 @@
 
                                             document.getElementById("allUsers").innerHTML = "";
                                             document.getElementById("PreLoaderBar").style.display = "none";
+                                            document.getElementById("inpt_hide_").style.visibility = "visible";
                                             document.getElementById("titlee").innerHTML = "Users";
                                             bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
                                             //console.clear();
@@ -752,6 +753,7 @@
                                                 }
 
                                                 document.getElementById("PreLoaderBar").style.display = "none";
+                                                document.getElementById("inpt_hide_").style.visibility = "visible";
                                                 document.getElementById("titlee").innerHTML = "Users";
                                                 bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
                                                 //console.clear();
@@ -791,7 +793,7 @@
 </script>
 
 <script>
-
+    document.getElementById("inpt_hide_").style.visibility = "hidden";
     var leadsRef = firebase.database().ref('user/LoR41MjKKz4V5V3UIdG');
     var currentID;
     var currentCenter;
@@ -935,6 +937,7 @@
 
 
                                     document.getElementById("PreLoaderBar").style.display = "none";
+                                    document.getElementById("inpt_hide_").style.visibility = "visible";
                                     document.getElementById("titlee").innerHTML = "Users";
                                     bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
                                     //console.clear();

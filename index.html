@@ -34,7 +34,26 @@
 
             }
 
+            .loader {
+                border: 16px solid #f3f3f3;
+                border-radius: 50%;
+                border-top: 16px solid #3498db;
+                width: 120px;
+                height: 120px;
+                -webkit-animation: spin 2s linear infinite; /* Safari */
+                animation: spin 2s linear infinite;
+            }
 
+            /* Safari */
+            @-webkit-keyframes spin {
+                0% { -webkit-transform: rotate(0deg); }
+                100% { -webkit-transform: rotate(360deg); }
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
 
         </style>
 
@@ -72,7 +91,7 @@
 
 
 
-        <script src="bundle.js"></script>
+<!--        <script src="bundle.js"></script>-->
 
 
 
@@ -97,12 +116,13 @@
 
 
 
-    <h1 style="margin-left: 47%; margin-top: 100px">Login</h1>
+    <h1 id="title" style="margin-left: 47%; margin-top: 100px">Login</h1>
 
 
+    <h3 id="showError" style="margin-left: 44%; color: red">You are not an admin!</h3>
 
 
-
+    <div class="loader" id="PreLoaderBar" style="margin-left:47%; text-align: center"></div>
 
 
 
@@ -114,18 +134,100 @@
     <div id="firebaseui-auth-container"></div>
 
     <script type="text/javascript">
-
         // FirebaseUI config.
-
+        var locToGo = '';
         var uiConfig = {
 
             //signInSuccessUrl:false,
-            signInSuccessUrl: 'index.html',
+            callbacks: {
+                signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+                     var user = authResult.user;
+                    // var credential = authResult.credential;
+                    // var isNewUser = authResult.additionalUserInfo.isNewUser;
+                    // var providerId = authResult.additionalUserInfo.providerId;
+                    // var operationType = authResult.operationType;
+
+                    //alert(user);
+
+                    document.getElementById('title').style.display = 'none';
+                    document.getElementById('PreLoaderBar').style.display = 'flex';
+
+
+
+
+
+                    var favoritemovie = user.uid;
+                    var isUserAdmin;
+                    //alert(user.uid);
+                    sessionStorage.setItem("favoriteMovie", favoritemovie);
+
+                    if (favoritemovie === "27t8hbCsGBMCBDXWyioPT5bqfkK2") {
+                        if ((!window.location.href.includes("fullaccess.html"))) {
+                            isUserAdmin = "2";
+                            sessionStorage.setItem("isUAdmin", isUserAdmin);
+                            window.location.href = 'fullaccess.html';
+                            //locToGo = 'fullaccess.html';
+                        }
+                    } else {
+
+                        firebase.database().ref('user/' + favoritemovie).once('value', (snapshot) => {
+                            var data = snapshot.val();
+                            //alert(user.uid);
+                            if (snapshot.exists()) {
+                                //for (let key in data) {
+                                    if (data["Admin"] === 1) {
+                                        if ((!window.location.href.includes("admin.html")) && (!window.location.href.includes("reports.html"))) {
+                                            isUserAdmin = "1";
+                                            sessionStorage.setItem("isUAdmin", isUserAdmin);
+                                            window.location.href = 'admin.html';
+                                            //locToGo = 'admin.html';
+                                        }
+                                    } else {
+                                        isUserAdmin = "0";
+                                        sessionStorage.setItem("isUAdmin", isUserAdmin);
+                                        logout();
+                                        alert("You are not an admin!");
+                                        document.getElementById('PreLoaderBar').style.display = 'none';
+                                        window.location.href = 'index.html';
+                                        //locToGo = 'index.html';
+                                    }
+                                //}
+                            } else {
+                                isUserAdmin = "0";
+                                sessionStorage.setItem("isUAdmin", isUserAdmin);
+                                logout();
+                                alert("You are not an admin!");
+                                document.getElementById('PreLoaderBar').style.display = 'none';
+                                window.location.href = 'index.html';
+                                //document.getElementById('showError').style.display = 'block';
+                                //window.location.href = 'index.html';
+                                //locToGo = 'index.html';
+                            }
+                        })
+                    }
+
+                    return true;
+                },
+                signInFailure: function(error) {
+                    // Some unrecoverable error occurred during sign-in.
+                    // Return a promise when error handling is completed and FirebaseUI
+                    // will reset, clearing any UI. This commonly occurs for error code
+                    // 'firebaseui/anonymous-upgrade-merge-conflict' when merge conflict
+                    // occurs. Check below for more details on this.
+                    return handleUIError(error);
+                },
+                uiShown: function() {
+                    // The widget is rendered.
+                    // Hide the loader.
+                    document.getElementById('showError').style.display = 'none';
+                    document.getElementById('PreLoaderBar').style.display = 'none';
+                }
+            },
+
+            signInSuccessUrl: locToGo,
 
             signInOptions: [
-
                 {
-
                     provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
 
                     recaptchaParameters: {
@@ -137,17 +239,9 @@
                     },
 
                     defaultCountry: 'LB',
-
                 }
-
             ]
-
-
-
-
-
         };
-
 
 
 
@@ -163,29 +257,13 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-        //document.getElementById('hiddenCurrentUser').value = firebase.auth().currentUser.uid;
-
-        //var favoritemovie = document.getElementById('hiddenCurrentUser').value;
-
-        //sessionStorage.setItem("favoriteMovie", favoritemovie);
-
     </script>
 
 
 
 
-
     </body>
+
 
 
 
