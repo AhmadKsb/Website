@@ -403,7 +403,7 @@
 
 
         function checkPr() {
-            console.clear();
+            //console.clear();
             var privChecker = -1;
 
 
@@ -481,20 +481,30 @@
 <div class="loader" id="PreLoaderBar" style="margin-left:47%; text-align: center"></div>
 
 <script>
+
+    function toTitleCase(str) {
+        return str.replace(/\w\S*/g, function(txt){
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+    }
+
+
+    var firstLoop = "false"
     var oncee = "false";
     $("#inpt_search").unbind("on").on('change textInput input', function (e) {
 
-        document.getElementById("allUsers").innerHTML = "";
+
         $(this).parent('label').addClass('active');
 
 
         if($("#inpt_search").val().toString() !== "") {
             if (oncee === "false"){
+                document.getElementById("allUsers").innerHTML = "";
             //alert($("#inpt_search").val());
                 $("#inpt_search").unbind("on");
             //alert($("#inpt_search").val().toString());
 
-            var keyz;
+            var keyz; //TODO after first search (WRITING LETTER A) it keeps updating
 
 
             //firebase.database().ref('user/').orderByChild($("#inpt_search").val().toString()).once('value', (snapshott) => {
@@ -531,8 +541,13 @@
 
                         }
 
+                        var toLo = $("#inpt_search").val().toString();
+                        var ppe = toLo[0].toUpperCase() + toLo.slice(1);
 
-                        firebase.database().ref('user/').orderByChild('Name').equalTo($("#inpt_search").val().toString()).once('value', (snapshott) => {
+                        var toT = toTitleCase(toLo);
+                        //alert("HERE: " + toT);
+                        //alert(ppe);
+                        firebase.database().ref('user/').orderByChild('Name').equalTo(toT).limitToFirst(2).once('value', (snapshott) => {
 
 
 
@@ -542,7 +557,7 @@
                             var k = 0;
 
                             if (snapshott.exists()) {
-
+                                //alert("TTT");
 
 
                                 snapshott.forEach(function (child) {
@@ -608,7 +623,7 @@
                                             document.getElementById("PreLoaderBar").style.display = "none";
                                             document.getElementById("titlee").innerHTML = "Users";
                                             bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
-                                            console.clear();
+                                            //console.clear();
                                         }
 
                                     })
@@ -633,12 +648,141 @@
             } else {
 
             }
-        }
+        }else{
+            }
             oncee = "false";
+
         }
-        else{
-            oncee = "false";
-            $(this).parent('label').removeClass('active');
+        else {
+            //alert($("#inpt_search").val().toString());
+        if($("#inpt_search").val().toString() === "") {
+            //alert($("#inpt_search").val().toString());
+            //alert(firstLoop);
+            if (firstLoop === "true") {
+                firstLoop = "false";
+                document.getElementById("allUsers").innerHTML = "";
+                oncee = "false";
+                $(this).parent('label').removeClass('active');
+                var leadsRef = firebase.database().ref('user/LoR41MjKKz4V5V3UIdG');
+                var currentID;
+                var currentCenter;
+
+                var favoritemovie = sessionStorage.getItem("favoriteMovie");
+
+                if (favoritemovie != null) {
+
+                    var bd = document.getElementById("allUsers");
+                    var createDivRow = document.createElement('div');
+
+
+                    firebase.database().ref('user/').child(favoritemovie).once('value', (snapshot) => {
+
+                        var data = snapshot.val();
+
+                        if (snapshot.exists()) {
+
+
+                            for (let key in data) {
+
+                                //console.log("data[key]",data["Center"]);
+
+                                currentCenter = data["Center"];
+
+                                //this.intVal.push(data[key]);
+
+                                //console.log("intVal",this.intVal);
+
+
+                            }
+
+
+                            firebase.database().ref('user/').orderByChild('Name').once('value', (snapshott) => {
+
+
+                                var dataa = snapshott.val();
+                                if (snapshott.exists()) {
+
+
+                                    snapshott.forEach(function (child) {
+
+                                        //alert("TTsT" + child.key);
+                                        //alert($("#inpt_search").val().toString());
+
+                                        firebase.database().ref('user/').child(child.key).once('value', (snapshottt) => {
+
+                                            var dataaa = snapshottt.val();
+
+
+                                            if (snapshottt.exists()) {
+
+
+                                                for (let key in dataaa) {
+
+                                                    if (snapshottt.key != favoritemovie) {
+
+                                                        createDivRow.className = "roww";
+
+                                                        var createDivColumn = document.createElement('div');
+
+                                                        createDivColumn.className = "columnn";
+
+                                                        var createDivCard = document.createElement('div');
+
+                                                        createDivCard.className = "cardd";
+
+                                                        var createInfo = document.createElement('div');
+
+                                                        createInfo.innerHTML = "<h3>" + dataaa["Name"] + "</h3><p style='color: blue;'>" + dataaa["Phone Number"] + "</p><p>Home Address: " + dataaa["Home Address"] + "</p><p>ICE: <span style='color: blue;'>"
+
+                                                            + dataaa["ICE"] + "</span></p><p>Position: " + dataaa["Position"] + "<p>Center: <span style='color: red;'><b>" + dataaa["Center"] + "</b></span></p>";
+
+
+                                                        createInfo.innerHTML +=
+
+                                                            "<button onClick=deleteUser(this.id,this.className) id =" + snapshottt.key + "  class = " + data['Center'] + "  style='color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-danger btn-xs'> Delete User </span> </button>"
+
+                                                            +
+
+                                                            "<button onClick=removeAdmin(this.id,this.className) id =" + snapshottt.key + " style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-warning btn-xs'> Remove admin </span></button>"
+
+                                                            +
+
+                                                            "<button onClick=makeAdmin(this.id)   id =" + snapshottt.key + " style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-primary btn-xs'> Make admin </span></button>";
+                                                    }
+                                                }
+
+                                                document.getElementById("PreLoaderBar").style.display = "none";
+                                                document.getElementById("titlee").innerHTML = "Users";
+                                                bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
+                                                //console.clear();
+                                            }
+                                        })
+
+                                    });
+
+                                }
+
+                            })
+
+                        }
+                    })
+
+                } else {
+
+
+                }
+
+
+            } else {
+                firstLoop = "true";
+            }
+        }
+
+
+
+
+
+
         }
 
 
@@ -702,7 +846,7 @@
                     // <h1 align="center" style="margin-top: 50px; margin-bottom: 50px">Users</h1>
 
                     if(snapshott.exists()){
-
+                        //alert("aaTTsT");
 
 
                         //firebase.database().ref('user/').child(key).once('value', (snapshottt) => {
@@ -713,8 +857,8 @@
 
                         snapshott.forEach(function(child) {
                             //alert(child.key);
-                        //});
-                        //for(let key in dataa){
+                            //});
+                            //for(let key in dataa){
                             //alert(key);
 
                             firebase.database().ref('user/').child(child.key).once('value', (snapshottt) => {
@@ -793,7 +937,7 @@
                                     document.getElementById("PreLoaderBar").style.display = "none";
                                     document.getElementById("titlee").innerHTML = "Users";
                                     bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
-                                    console.clear();
+                                    //console.clear();
                                 }
 
                             })
@@ -927,27 +1071,122 @@
 
 <script>
 
-    function deleteUser(userID,centerLoc){
-
+    function deleteUser(userID, centerLoc) {
 
 
         if (confirm('Are you sure you want to delete this user?')) {
 
-            firebase.database().ref('user/').child(userID).remove();
-
-            firebase.database().ref('Centers/'+centerLoc+'/members/').child(userID).remove();
-            //firebase.database().ref('Centers/'+centerLoc+'/members/').hasChild(userID);
-
-            location.reload();
-
-        } else {
 
 
+            firebase.database().ref('user/').child(userID).once('value', (snapshottt) => {
 
+                var dataaa = snapshottt.val();
+
+                var bd = document.getElementById("allUsers");
+
+                if (snapshottt.exists()) {
+                    //alert(snapshottt.key);
+                    firebase.database().ref('user/').child(userID).remove();
+                }
+
+            });
+
+
+
+
+            firebase.database().ref('Centers/' + centerLoc + '/members/').child(userID).once('value', (snapshottt) => {
+
+                var dataaa = snapshottt.val();
+
+
+                if (snapshottt.exists()) {
+                    //alert("HERE " + snapshottt.key);
+                    firebase.database().ref('Centers/' + centerLoc + '/members/').child(userID).remove();
+                }
+
+            });
+
+
+
+
+
+
+
+            firebase.database().ref('Centers/' + centerLoc + '/broadcast/').once('value', (snapshottt) => {
+
+                var dataaa = snapshottt.val();
+
+                if (snapshottt.exists()) {
+
+                    for (let key in dataaa) {
+
+                        firebase.database().ref('Centers/' + centerLoc + '/broadcast/').child(key).child(userID).once('value', (snapshottt) => {
+
+                            var dataaa = snapshottt.val();
+                            if (snapshottt.exists()) {
+                                //alert(key + " " + snapshottt.key);
+                                firebase.database().ref('Centers/'+centerLoc+'/broadcast/').child(key).child(userID).remove();
+                            }
+                        });
+                    }
+                }
+            });
+
+
+
+
+            firebase.database().ref('Centers/' + centerLoc + '/reports/').once('value', (snapshottt) => {
+
+                var dataaa = snapshottt.val();
+
+                if (snapshottt.exists()) {
+
+                    for (let key in dataaa) {
+
+                        firebase.database().ref('Centers/' + centerLoc + '/reports/').child(key).once('value', (snapshottt) => {
+
+                            var dataaa = snapshottt.val();
+                            if (snapshottt.exists()) {
+
+                                for (let keyy in dataaa) {
+
+
+
+                                    firebase.database().ref('Centers/' + centerLoc + '/reports/').child(key).child(keyy).once('value', (snapshottt) => {
+
+                                        var dataaaf = snapshottt.val();
+
+                                        if (snapshottt.exists()) {
+
+                                            if (snapshottt.child("didntcome").child(userID).exists()) {
+                                                firebase.database().ref('Centers/' + centerLoc + '/reports/').child(key).child(keyy).child("didntcome").child(userID).remove();
+                                            }
+                                            if (snapshottt.child("came").child(userID).exists()) {
+                                                firebase.database().ref('Centers/' + centerLoc + '/reports/').child(key).child(keyy).child("came").child(userID).remove();
+                                            }
+
+                                        }
+                                        location.reload();
+                                    });
+
+
+                                }
+
+                            }
+                        });
+                    }
+                }
+            });
         }
 
 
 
+
+
+        else {
+
+
+        }
 
 
     }
