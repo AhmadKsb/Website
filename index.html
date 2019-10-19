@@ -119,9 +119,6 @@
     <h1 id="title" style="margin-left: 47%; margin-top: 100px">Login</h1>
 
 
-    <h3 id="showError" style="margin-left: 44%; color: red">You are not an admin!</h3>
-
-
     <div class="loader" id="PreLoaderBar" style="margin-left:47%; text-align: center"></div>
 
 
@@ -199,7 +196,6 @@
                                 alert("You are not an admin!");
                                 document.getElementById('PreLoaderBar').style.display = 'none';
                                 window.location.href = 'index.html';
-                                //document.getElementById('showError').style.display = 'block';
                                 //window.location.href = 'index.html';
                                 //locToGo = 'index.html';
                             }
@@ -219,7 +215,6 @@
                 uiShown: function() {
                     // The widget is rendered.
                     // Hide the loader.
-                    document.getElementById('showError').style.display = 'none';
                     document.getElementById('PreLoaderBar').style.display = 'none';
                 }
             },
