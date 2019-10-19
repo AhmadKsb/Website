@@ -1458,7 +1458,10 @@
 
                                     document.getElementById("pageTitle").style.marginBottom = "25px";
 
-                                    document.getElementById("pgeClck").style.display = "none";
+                                    var yC = document.getElementsByClassName("pgeClck");
+                                    for (i = 0; i < yC.length; i++) {
+                                        yC[i].style.display = "none";
+                                    }
 
                                     var bd = document.getElementById("allReports");
 
@@ -2474,7 +2477,12 @@
 
                                 document.getElementById("pageTitle").style.marginBottom = "25px";
 
-                                document.getElementById("pgeClck").style.display = "none";
+                                var yC = document.getElementsByClassName("pgeClck");
+                                for (i = 0; i < yC.length; i++) {
+                                    yC[i].style.display = "none";
+                                }
+
+
 
                                 var bd = document.getElementById("allReports");
 
