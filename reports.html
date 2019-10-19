@@ -499,15 +499,18 @@
 
     function pageClick(pageClicked) {
 
-
+        document.getElementById("PreLoaderBar").style.display = "flex";
         if (passedd == "true") {
 
 
             if (pageClickerFollower === "false") {
                 if (pageClickedNum === pageClicked) {
-                    //doNothing
+
+                    document.getElementById("PreLoaderBar").style.display = "none";
+
                 } else if ((pageClickedNum + 1) !== pageClicked) {
                     alert("Not Allowed To Go Back!\n\nNot Allowed To Go Forward By More Than 1 Page!");
+                    document.getElementById("PreLoaderBar").style.display = "none";
                     //alert("pageClicked: " + pageClicked);
                     //pageClickedNum += 1;
                     //location.reload();
