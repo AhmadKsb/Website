@@ -1219,6 +1219,7 @@
                                                                     cardB.className = "card-body";
 
 
+
                                                                     var titleC = document.createElement('h5');
 
                                                                     titleC.className = "card-title";
@@ -2287,7 +2288,7 @@
                                 } else {
 
 
-                                    firebase.database().ref('Centers/' + currentCenter + '/reports/low/').once('value', (snapshott) => {
+                                    firebase.database().ref('Centers/' + currentCenter + '/reports/low/').limitToFirst(5).once('value', (snapshott) => {
 
                                         var dataas = snapshott.val();
 
@@ -2298,7 +2299,7 @@
 
                                                 var bd = document.getElementById("allReports");
 
-                                                firebase.database().ref('Centers/' + currentCenter + '/reports/low/' + keyy).orderByKey().limitToFirst(5).once('value', (snapshott) => {
+                                                firebase.database().ref('Centers/' + currentCenter + '/reports/low/' + keyy).orderByKey().once('value', (snapshott) => {
                                                     lowEm = snapshott.key;
 
                                                     var dataass = snapshott.val();
