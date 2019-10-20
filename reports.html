@@ -588,7 +588,7 @@
 
                                     if (highEm !== null) {
                                         var first = "true";
-                                        firebase.database().ref('Centers/' + currentCenter + '/reports/high/').orderByKey().startAt(highEm).limitToFirst(5).once('value', (snapshott) => {
+                                        firebase.database().ref('Centers/' + currentCenter + '/reports/high/').orderByKey().startAt(highEm).limitToFirst(6).once('value', (snapshott) => {
                                             var dataas = snapshott.val();
 
                                             if (snapshott.exists()) {
@@ -862,7 +862,7 @@
 
                                     if (mediumEm !== null) {
                                         var firstMedium = "true";
-                                        firebase.database().ref('Centers/' + currentCenter + '/reports/medium/').orderByKey().startAt(mediumEm).limitToFirst(5).once('value', (snapshott) => {
+                                        firebase.database().ref('Centers/' + currentCenter + '/reports/medium/').orderByKey().startAt(mediumEm).limitToFirst(6).once('value', (snapshott) => {
 
                                             var dataas = snapshott.val();
 
@@ -1130,7 +1130,7 @@
 
 
                                     if (lowEm !== null) {
-                                        firebase.database().ref('Centers/' + currentCenter + '/reports/low/').orderByKey().startAt(lowEm).limitToFirst(5).once('value', (snapshott) => {
+                                        firebase.database().ref('Centers/' + currentCenter + '/reports/low/').orderByKey().startAt(lowEm).limitToFirst(6).once('value', (snapshott) => {
                                             var firstLow = "true";
                                             var dataas = snapshott.val();
 
@@ -1608,7 +1608,7 @@
 
                                 if (highEm !== null) {
                                     var first = "true";
-                                    firebase.database().ref('Centers/' + currentCenter + '/reports/high/').orderByKey().startAt(highEm).limitToFirst(5).once('value', (snapshott) => {
+                                    firebase.database().ref('Centers/' + currentCenter + '/reports/high/').orderByKey().startAt(highEm).limitToFirst(6).once('value', (snapshott) => {
                                         var dataas = snapshott.val();
 
                                         if (snapshott.exists()) {
@@ -1882,7 +1882,7 @@
 
                                 if (mediumEm !== null) {
                                     var firstMedium = "true";
-                                    firebase.database().ref('Centers/' + currentCenter + '/reports/medium/').orderByKey().startAt(mediumEm).limitToFirst(5).once('value', (snapshott) => {
+                                    firebase.database().ref('Centers/' + currentCenter + '/reports/medium/').orderByKey().startAt(mediumEm).limitToFirst(6).once('value', (snapshott) => {
 
                                         var dataas = snapshott.val();
 
@@ -2150,7 +2150,7 @@
 
 
                                 if (lowEm !== null) {
-                                    firebase.database().ref('Centers/' + currentCenter + '/reports/low/').orderByKey().startAt(lowEm).limitToFirst(5).once('value', (snapshott) => {
+                                    firebase.database().ref('Centers/' + currentCenter + '/reports/low/').orderByKey().startAt(lowEm).limitToFirst(6).once('value', (snapshott) => {
                                         var firstLow = "true";
                                         var dataas = snapshott.val();
 
