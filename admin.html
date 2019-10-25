@@ -400,6 +400,23 @@
 
                                                     if (snapshottt.key != favoritemovie) {
 
+                                                        var shiftDay = "";
+
+                                                        if(dataaa["Shift"] === "1"){
+                                                            shiftDay = "Monday";
+                                                        }
+                                                        else if(dataaa["Shift"] === "2"){
+                                                            shiftDay = "Tuesday";
+                                                        }
+                                                        else if(dataaa["Shift"] === "3"){
+                                                            shiftDay = "Wednesday";
+                                                        }
+                                                        else if(dataaa["Shift"] === "4"){
+                                                            shiftDay = "Thursday";
+                                                        }
+                                                        else{
+                                                            shiftDay = "Friday";
+                                                        }
 
                                                         var createDivRow = document.createElement('div');
                                                         createDivRow.className = "roww";
@@ -413,9 +430,9 @@
 
                                                         var createInfo = document.createElement('div');
 
-                                                        createInfo.innerHTML = "<h3>" + dataaa["Name"] + "</h3><p style='color: blue;'>" + dataaa["Phone Number"] + "</p><p>Home Address: " + dataaa["Home Address"] + "</p><p>ICE: <span style='color: blue;'>"
+                                                        createInfo.innerHTML = "<h3>" + dataaa["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataaa["Phone Number"] + "'style='text-decoration: none; color: blue;'>" + dataaa["Phone Number"] + "</a></p><p>Blood Type: " + dataaa["Blood Type"] + "</p><p>Position: " + dataaa["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataaa["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
 
-                                                            + dataaa["ICE"] + "</span></p><p>Position: " + dataaa["Position"];
+                                                            + dataaa["ICE"] + "'style='text-decoration: none; color: blue;'>"+ dataaa["ICE"] + "</a></span></p>";
 
 
                                                         createInfo.innerHTML +=
