@@ -14,6 +14,7 @@
 
     <style type="text/css">
 
+
         #content{
 
             width: 50%;
@@ -308,6 +309,10 @@
 
 
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+
 </head>
 
 
@@ -323,6 +328,9 @@
 <!--        <a href="admin.html" style="text-decoration: none; color: blue; float: right; margin-right: 15px; margin-top: 5px;">Manage Users</a>-->
 
 <!--    </div>-->
+
+
+
 
 
 
@@ -497,7 +505,7 @@
 
 
 
-
+    var pageN = document.getElementById("pageNo");
 
 
     function pageClick(pageClicked) {
@@ -582,12 +590,12 @@
                                         passedd = "true";
                                     }
 
-                                    var pageN = document.getElementById("pageNo");
+                                    //var pageN = document.getElementById("pageNo");
 
-                                    var i;
-                                    for (i = -1; i < totalPages - 1; i++) {
-                                        pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i + 2) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i + 2) + ");return false;'>" + (i + 2) + " </a>"
-                                    }
+                                    //var i;
+                                    //for (i = -1; i < totalPages; i++) {
+                                    //    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i + 2) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i + 2) + ");return false;'>" + (i + 2) + " </a>"
+                                    //}
 
                                     if (highEm !== null) {
                                         var first = "true";
@@ -650,7 +658,7 @@
                                                                     createInfo.id = keyy;
 
                                                                     createInfo.onclick = function () {
-                                                                        test(createInfo.id, createInfo.className)
+                                                                        showInfo(createInfo.id, createInfo.className)
                                                                     };
 
                                                                     createInfo.style.maxWidth = "36rem";
@@ -707,7 +715,7 @@
 
                                                                 }
                                                                 document.getElementById("pageTitle").innerHTML = "Reports";
-                                                                document.getElementById("PreLoaderBar").style.display = "none";
+                                                                //document.getElementById("PreLoaderBar").style.display = "none";
 
                                                                 bd.appendChild(createInfo).appendChild(allContent).appendChild(closeButDiv).appendChild(cardB).appendChild(titleC).appendChild(cardD);
 
@@ -791,7 +799,7 @@
                                                                 //alert(highEm);
 
                                                                 createInfo.onclick = function () {
-                                                                    test(createInfo.id, createInfo.className)
+                                                                    showInfo(createInfo.id, createInfo.className)
                                                                 };
 
                                                                 createInfo.style.maxWidth = "36rem";
@@ -846,7 +854,7 @@
                                                                 //alert(createInfo.id);
                                                             }
                                                             document.getElementById("pageTitle").innerHTML = "Reports";
-                                                            document.getElementById("PreLoaderBar").style.display = "none";
+                                                            //document.getElementById("PreLoaderBar").style.display = "none";
 
                                                             bd.appendChild(createInfo).appendChild(allContent).appendChild(closeButDiv).appendChild(cardB).appendChild(titleC).appendChild(cardD);
 
@@ -925,7 +933,7 @@
                                                                     createInfo.id = keyy;
 
                                                                     createInfo.onclick = function () {
-                                                                        test(createInfo.id, createInfo.className)
+                                                                        showInfo(createInfo.id, createInfo.className)
                                                                     };
 
                                                                     createInfo.style.maxWidth = "36rem";
@@ -976,7 +984,7 @@
                                                                     cardD.innerHTML = cardD.innerHTML.replace(/\n/g, "<br>");
                                                                 }
                                                                 document.getElementById("pageTitle").innerHTML = "Reports";
-                                                                document.getElementById("PreLoaderBar").style.display = "none";
+                                                                //document.getElementById("PreLoaderBar").style.display = "none";
 
                                                                 bd.appendChild(createInfo).appendChild(allContent).appendChild(closeButDiv).appendChild(cardB).appendChild(titleC).appendChild(cardD);
 
@@ -1059,7 +1067,7 @@
                                                                 createInfo.id = keyy;
 
                                                                 createInfo.onclick = function () {
-                                                                    test(createInfo.id, createInfo.className)
+                                                                    showInfo(createInfo.id, createInfo.className)
                                                                 };
 
                                                                 createInfo.style.maxWidth = "36rem";
@@ -1110,7 +1118,7 @@
                                                                 cardD.innerHTML = cardD.innerHTML.replace(/\n/g, "<br>");
                                                             }
                                                             document.getElementById("pageTitle").innerHTML = "Reports";
-                                                            document.getElementById("PreLoaderBar").style.display = "none";
+                                                            //document.getElementById("PreLoaderBar").style.display = "none";
 
                                                             bd.appendChild(createInfo).appendChild(allContent).appendChild(closeButDiv).appendChild(cardB).appendChild(titleC).appendChild(cardD);
 
@@ -1189,7 +1197,7 @@
                                                                     createInfo.id = keyy;
 
                                                                     createInfo.onclick = function () {
-                                                                        test(createInfo.id, createInfo.className)
+                                                                        showInfo(createInfo.id, createInfo.className)
                                                                     };
 
                                                                     createInfo.style.maxWidth = "36rem";
@@ -1245,7 +1253,7 @@
                                                                     cardD.innerHTML = cardD.innerHTML.replace(/\n/g, "<br>");
                                                                 }
                                                                 document.getElementById("pageTitle").innerHTML = "Reports";
-                                                                document.getElementById("PreLoaderBar").style.display = "none";
+                                                                //document.getElementById("PreLoaderBar").style.display = "none";
                                                                 bd.appendChild(createInfo).appendChild(allContent).appendChild(closeButDiv).appendChild(cardB).appendChild(titleC).appendChild(cardD);
 
 
@@ -1258,6 +1266,23 @@
 
                                                 }
 
+                                                document.getElementById("PreLoaderBar").style.display = "none";
+                                                var pageN = document.getElementById("pageNo");
+
+                                                var i;
+                                                for (i = -1; i < totalPages ; i++) {
+                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i + 2) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i + 2) + ");return false;'>" + (i + 2) + " </a>"
+                                                }
+
+                                            }
+                                            else{
+                                                document.getElementById("PreLoaderBar").style.display = "none";
+                                                var pageN = document.getElementById("pageNo");
+
+                                                var i;
+                                                for (i = -1; i < totalPages ; i++) {
+                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i + 2) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i + 2) + ");return false;'>" + (i + 2) + " </a>"
+                                                }
 
                                             }
 
@@ -1326,7 +1351,7 @@
                                                                 createInfo.id = keyy;
 
                                                                 createInfo.onclick = function () {
-                                                                    test(createInfo.id, createInfo.className)
+                                                                    showInfo(createInfo.id, createInfo.className)
                                                                 };
 
                                                                 createInfo.style.maxWidth = "36rem";
@@ -1381,7 +1406,7 @@
                                                                 cardD.innerHTML = cardD.innerHTML.replace(/\n/g, "<br>");
                                                             }
                                                             document.getElementById("pageTitle").innerHTML = "Reports";
-                                                            document.getElementById("PreLoaderBar").style.display = "none";
+                                                            //document.getElementById("PreLoaderBar").style.display = "none";
                                                             bd.appendChild(createInfo).appendChild(allContent).appendChild(closeButDiv).appendChild(cardB).appendChild(titleC).appendChild(cardD);
 
 
@@ -1390,7 +1415,24 @@
                                                     })
 
                                                 }
+                                                document.getElementById("PreLoaderBar").style.display = "none";
+                                                var pageN = document.getElementById("pageNo");
 
+                                                var i;
+                                                for (i = -1; i < totalPages ; i++) {
+                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i + 2) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i + 2) + ");return false;'>" + (i + 2) + " </a>"
+                                                }
+
+
+                                            }
+                                            else{
+                                                document.getElementById("PreLoaderBar").style.display = "none";
+                                                var pageN = document.getElementById("pageNo");
+
+                                                var i;
+                                                for (i = -1; i < totalPages ; i++) {
+                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i + 2) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i + 2) + ");return false;'>" + (i + 2) + " </a>"
+                                                }
 
                                             }
 
@@ -1417,115 +1459,393 @@
                         }
                     }
 
-                    function test(id, classn) {
+                    function showInfo(id, classn) {
 
 
-                        if (event.target.toString() !== "[object HTMLElement]") {
 
-                            firebase.database().ref('Centers/' + currentCenter + '/reports/' + classn + '/' + id + '/didntcome/').once('value', (snapshotts) => {
+                        swal({   title: "Who do you want to see?",
 
-
-                                var createnewA = document.createElement('a');
-
-                                createnewA.href = "reports.html";
-
-                                createnewA.style.textDecoration = "none";
-
-                                createnewA.style.color = "blue";
-
-                                createnewA.style.cssFloat = "right";
-
-                                createnewA.style.marginRight = "15px";
-
-                                createnewA.style.marginTop = "5px";
-
-                                createnewA.innerHTML = "Reports";
-
-                                //var bdd = document.getElementById("branding");
-
-                                //bdd.appendChild(createnewA);
+                                //text: "Are you sure to proceed?",
 
 
-                                var dataass = snapshotts.val();
+                                showCancelButton: true,
 
-                                if (snapshotts.exists()) {
+                                //confirmButtonColor: "#DD6B55",
 
+                                //confirmButtonColor: '#157efb',
+                                //cancelButtonColor: '#d33',
 
-                                    document.getElementById("allReports").innerHTML = "";
+                                confirmButtonColor: '#aaa',
 
-                                    document.getElementById("pageTitle").innerHTML = "Didn't Come";
-
-                                    document.getElementById("pageTitle").style.marginBottom = "25px";
-
-                                    var yC = document.getElementsByClassName("pgeClck");
-                                    for (i = 0; i < yC.length; i++) {
-                                        yC[i].style.display = "none";
-                                    }
-
-                                    var bd = document.getElementById("allReports");
+                                confirmButtonText: "Pending",
 
 
-                                    for (let keyysy in dataass) {
+                                cancelButtonText: "Accepted",
 
 
-                                        firebase.database().ref('user/' + keyysy).once('value', (snapshottss) => {
+                                closeOnConfirm: true,
+
+                                closeOnCancel: true },
+
+                            function(isConfirm){
+
+                                if (isConfirm)
+
+                                {
+
+                                    //swal("Account Removed!", "Your account is removed permanently!", "success");
 
 
-                                            var dataasss = snapshottss.val();
 
-                                            if (snapshottss.exists()) {
+                                    if (event.target.toString() !== "[object HTMLElement]") {
 
+                                        document.getElementById("allReports").innerHTML = "";
 
-                                                for (let keyysys in dataasss) {
+                                        document.getElementById("pageTitle").innerHTML = "Pending";
 
-
-                                                    var createDivRow = document.createElement('div');
-
-                                                    createDivRow.className = "roww";
-
-
-                                                    var createDivColumn = document.createElement('div');
-
-                                                    createDivColumn.className = "columnn";
+                                        var yC = document.getElementsByClassName("pgeClck");
+                                        for (i = 0; i < yC.length; i++) {
+                                            yC[i].style.display = "none";
+                                        }
 
 
-                                                    var createDivCard = document.createElement('div');
+                                        firebase.database().ref('Centers/' + currentCenter + '/reports/' + classn + '/' + id + '/didntcome/').once('value', (snapshotts) => {
+                                            document.getElementById("PreLoaderBar").style.display = "flex";
 
 
-                                                    if (classn === "high") {
+                                            var createnewA = document.createElement('a');
+
+                                            createnewA.href = "reports.html";
+
+                                            createnewA.style.textDecoration = "none";
+
+                                            createnewA.style.color = "blue";
+
+                                            createnewA.style.cssFloat = "right";
+
+                                            createnewA.style.marginRight = "15px";
+
+                                            createnewA.style.marginTop = "5px";
+
+                                            createnewA.innerHTML = "Reports";
+
+                                            //var bdd = document.getElementById("branding");
+
+                                            //bdd.appendChild(createnewA);
 
 
-                                                        createDivCard.className = "cardd";
+                                            var dataaess = snapshotts.val();
+
+                                            if (snapshotts.exists()) {
 
 
-                                                    } else if (classn === "medium") {
+
+                                                document.getElementById("pageTitle").style.marginBottom = "25px";
 
 
-                                                        createDivCard.className = "cardd";
-
-                                                    } else {
 
 
-                                                        createDivCard.className = "cardd";
+                                                var bd = document.getElementById("allReports");
 
-                                                    }
+                                                var IDs = [];
 
-
-                                                    var createInfo = document.createElement('div');
-
-                                                    createInfo.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style = 'color: blue;'>" + dataasss["Phone Number"] + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'>"
-
-                                                        + dataasss["ICE"] + "</span></p><p>Position: " + dataasss["Position"];
-
+                                                for (let keyysye in dataaess) {
+                                                    IDs.push(keyysye);
                                                 }
 
-                                                bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
+
+
+                                                //firebase.database().ref('user/').orderByChild('Name').once('value', (snapshottt) => {
+                                                //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
+                                                //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottses) => {
+                                                //keyysy
+
+
+                                                firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
+
+
+                                                    snapshottt.forEach(function (child2) {
+                                                        //alert(child2.key);
+
+                                                        if (IDs.includes(child2.key)) {
+
+                                                            firebase.database().ref('user/').child(child2.key).once('value', (snapshottss) => {
+
+                                                                var dataasss = snapshottss.val();
+
+                                                                if (snapshottss.exists()) {
+
+
+                                                                    for (let keyysys in dataasss) {
+                                                                        //alert(keyysys);
+                                                                        var createDivRow = document.createElement('div');
+
+                                                                        createDivRow.className = "roww";
+
+
+                                                                        var createDivColumn = document.createElement('div');
+
+                                                                        createDivColumn.className = "columnn";
+
+
+                                                                        var createDivCard = document.createElement('div');
+
+
+                                                                        if (classn === "high") {
+
+
+                                                                            createDivCard.className = "cardd";
+
+
+                                                                        } else if (classn === "medium") {
+
+
+                                                                            createDivCard.className = "cardd";
+
+                                                                        } else {
+
+
+                                                                            createDivCard.className = "cardd";
+
+                                                                        }
+
+
+                                                                        var createInfo = document.createElement('div');
+
+
+                                                                        var shiftDay = "";
+
+                                                                        //alert(dataasss["Shift"]);
+                                                                        if(dataasss["Shift"] === "1"){
+                                                                            shiftDay = "Monday";
+                                                                        }
+                                                                        else if(dataasss["Shift"] === "2"){
+                                                                            shiftDay = "Tuesday";
+                                                                        }
+                                                                        else if(dataasss["Shift"] === "3"){
+                                                                            shiftDay = "Wednesday";
+                                                                        }
+                                                                        else if(dataasss["Shift"] === "4"){
+                                                                            shiftDay = "Thursday";
+                                                                        }
+                                                                        else{
+                                                                            shiftDay = "Friday";
+                                                                        }
+
+
+                                                                        createInfo.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataasss["Phone Number"] + "'style='text-decoration: none; color: blue;'>" + dataasss["Phone Number"] + "</a></p><p>Blood Type: " + dataasss["Blood Type"] + "</p><p>Position: " + dataasss["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
+
+                                                                            + dataasss["ICE"] + "'style='text-decoration: none; color: blue;'>"+ dataasss["ICE"] + "</a></span></p>";
+
+
+                                                                    }
+                                                                    document.getElementById("PreLoaderBar").style.display = "none";
+                                                                    bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
+                                                                }
+                                                            });
+                                                        }
+                                                    });
+                                                });
+                                                //}
+                                            }
+                                            else{
+                                                document.getElementById("PreLoaderBar").style.display = "none";
                                             }
                                         })
                                     }
+                                    else{
+                                        alert("1HAPPENED");
+                                    }
+
+
                                 }
-                            })
-                        }
+
+                                else {
+
+                                    //swal("Hurray", "Account is not removed!", "error");
+
+
+
+
+
+                                    if (event.target.toString() !== "[object HTMLElement]") {
+
+
+
+                                        document.getElementById("allReports").innerHTML = "";
+
+                                        document.getElementById("pageTitle").innerHTML = "Accepted";
+
+                                        var yC = document.getElementsByClassName("pgeClck");
+                                        for (i = 0; i < yC.length; i++) {
+                                            yC[i].style.display = "none";
+                                        }
+
+
+                                        firebase.database().ref('Centers/' + currentCenter + '/reports/' + classn + '/' + id + '/came/').once('value', (snapshotts) => {
+                                            document.getElementById("PreLoaderBar").style.display = "flex";
+
+                                            var createnewA = document.createElement('a');
+
+                                            createnewA.href = "reports.html";
+
+                                            createnewA.style.textDecoration = "none";
+
+                                            createnewA.style.color = "blue";
+
+                                            createnewA.style.cssFloat = "right";
+
+                                            createnewA.style.marginRight = "15px";
+
+                                            createnewA.style.marginTop = "5px";
+
+                                            createnewA.innerHTML = "Reports";
+
+                                            //var bdd = document.getElementById("branding");
+
+                                            //bdd.appendChild(createnewA);
+
+
+                                            var dataaess = snapshotts.val();
+
+                                            if (snapshotts.exists()) {
+
+
+
+
+                                                document.getElementById("pageTitle").style.marginBottom = "25px";
+
+
+
+
+                                                var bd = document.getElementById("allReports");
+
+                                                var IDs = [];
+
+                                                for (let keyysye in dataaess) {
+                                                    IDs.push(keyysye);
+                                                }
+
+
+
+                                                //firebase.database().ref('user/').orderByChild('Name').once('value', (snapshottt) => {
+                                                //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
+                                                //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottses) => {
+                                                //keyysy
+
+
+                                                firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
+
+
+                                                    snapshottt.forEach(function (child2) {
+                                                        //alert(child2.key);
+
+                                                        if (IDs.includes(child2.key)) {
+
+                                                            firebase.database().ref('user/').child(child2.key).once('value', (snapshottss) => {
+
+
+                                                        var dataasss = snapshottss.val();
+
+                                                        if (snapshottss.exists()) {
+
+
+                                                            for (let keyysys in dataasss) {
+
+
+                                                                var createDivRow = document.createElement('div');
+
+                                                                createDivRow.className = "roww";
+
+
+                                                                var createDivColumn = document.createElement('div');
+
+                                                                createDivColumn.className = "columnn";
+
+
+                                                                var createDivCard = document.createElement('div');
+
+
+                                                                if (classn === "high") {
+
+
+                                                                    createDivCard.className = "cardd";
+
+
+                                                                } else if (classn === "medium") {
+
+
+                                                                    createDivCard.className = "cardd";
+
+                                                                } else {
+
+
+                                                                    createDivCard.className = "cardd";
+
+                                                                }
+
+
+                                                                var createInfo = document.createElement('div');
+
+                                                                var shiftDay = "";
+
+                                                                if(dataasss["Shift"] === "1"){
+                                                                    shiftDay = "Monday";
+                                                                }
+                                                                else if(dataasss["Shift"] === "2"){
+                                                                    shiftDay = "Tuesday";
+                                                                }
+                                                                else if(dataasss["Shift"] === "3"){
+                                                                    shiftDay = "Wednesday";
+                                                                }
+                                                                else if(dataasss["Shift"] === "4"){
+                                                                    shiftDay = "Thursday";
+                                                                }
+                                                                else{
+                                                                    shiftDay = "Friday";
+                                                                }
+
+
+                                                                createInfo.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataasss["Phone Number"] + "'style='text-decoration: none; color: blue;'>" + dataasss["Phone Number"] + "</a></p><p>Blood Type: " + dataasss["Blood Type"] + "</p><p>Position: " + dataasss["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
+
+                                                                    + dataasss["ICE"] + "'style='text-decoration: none; color: blue;'>"+ dataasss["ICE"] + "</a></span></p>";
+
+                                                            }
+                                                            document.getElementById("PreLoaderBar").style.display = "none";
+                                                            bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
+                                                        }
+                                                            });
+                                                        }
+                                                    });
+                                                });
+                                                //}
+                                            }
+                                            else {
+                                                document.getElementById("PreLoaderBar").style.display = "none";
+                                            }
+                                        })
+                                    }
+                                    else{
+                                        alert("2HAPPENED");
+                                    }
+
+                                } });
+
+
+
+
+
+
+
+
+                        //if (confirm('Are you sure you want to delete this report?')) {
+
+
+
+                        //}
+
+
+
                     }
 
                 }
@@ -1597,12 +1917,12 @@
                                     passedd = "true";
                                 }
 
-                                var pageN = document.getElementById("pageNo");
+                                //var pageN = document.getElementById("pageNo");
 
-                                var i;
-                                for (i = -1; i < totalPages - 1; i++) {
-                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i + 2) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i + 2) + ");return false;'>" + (i + 2) + " </a>"
-                                }
+                                //var i;
+                                //for (i = -1; i < totalPages ; i++) {
+                                //    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i + 2) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i + 2) + ");return false;'>" + (i + 2) + " </a>"
+                                //}
 
                                 if (highEm !== null) {
                                     var first = "true";
@@ -1665,7 +1985,7 @@
                                                                 createInfo.id = keyy;
 
                                                                 createInfo.onclick = function () {
-                                                                    test(createInfo.id, createInfo.className)
+                                                                    showInfo(createInfo.id, createInfo.className)
                                                                 };
 
                                                                 createInfo.style.maxWidth = "36rem";
@@ -1721,7 +2041,7 @@
 
                                                             }
                                                             document.getElementById("pageTitle").innerHTML = "Reports";
-                                                            document.getElementById("PreLoaderBar").style.display = "none";
+                                                            //document.getElementById("PreLoaderBar").style.display = "none";
 
                                                             bd.appendChild(createInfo).appendChild(allContent).appendChild(closeButDiv).appendChild(cardB).appendChild(titleC).appendChild(cardD);
 
@@ -1805,7 +2125,7 @@
                                                             //alert(highEm);
 
                                                             createInfo.onclick = function () {
-                                                                test(createInfo.id, createInfo.className)
+                                                                showInfo(createInfo.id, createInfo.className)
                                                             };
 
                                                             createInfo.style.maxWidth = "36rem";
@@ -1860,7 +2180,7 @@
                                                             //alert(createInfo.id);
                                                         }
                                                         document.getElementById("pageTitle").innerHTML = "Reports";
-                                                        document.getElementById("PreLoaderBar").style.display = "none";
+                                                        //document.getElementById("PreLoaderBar").style.display = "none";
 
                                                         bd.appendChild(createInfo).appendChild(allContent).appendChild(closeButDiv).appendChild(cardB).appendChild(titleC).appendChild(cardD);
 
@@ -1939,7 +2259,7 @@
                                                                 createInfo.id = keyy;
 
                                                                 createInfo.onclick = function () {
-                                                                    test(createInfo.id, createInfo.className)
+                                                                    showInfo(createInfo.id, createInfo.className)
                                                                 };
 
                                                                 createInfo.style.maxWidth = "36rem";
@@ -1990,7 +2310,7 @@
                                                                 cardD.innerHTML = cardD.innerHTML.replace(/\n/g, "<br>");
                                                             }
                                                             document.getElementById("pageTitle").innerHTML = "Reports";
-                                                            document.getElementById("PreLoaderBar").style.display = "none";
+                                                            //document.getElementById("PreLoaderBar").style.display = "none";
 
                                                             bd.appendChild(createInfo).appendChild(allContent).appendChild(closeButDiv).appendChild(cardB).appendChild(titleC).appendChild(cardD);
 
@@ -2073,7 +2393,7 @@
                                                             createInfo.id = keyy;
 
                                                             createInfo.onclick = function () {
-                                                                test(createInfo.id, createInfo.className)
+                                                                showInfo(createInfo.id, createInfo.className)
                                                             };
 
                                                             createInfo.style.maxWidth = "36rem";
@@ -2124,7 +2444,7 @@
                                                             cardD.innerHTML = cardD.innerHTML.replace(/\n/g, "<br>");
                                                         }
                                                         document.getElementById("pageTitle").innerHTML = "Reports";
-                                                        document.getElementById("PreLoaderBar").style.display = "none";
+                                                        //document.getElementById("PreLoaderBar").style.display = "none";
 
                                                         bd.appendChild(createInfo).appendChild(allContent).appendChild(closeButDiv).appendChild(cardB).appendChild(titleC).appendChild(cardD);
 
@@ -2203,7 +2523,7 @@
                                                                 createInfo.id = keyy;
 
                                                                 createInfo.onclick = function () {
-                                                                    test(createInfo.id, createInfo.className)
+                                                                    showInfo(createInfo.id, createInfo.className)
                                                                 };
 
                                                                 createInfo.style.maxWidth = "36rem";
@@ -2258,7 +2578,7 @@
                                                                 cardD.innerHTML = cardD.innerHTML.replace(/\n/g, "<br>");                                                                //cardD = cardD.replace(/\n/g, "<br>");
                                                             }
                                                             document.getElementById("pageTitle").innerHTML = "Reports";
-                                                            document.getElementById("PreLoaderBar").style.display = "none";
+                                                            //document.getElementById("PreLoaderBar").style.display = "none";
                                                             bd.appendChild(createInfo).appendChild(allContent).appendChild(closeButDiv).appendChild(cardB).appendChild(titleC).appendChild(cardD);
 
 
@@ -2270,8 +2590,23 @@
                                                 }
 
                                             }
+                                            document.getElementById("PreLoaderBar").style.display = "none";
+                                            var pageN = document.getElementById("pageNo");
 
+                                            var i;
+                                            for (i = -1; i < totalPages ; i++) {
+                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i + 2) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i + 2) + ");return false;'>" + (i + 2) + " </a>"
+                                            }
 
+                                        }
+                                        else{
+                                            document.getElementById("PreLoaderBar").style.display = "none";
+                                            var pageN = document.getElementById("pageNo");
+
+                                            var i;
+                                            for (i = -1; i < totalPages ; i++) {
+                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i + 2) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i + 2) + ");return false;'>" + (i + 2) + " </a>"
+                                            }
                                         }
 
 
@@ -2339,7 +2674,7 @@
                                                             createInfo.id = keyy;
 
                                                             createInfo.onclick = function () {
-                                                                test(createInfo.id, createInfo.className)
+                                                                showInfo(createInfo.id, createInfo.className)
                                                             };
 
                                                             createInfo.style.maxWidth = "36rem";
@@ -2393,6 +2728,7 @@
                                                             cardD.innerHTML = dataass["description"];
                                                             cardD.innerHTML = cardD.innerHTML.replace(/\n/g, "<br>");
                                                         }
+
                                                         document.getElementById("pageTitle").innerHTML = "Reports";
                                                         document.getElementById("PreLoaderBar").style.display = "none";
                                                         bd.appendChild(createInfo).appendChild(allContent).appendChild(closeButDiv).appendChild(cardB).appendChild(titleC).appendChild(cardD);
@@ -2403,17 +2739,36 @@
                                                 })
 
                                             }
+                                            document.getElementById("PreLoaderBar").style.display = "none";
+                                            var pageN = document.getElementById("pageNo");
 
+                                            var i;
+                                            for (i = -1; i < totalPages ; i++) {
+                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i + 2) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i + 2) + ");return false;'>" + (i + 2) + " </a>"
+                                            }
 
+                                        }else{
+                                            document.getElementById("PreLoaderBar").style.display = "none";
+                                            var pageN = document.getElementById("pageNo");
+
+                                            var i;
+                                            for (i = -1; i < totalPages ; i++) {
+                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i + 2) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i + 2) + ");return false;'>" + (i + 2) + " </a>"
+                                            }
                                         }
 
 
                                     });
                                 }
 
+
+
+
+
                             }
                         })
                     }
+
                 });
 
                 function deleteReport(id, classn) {
@@ -2430,121 +2785,420 @@
                     }
                 }
 
-                function test(id, classn) {
-
-
-                    if (event.target.toString() !== "[object HTMLElement]") {
-
-                        firebase.database().ref('Centers/' + currentCenter + '/reports/' + classn + '/' + id + '/didntcome/').once('value', (snapshotts) => {
-
-
-                            var createnewA = document.createElement('a');
-
-                            createnewA.href = "reports.html";
-
-                            createnewA.style.textDecoration = "none";
-
-                            createnewA.style.color = "blue";
-
-                            createnewA.style.cssFloat = "right";
-
-                            createnewA.style.marginRight = "15px";
-
-                            createnewA.style.marginTop = "5px";
-
-                            createnewA.innerHTML = "Reports";
-
-                            //var bdd = document.getElementById("branding");
-
-                            //bdd.appendChild(createnewA);
-
-
-                            var dataass = snapshotts.val();
-
-                            if (snapshotts.exists()) {
-
-
-                                document.getElementById("allReports").innerHTML = "";
-
-                                document.getElementById("pageTitle").innerHTML = "Didn't Come";
-
-                                document.getElementById("pageTitle").style.marginBottom = "25px";
-
-                                var yC = document.getElementsByClassName("pgeClck");
-                                for (i = 0; i < yC.length; i++) {
-                                    yC[i].style.display = "none";
-                                }
+                function showInfo(id, classn) {
 
 
 
-                                var bd = document.getElementById("allReports");
+                    swal({   title: "Who do you want to see?",
+
+                            //text: "Are you sure to proceed?",
+                            showCloseButton: true,
+
+                            showCancelButton: true,
+
+                            //confirmButtonColor: "#DD6B55",
+
+                            //confirmButtonColor: '#157efb',
+                            //cancelButtonColor: '#d33',
+
+                            confirmButtonColor: '#aaa',
+
+                            confirmButtonText: "Pending",
 
 
-                                for (let keyysy in dataass) {
+                            cancelButtonText: "Accepted",
+
+                            allowEscapeKey : false,
+                            allowOutsideClick: false,
+                            closeOnConfirm: true,
 
 
-                                    firebase.database().ref('user/' + keyysy).once('value', (snapshottss) => {
+
+                            closeOnCancel: true },
+
+                        function(isConfirm){
+
+                            if (isConfirm)
+
+                            {
+
+                                //swal("Account Removed!", "Your account is removed permanently!", "success");
 
 
-                                        var dataasss = snapshottss.val();
 
-                                        if (snapshottss.exists()) {
+                                if (event.target.toString() !== "[object HTMLElement]") {
 
+                                    document.getElementById("allReports").innerHTML = "";
 
-                                            for (let keyysys in dataasss) {
+                                    document.getElementById("pageTitle").innerHTML = "Pending";
 
-
-                                                var createDivRow = document.createElement('div');
-
-                                                createDivRow.className = "roww";
-
-
-                                                var createDivColumn = document.createElement('div');
-
-                                                createDivColumn.className = "columnn";
+                                    var yC = document.getElementsByClassName("pgeClck");
+                                    for (i = 0; i < yC.length; i++) {
+                                        yC[i].style.display = "none";
+                                    }
 
 
-                                                var createDivCard = document.createElement('div');
+                                    firebase.database().ref('Centers/' + currentCenter + '/reports/' + classn + '/' + id + '/didntcome/').once('value', (snapshotts) => {
+                                        document.getElementById("PreLoaderBar").style.display = "flex";
 
 
-                                                if (classn === "high") {
+                                        var createnewA = document.createElement('a');
+
+                                        createnewA.href = "reports.html";
+
+                                        createnewA.style.textDecoration = "none";
+
+                                        createnewA.style.color = "blue";
+
+                                        createnewA.style.cssFloat = "right";
+
+                                        createnewA.style.marginRight = "15px";
+
+                                        createnewA.style.marginTop = "5px";
+
+                                        createnewA.innerHTML = "Reports";
+
+                                        //var bdd = document.getElementById("branding");
+
+                                        //bdd.appendChild(createnewA);
 
 
-                                                    createDivCard.className = "cardd";
+                                        var dataaess = snapshotts.val();
+
+                                        if (snapshotts.exists()) {
 
 
-                                                } else if (classn === "medium") {
+
+                                            document.getElementById("pageTitle").style.marginBottom = "25px";
 
 
-                                                    createDivCard.className = "cardd";
-
-                                                } else {
 
 
-                                                    createDivCard.className = "cardd";
+                                            var bd = document.getElementById("allReports");
 
-                                                }
+                                            var IDs = [];
 
-
-                                                var createInfo = document.createElement('div');
-
-                                                createInfo.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style = 'color: blue;'>" + dataasss["Phone Number"] + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'>"
-
-                                                    + dataasss["ICE"] + "</span></p><p>Position: " + dataasss["Position"];
-
+                                            for (let keyysye in dataaess) {
+                                                IDs.push(keyysye);
                                             }
 
-                                            bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
+
+
+                                                //firebase.database().ref('user/').orderByChild('Name').once('value', (snapshottt) => {
+                                                //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
+                                                //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottses) => {
+                                                    //keyysy
+
+
+                                                    firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
+
+
+                                                    snapshottt.forEach(function (child2) {
+                                                        //alert(child2.key);
+
+                                                        if (IDs.includes(child2.key)) {
+
+                                                            firebase.database().ref('user/').child(child2.key).once('value', (snapshottss) => {
+
+                                                                var dataasss = snapshottss.val();
+
+                                                                if (snapshottss.exists()) {
+
+
+                                                                    for (let keyysys in dataasss) {
+                                                                        //alert(keyysys);
+                                                                        var createDivRow = document.createElement('div');
+
+                                                                        createDivRow.className = "roww";
+
+
+                                                                        var createDivColumn = document.createElement('div');
+
+                                                                        createDivColumn.className = "columnn";
+
+
+                                                                        var createDivCard = document.createElement('div');
+
+
+                                                                        if (classn === "high") {
+
+
+                                                                            createDivCard.className = "cardd";
+
+
+                                                                        } else if (classn === "medium") {
+
+
+                                                                            createDivCard.className = "cardd";
+
+                                                                        } else {
+
+
+                                                                            createDivCard.className = "cardd";
+
+                                                                        }
+
+
+                                                                        var createInfo = document.createElement('div');
+
+
+                                                                        var shiftDay = "";
+
+                                                                        //alert(dataasss["Shift"]);
+                                                                        if(dataasss["Shift"] === "1"){
+                                                                            shiftDay = "Monday";
+                                                                        }
+                                                                        else if(dataasss["Shift"] === "2"){
+                                                                            shiftDay = "Tuesday";
+                                                                        }
+                                                                        else if(dataasss["Shift"] === "3"){
+                                                                            shiftDay = "Wednesday";
+                                                                        }
+                                                                        else if(dataasss["Shift"] === "4"){
+                                                                            shiftDay = "Thursday";
+                                                                        }
+                                                                        else{
+                                                                            shiftDay = "Friday";
+                                                                        }
+
+
+                                                                        createInfo.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataasss["Phone Number"] + "'style='text-decoration: none; color: blue;'>" + dataasss["Phone Number"] + "</a></p><p>Blood Type: " + dataasss["Blood Type"] + "</p><p>Position: " + dataasss["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
+
+                                                                            + dataasss["ICE"] + "'style='text-decoration: none; color: blue;'>"+ dataasss["ICE"] + "</a></span></p>";
+
+
+                                                                    }
+                                                                    document.getElementById("PreLoaderBar").style.display = "none";
+                                                                    bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
+                                                                }
+                                                            });
+                                                        }
+                                                    });
+                                                });
+                                            //}
+                                        }
+                                        else{
+                                            document.getElementById("PreLoaderBar").style.display = "none";
                                         }
                                     })
                                 }
+                                else{
+                                    alert("3HAPPENED");
+                                }
+
                             }
-                        })
-                    }
+
+                            else {
+
+                                //swal("Hurray", "Account is not removed!", "error");
+
+
+
+
+
+                                if (event.target.toString() !== "[object HTMLElement]") {
+
+
+
+                                    document.getElementById("allReports").innerHTML = "";
+
+                                    document.getElementById("pageTitle").innerHTML = "Accepted";
+
+                                    var yC = document.getElementsByClassName("pgeClck");
+                                    for (i = 0; i < yC.length; i++) {
+                                        yC[i].style.display = "none";
+                                    }
+
+
+                                    firebase.database().ref('Centers/' + currentCenter + '/reports/' + classn + '/' + id + '/came/').once('value', (snapshotts) => {
+                                        document.getElementById("PreLoaderBar").style.display = "flex";
+
+                                        var createnewA = document.createElement('a');
+
+                                        createnewA.href = "reports.html";
+
+                                        createnewA.style.textDecoration = "none";
+
+                                        createnewA.style.color = "blue";
+
+                                        createnewA.style.cssFloat = "right";
+
+                                        createnewA.style.marginRight = "15px";
+
+                                        createnewA.style.marginTop = "5px";
+
+                                        createnewA.innerHTML = "Reports";
+
+                                        //var bdd = document.getElementById("branding");
+
+                                        //bdd.appendChild(createnewA);
+
+
+                                        var dataaess = snapshotts.val();
+
+                                        if (snapshotts.exists()) {
+
+
+
+
+                                            document.getElementById("pageTitle").style.marginBottom = "25px";
+
+
+
+
+                                            var bd = document.getElementById("allReports");
+
+                                            var IDs = [];
+
+                                            for (let keyysye in dataaess) {
+                                                IDs.push(keyysye);
+                                            }
+
+
+
+                                            //firebase.database().ref('user/').orderByChild('Name').once('value', (snapshottt) => {
+                                            //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
+                                            //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottses) => {
+                                            //keyysy
+
+
+                                            firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
+
+
+                                                snapshottt.forEach(function (child2) {
+                                                    //alert(child2.key);
+
+                                                    if (IDs.includes(child2.key)) {
+
+                                                        firebase.database().ref('user/').child(child2.key).once('value', (snapshottss) => {
+
+
+                                                    var dataasss = snapshottss.val();
+
+                                                    if (snapshottss.exists()) {
+
+
+                                                        for (let keyysys in dataasss) {
+
+
+                                                            var createDivRow = document.createElement('div');
+
+                                                            createDivRow.className = "roww";
+
+
+                                                            var createDivColumn = document.createElement('div');
+
+                                                            createDivColumn.className = "columnn";
+
+
+                                                            var createDivCard = document.createElement('div');
+
+
+                                                            if (classn === "high") {
+
+
+                                                                createDivCard.className = "cardd";
+
+
+                                                            } else if (classn === "medium") {
+
+
+                                                                createDivCard.className = "cardd";
+
+                                                            } else {
+
+
+                                                                createDivCard.className = "cardd";
+
+                                                            }
+
+
+                                                            var createInfo = document.createElement('div');
+
+                                                            var shiftDay = "";
+
+                                                            if(dataasss["Shift"] === "1"){
+                                                                shiftDay = "Monday";
+                                                            }
+                                                            else if(dataasss["Shift"] === "2"){
+                                                                shiftDay = "Tuesday";
+                                                            }
+                                                            else if(dataasss["Shift"] === "3"){
+                                                                shiftDay = "Wednesday";
+                                                            }
+                                                            else if(dataasss["Shift"] === "4"){
+                                                                shiftDay = "Thursday";
+                                                            }
+                                                            else{
+                                                                shiftDay = "Friday";
+                                                            }
+
+
+                                                            createInfo.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataasss["Phone Number"] + "'style='text-decoration: none; color: blue;'>" + dataasss["Phone Number"] + "</a></p><p>Blood Type: " + dataasss["Blood Type"] + "</p><p>Position: " + dataasss["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
+
+                                                                + dataasss["ICE"] + "'style='text-decoration: none; color: blue;'>"+ dataasss["ICE"] + "</a></span></p>";
+
+                                                        }
+                                                        document.getElementById("PreLoaderBar").style.display = "none";
+                                                        bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
+                                                    }
+                                                        });
+                                                    }
+                                                });
+                                            });
+                                            //}
+                                        }
+                                        else {
+                                            document.getElementById("PreLoaderBar").style.display = "none";
+                                        }
+                                    })
+                                }
+                                else{
+                                    alert("4HAPPENED");
+                                }
+
+
+
+
+
+
+
+
+                            } });
+
+
+
+
+
+
+
+
+                    //if (confirm('Are you sure you want to delete this report?')) {
+
+
+
+                    //}
+
+
+
                 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             }
         }
+
     }
 
 
