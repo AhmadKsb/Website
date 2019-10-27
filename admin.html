@@ -291,19 +291,19 @@
 
     <script>
 
-        var favoritemovie = sessionStorage.getItem("favoriteMovie");
+        var favoritemovie = localStorage.getItem("favoriteMovie");
 
 
         function checkPr() {
 
             var privChecker = -1;
 
-            var isUserAdmin = sessionStorage.getItem("isUAdmin");
-
-            if (isUserAdmin !== "1") {
-
-                //logout();
-                window.location.href = 'index.html';
+            var isUserAdmin = localStorage.getItem("isUAdmin");
+            
+            if (isUserAdmin != "1") {
+                //alert("Admin: " + isUserAdmin);
+                logout();
+                //window.location.href = 'index.html';
 
             }
         }
@@ -324,11 +324,9 @@
         <a class="active" href="admin.html">Manage Users</a>
         <a onclick="logout()" style="cursor: pointer">Logout</a>
     </div>
-    <img src='images/LogoRC.png' style='
-
-  margin-left: 42%; width:250px; height:250px;'/>
+    
 </div>
-
+    <img src='images/LogoRC.png' style='display: block; margin-left: auto; margin-right: auto; width:250px; height:250px;'/>
 
 <div class="indeterminate"></div>
 <div id="entries"></div>
@@ -337,9 +335,9 @@
 
 <!--  margin-left: 42%; width:250px; height:250px;'/>-->
 
-<h1 id="titlee" align="center" style="margin-top: 50px; margin-bottom: 50px"></h1>
+<h1 id="titlee" style="display: block; margin-top: 50px; margin-bottom: 20px; margin-left: auto; margin-right: auto; text-align: center"></h1>
 <div id="allUsers" align="center"></div>
-<div class="loader" id="PreLoaderBar" style="margin-left:47%; text-align: center"></div>
+<div class="loader" id="PreLoaderBar" style="display: block; margin-left: auto; margin-right: auto; text-align: center"></div>
 
 
 <script>
@@ -352,7 +350,7 @@
     var currentCenter;
 
 
-    var favoritemovie = sessionStorage.getItem("favoriteMovie");
+    var favoritemovie = localStorage.getItem("favoriteMovie");
 
     if (favoritemovie != null) {
 
@@ -673,12 +671,12 @@
 
     function logout() {
 
+        
         firebase.auth().signOut()
 
             .then(function () {
-
-                sessionStorage.clear();
-
+    
+                localStorage.clear();
                 window.location.href = 'index.html';
 
                 //location.reload();

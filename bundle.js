@@ -63,8 +63,11 @@ firebase.initializeApp(firebaseConfig);
 //});
 
 function logout(){
-
+    
+    
+    
     firebase.auth().signOut().then(function() {
+        localStorage.clear();
         window.location.href = 'index.html';
         // Sign-out successful.
     }).catch(function(error) {

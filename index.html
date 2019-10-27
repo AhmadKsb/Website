@@ -156,12 +156,12 @@
                     var favoritemovie = user.uid;
                     var isUserAdmin;
                     //alert(user.uid);
-                    sessionStorage.setItem("favoriteMovie", favoritemovie);
+                    localStorage.setItem("favoriteMovie", favoritemovie);
 
                     if (favoritemovie === "27t8hbCsGBMCBDXWyioPT5bqfkK2") {
                         if ((!window.location.href.includes("fullaccess.html"))) {
                             isUserAdmin = "2";
-                            sessionStorage.setItem("isUAdmin", isUserAdmin);
+                            localStorage.setItem("isUAdmin", isUserAdmin);
                             window.location.href = 'fullaccess.html';
                             //locToGo = 'fullaccess.html';
                         }
@@ -175,13 +175,13 @@
                                     if (data["Admin"] === 1) {
                                         if ((!window.location.href.includes("admin.html")) && (!window.location.href.includes("reports.html"))) {
                                             isUserAdmin = "1";
-                                            sessionStorage.setItem("isUAdmin", isUserAdmin);
+                                            localStorage.setItem("isUAdmin", isUserAdmin);
                                             window.location.href = 'admin.html';
                                             //locToGo = 'admin.html';
                                         }
                                     } else {
                                         isUserAdmin = "0";
-                                        sessionStorage.setItem("isUAdmin", isUserAdmin);
+                                        localStorage.setItem("isUAdmin", isUserAdmin);
                                         logout();
                                         alert("You are not an admin!");
                                         document.getElementById('PreLoaderBar').style.display = 'none';
@@ -191,7 +191,7 @@
                                 //}
                             } else {
                                 isUserAdmin = "0";
-                                sessionStorage.setItem("isUAdmin", isUserAdmin);
+                                localStorage.setItem("isUAdmin", isUserAdmin);
                                 logout();
                                 alert("You are not an admin!");
                                 document.getElementById('PreLoaderBar').style.display = 'none';

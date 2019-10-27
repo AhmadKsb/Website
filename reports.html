@@ -354,7 +354,7 @@
 
     <script>
 
-        var favoritemovie = sessionStorage.getItem("favoriteMovie");
+        var favoritemovie = localStorage.getItem("favoriteMovie");
         var highEm = null;
         var mediumEm = null;
         var lowEm = null;
@@ -363,19 +363,24 @@
         var passedd = "false";
         var pageClickedNum = 1;
         var pageClickerFollower = "true";
+        var highEmergencyCounter = 0;
+        var mediumEmergencyCounter = 0;
+        var lowEmergencyCounter = 0;
+        var totalNumberOfEmergencies = 0;
 
 
         function checkPr() {
             var privChecker = -1;
 
 
-            var isUserAdmin = sessionStorage.getItem("isUAdmin");
+            var isUserAdmin = localStorage.getItem("isUAdmin");
+            
+            
+            if(isUserAdmin != "1"){
+                //alert("Reports: " + isUserAdmin);
+                logout();
 
-            if(isUserAdmin !== "1"){
-
-                //logout();
-
-                window.location.href = 'index.html';
+                //window.location.href = 'index.html';
 
             }
 
@@ -388,7 +393,7 @@
                 bd2.innerHTML = "";
 
 
-                var favoritemovie = sessionStorage.getItem("favoriteMovie");
+                var favoritemovie = localStorage.getItem("favoriteMovie");
 
 
                 var currentID;
@@ -396,7 +401,7 @@
                 var currentCenter;
 
 
-                var favoritemovie = sessionStorage.getItem("favoriteMovie");
+                var favoritemovie = localStorage.getItem("favoriteMovie");
 
 
                 firebase.database().ref('user/').child(favoritemovie).once('value', (snapshot) => {
@@ -428,13 +433,21 @@
                                     firebase.database().ref('Centers/' + currentCenter + '/reports/' + keyyee).once('value', (snapshotts) => {
                                         //alert(snapshott.numChildren());
                                         if (snapshott.numChildren() > max) {
-                                            max = Math.ceil(snapshotts.numChildren() / 5);
+                                            if(max < Math.ceil(snapshotts.numChildren() / 5)) {
+                                                max = Math.ceil(snapshotts.numChildren() / 5);
+                                            }
                                             //alert("N" + snapshott.numChildren() + " " + max);
                                             totalPages = max;
                                         }
                                     });
                                 }
                                 pageClick(1);
+                            }
+                            else{
+                                document.getElementById("pageTitle").style.fontWeight = "bold";
+                                document.getElementById("pageTitle").innerHTML = "<br><br><br><br>";
+                                document.getElementById("pageTitle").innerHTML += "No Reports Yet!";
+                                document.getElementById("PreLoaderBar").style.display = "none";
                             }
                         });
                     }
@@ -468,10 +481,39 @@
         <a onclick="logout()" style="cursor: pointer">Logout</a>
 
     </div>
-    <img src='images/LogoRC.png' style='
-
-  margin-left: 42%; width:250px; height:250px;'/>
 </div>
+
+<div>
+
+<!--    <p style="text-align:center;"><img src='images/LogoRC.png' style="vertical-align:middle; display: block; margin-left: auto; margin-right: auto; width:250px; height:250px;"/>-->
+<!--        <span style="font-weight: bold; color: #b20f17">High Emergencies: </span>-->
+<!--    </p>-->
+
+    
+    <div style="display: flex;">
+        
+        <img src='images/LogoRC.png' style="margin-left: auto; margin-right: auto; width:250px; height:250px;"/>
+        
+        <span style="position: absolute; margin-top: 30px; margin-right: 150px; right: 0;"><span style="font-weight: bold; color: #b20f17">High Emergencies: </span><span style = "font-family: Playfair Display;" id = "totalHE">-</span></span>
+        
+        <span style="position: absolute; margin-top: 60px; margin-right: 140px; right: 0;"><span style="font-weight: bold; color: #ea8500">Medium Emergencies: </span><span style = "font-family: Playfair Display;" id = "totalME">-</span></span>
+        
+        <span style="position: absolute; margin-top: 90px; margin-right: 150px; right: 0;"><span style="font-weight: bold; color: #008c21">Low Emergencies: </span><span style = "font-family: Playfair Display;" id = "totalLE">-</span></span>
+        
+        <span style="position: absolute; margin-top: 120px; margin-right: 195px; right: 0;"><span style="font-weight: bold; color: #000000">Total: </span><span style = "font-family: Playfair Display;" id = "totalE">-</span></span>
+
+    </div>
+
+    
+    
+</div>
+<!--    <div id = "totalNBReports" style="text-align: center;">-->
+<!--<span style="float: right;"><span style="font-weight: bold; color: #b20f17">High Emergencies: </span>1</span>-->
+<!--<span style="text-align: center; margin-left: 50px"><span style="font-weight: bold; color: #ea8500">Medium Emergencies: </span>1</span>-->
+<!--<span style="text-align: right; margin-left: 50px"><span style="font-weight: bold; color: #008c21">Low Emergencies: </span>1</span>-->
+<!--    </div>-->
+
+
 
 
 <div id = "entries"></div>
@@ -485,13 +527,15 @@
 
 <div id = "allBody"></div>
 
-<h1 align="center" id = "pageTitle" style="margin-top: 50px; margin-bottom: 50px"></h1>
+<h1 id = "pageTitle" style="text-align: center; margin-top: 50px; margin-bottom: 20px"></h1>
+
+
 
 <div align="center" id = "allReports"></div>
 
 
 
-<div class="loader" id="PreLoaderBar" style="margin-left:47%; text-align: center"></div>
+<div class="loader" id="PreLoaderBar" style="display: block; margin-left: auto; margin-right: auto; text-align: center"></div>
 
 
 
@@ -537,7 +581,7 @@
                     bd2.innerHTML = "";
 
 
-                    var favoritemovie = sessionStorage.getItem("favoriteMovie");
+                    var favoritemovie = localStorage.getItem("favoriteMovie");
 
 
                     var currentID;
@@ -545,7 +589,7 @@
                     var currentCenter;
 
 
-                    var favoritemovie = sessionStorage.getItem("favoriteMovie");
+                    var favoritemovie = localStorage.getItem("favoriteMovie");
 
 
                     firebase.database().ref('user/').child(favoritemovie).once('value', (snapshot) => {
@@ -1270,8 +1314,8 @@
                                                 var pageN = document.getElementById("pageNo");
 
                                                 var i;
-                                                for (i = -1; i < totalPages ; i++) {
-                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i + 2) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i + 2) + ");return false;'>" + (i + 2) + " </a>"
+                                                for (i = 1; i <= totalPages ; i++) {
+                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>"
                                                 }
 
                                             }
@@ -1280,8 +1324,8 @@
                                                 var pageN = document.getElementById("pageNo");
 
                                                 var i;
-                                                for (i = -1; i < totalPages ; i++) {
-                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i + 2) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i + 2) + ");return false;'>" + (i + 2) + " </a>"
+                                                for (i = 1; i <= totalPages ; i++) {
+                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>"
                                                 }
 
                                             }
@@ -1419,8 +1463,8 @@
                                                 var pageN = document.getElementById("pageNo");
 
                                                 var i;
-                                                for (i = -1; i < totalPages ; i++) {
-                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i + 2) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i + 2) + ");return false;'>" + (i + 2) + " </a>"
+                                                for (i = 1; i <= totalPages ; i++) {
+                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>"
                                                 }
 
 
@@ -1430,8 +1474,8 @@
                                                 var pageN = document.getElementById("pageNo");
 
                                                 var i;
-                                                for (i = -1; i < totalPages ; i++) {
-                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i + 2) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i + 2) + ");return false;'>" + (i + 2) + " </a>"
+                                                for (i = 1; i <= totalPages ; i++) {
+                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>"
                                                 }
 
                                             }
@@ -1849,7 +1893,7 @@
                     }
 
                 }
-            } else { //pageClicked = 1
+            } else { //pageClicked = 1  AHMAD KASSABIEH
                 //alert("else: pageClicked: " + pageClicked);
                 //alert("else: pageClickedNum: " + pageClickedNum);
                 //alert("FIRST TIME LOADING");
@@ -1864,7 +1908,7 @@
                 bd2.innerHTML = "";
 
 
-                var favoritemovie = sessionStorage.getItem("favoriteMovie");
+                var favoritemovie = localStorage.getItem("favoriteMovie");
 
 
                 var currentID;
@@ -1872,7 +1916,7 @@
                 var currentCenter;
 
 
-                var favoritemovie = sessionStorage.getItem("favoriteMovie");
+                var favoritemovie = localStorage.getItem("favoriteMovie");
 
 
                 firebase.database().ref('user/').child(favoritemovie).once('value', (snapshot) => {
@@ -1892,6 +1936,21 @@
 
                         firebase.database().ref('Centers/' + currentCenter + '/reports/').once('value', (snapshott) => {
 
+                            if(snapshott.child("high").exists()){
+                                highEmergencyCounter = snapshott.child("high").numChildren();
+                                //alert(snapshott.child("high").numChildren()); //highEmergencyCounter
+                            }
+                            if(snapshott.child("medium").exists()){
+                                mediumEmergencyCounter = snapshott.child("medium").numChildren();
+                                //alert(snapshott.child("medium").numChildren()); //highEmergencyCounter
+                            }
+                            if(snapshott.child("low").exists()){
+                                lowEmergencyCounter = snapshott.child("low").numChildren();
+                                //alert(snapshott.child("low").numChildren()); //highEmergencyCounter
+                            }
+
+                            totalNumberOfEmergencies = highEmergencyCounter + mediumEmergencyCounter + lowEmergencyCounter;
+                            //alert(totalNumberOfEmergencies);
 
                             var dataae = snapshott.val();
 
@@ -2064,6 +2123,7 @@
 
 
                                     firebase.database().ref('Centers/' + currentCenter + '/reports/high').orderByKey().limitToFirst(5).once('value', (snapshott) => {
+
 
                                         var dataas = snapshott.val();
 
@@ -2594,9 +2654,10 @@
                                             var pageN = document.getElementById("pageNo");
 
                                             var i;
-                                            for (i = -1; i < totalPages ; i++) {
-                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i + 2) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i + 2) + ");return false;'>" + (i + 2) + " </a>"
+                                            for (i = 1; i <= totalPages ; i++) { //01312112
+                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>"
                                             }
+
 
                                         }
                                         else{
@@ -2604,15 +2665,14 @@
                                             var pageN = document.getElementById("pageNo");
 
                                             var i;
-                                            for (i = -1; i < totalPages ; i++) {
-                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i + 2) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i + 2) + ");return false;'>" + (i + 2) + " </a>"
+                                            for (i = 1; i <= totalPages ; i++) {
+                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>"
                                             }
                                         }
 
 
                                     });
-
-
+                                            //first page, LOW EMERGENCY != NULL
                                 } else {
 
 
@@ -2731,6 +2791,14 @@
 
                                                         document.getElementById("pageTitle").innerHTML = "Reports";
                                                         document.getElementById("PreLoaderBar").style.display = "none";
+                                                        if(highEmergencyCounter != 0) {
+                                                            document.getElementById("totalHE").innerHTML = highEmergencyCounter;
+                                                        }
+                                                        if(mediumEmergencyCounter != 0) {
+                                                            document.getElementById("totalME").innerHTML = mediumEmergencyCounter;
+                                                        }
+                                                        document.getElementById("totalLE").innerHTML = lowEmergencyCounter;
+                                                        document.getElementById("totalE").innerHTML = totalNumberOfEmergencies;
                                                         bd.appendChild(createInfo).appendChild(allContent).appendChild(closeButDiv).appendChild(cardB).appendChild(titleC).appendChild(cardD);
 
 
@@ -2743,21 +2811,33 @@
                                             var pageN = document.getElementById("pageNo");
 
                                             var i;
-                                            for (i = -1; i < totalPages ; i++) {
-                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i + 2) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i + 2) + ");return false;'>" + (i + 2) + " </a>"
+                                            for (i = 1; i <= totalPages ; i++) { //THIS ONE IS CAUSING TROUBLE
+                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>"
                                             }
+
+                                            //alert("aa");
 
                                         }else{
                                             document.getElementById("PreLoaderBar").style.display = "none";
                                             var pageN = document.getElementById("pageNo");
 
                                             var i;
-                                            for (i = -1; i < totalPages ; i++) {
-                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i + 2) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i + 2) + ");return false;'>" + (i + 2) + " </a>"
+                                            for (i = 1; i <= totalPages ; i++) { //THIS ONE IS CAUSING TROUBLE
+                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>"
                                             }
+                                            if(highEmergencyCounter != 0) {
+                                                document.getElementById("totalHE").innerHTML = highEmergencyCounter;
+                                            }
+                                            if(mediumEmergencyCounter != 0) {
+                                                document.getElementById("totalME").innerHTML = mediumEmergencyCounter;
+                                            }
+                                            //document.getElementById("totalLE").innerHTML = lowEmergencyCounter;
+                                            if(totalNumberOfEmergencies != 0) {
+                                                document.getElementById("totalE").innerHTML = totalNumberOfEmergencies;
+                                            }
+                                            
                                         }
-
-
+                                                //first page, LOW EMERGENCY = NULL
                                     });
                                 }
 
@@ -3213,13 +3293,13 @@
 <script>
 
     function logout(){
-
+        
+        
         firebase.auth().signOut()
 
             .then(function() {
-
-                sessionStorage.clear();
-
+    
+                localStorage.clear();
                 window.location.href = 'index.html';
 
             })
@@ -3233,9 +3313,9 @@
 
 </script>
 
-<div id = "pageNo" style="text-align: center;">
+<div id = "pageNo" style="text-align: center;"></div>
 
-</div>
+
 
 <script>
 

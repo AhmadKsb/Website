@@ -397,7 +397,7 @@
 
     <script>
 
-        var favoritemovie = sessionStorage.getItem("favoriteMovie");
+        var favoritemovie = localStorage.getItem("favoriteMovie");
 
 
 
@@ -405,17 +405,23 @@
         function checkPr() {
             //console.clear();
             var privChecker = -1;
+            
+            var isUserAdmin = localStorage.getItem("isUAdmin");
+            
+            if(isUserAdmin != "2"){
+                //alert("FULL ACCESS: " + isUserAdmin);
+                //alert("Full access");
+                logout();
 
+                //window.location.href = 'index.html';
 
-            var isUserAdmin = sessionStorage.getItem("isUAdmin");
-
-
-            if(isUserAdmin !== "2"){
-
-                //logout();
-
-                window.location.href = 'index.html';
-
+            }
+            else{
+                document.getElementById("PreLoaderBar").style.display = "none";
+                document.getElementById("titlee").innerHTML = "Users";
+    
+                document.getElementById("allUsers").style.fontWeight = "bold";
+                document.getElementById("allUsers").innerHTML = "<br><br><br><br><br><br><br><h1>No name is searched!</h1>";
             }
         }
 
@@ -443,10 +449,8 @@
 
 
     </div>
-    <img src='images/LogoRC.png' style='
-
-  margin-left: 42%; width:250px; height:250px;'/>
 </div>
+<img src='images/LogoRC.png' style='display: block; margin-left: auto; margin-right: auto; width:250px; height:250px;'/>
 
 
 
@@ -465,7 +469,15 @@
 
 <!--  margin-left: 42%; width:250px; height:250px;'/>-->
 
-<h1 id = "titlee" align="center" style="margin-top: 50px; margin-bottom: 50px"></h1>
+<h1 id = "titlee" style="display: block; margin-top: 50px; margin-bottom: 20px; margin-left: auto; margin-right: auto; text-align: center"></h1>
+
+<!--<div class = "roww">-->
+<!--    <div class = "column">-->
+<!--        <div class = "cardd">-->
+<!--            <div class = "createInfo">-->
+<!--            </div>-->
+<!--        </div></div></div>-->
+
 
 <div id = "inpt_hide_" class="cntr">
     <div class="cntr-innr">
@@ -478,7 +490,7 @@
 
 <div id = "allUsers" align="center"></div>
 
-<div class="loader" id="PreLoaderBar" style="margin-left:47%; text-align: center"></div>
+<div class="loader" id="PreLoaderBar" style="display: block; margin-left: auto; margin-right: auto; text-align: center"></div>
 
 <script>
 
@@ -518,8 +530,7 @@
             var currentID;
             var currentCenter;
 
-            var favoritemovie = sessionStorage.getItem("favoriteMovie");
-
+            var favoritemovie = localStorage.getItem("favoriteMovie");
             if (favoritemovie != null) {
 
                 var bd = document.getElementById("allUsers");
@@ -547,7 +558,7 @@
                         var toT = toTitleCase(toLo);
                         //alert("HERE: " + toT);
                         //alert(ppe);
-                        firebase.database().ref('user/').orderByChild('Name').equalTo(toT).limitToFirst(2).once('value', (snapshott) => {
+                        firebase.database().ref('user/').orderByChild('Name').equalTo(toT).once('value', (snapshott) => {
 
 
 
@@ -620,6 +631,7 @@
                                             }
 
                                             document.getElementById("allUsers").innerHTML = "";
+                                            document.getElementById("allUsers").style.fontWeight = "normal";
                                             document.getElementById("PreLoaderBar").style.display = "none";
                                             document.getElementById("inpt_hide_").style.visibility = "visible";
                                             document.getElementById("titlee").innerHTML = "Users";
@@ -654,335 +666,328 @@
             oncee = "false";
 
         }
-        else {
-            //alert($("#inpt_search").val().toString());
-        if($("#inpt_search").val().toString() === "") {
-            //alert($("#inpt_search").val().toString());
-            //alert(firstLoop);
-            if (firstLoop === "true") {
-                firstLoop = "false";
-                document.getElementById("allUsers").innerHTML = "";
-                oncee = "false";
-                $(this).parent('label').removeClass('active');
-                var leadsRef = firebase.database().ref('user/LoR41MjKKz4V5V3UIdG');
-                var currentID;
-                var currentCenter;
-
-                var favoritemovie = sessionStorage.getItem("favoriteMovie");
-
-                if (favoritemovie != null) {
-
-                    var bd = document.getElementById("allUsers");
-                    var createDivRow = document.createElement('div');
-
-
-                    firebase.database().ref('user/').child(favoritemovie).once('value', (snapshot) => {
-
-                        var data = snapshot.val();
-
-                        if (snapshot.exists()) {
-
-
-                            for (let key in data) {
-
-                                //console.log("data[key]",data["Center"]);
-
-                                currentCenter = data["Center"];
-
-                                //this.intVal.push(data[key]);
-
-                                //console.log("intVal",this.intVal);
-
-
-                            }
-
-
-                            firebase.database().ref('user/').orderByChild('Name').once('value', (snapshott) => {
-
-
-                                var dataa = snapshott.val();
-                                if (snapshott.exists()) {
-
-
-                                    snapshott.forEach(function (child) {
-
-                                        //alert("TTsT" + child.key);
-                                        //alert($("#inpt_search").val().toString());
-
-                                        firebase.database().ref('user/').child(child.key).once('value', (snapshottt) => {
-
-                                            var dataaa = snapshottt.val();
-
-
-                                            if (snapshottt.exists()) {
-
-
-                                                for (let key in dataaa) {
-
-                                                    if (snapshottt.key != favoritemovie) {
-
-                                                        createDivRow.className = "roww";
-
-                                                        var createDivColumn = document.createElement('div');
-
-                                                        createDivColumn.className = "columnn";
-
-                                                        var createDivCard = document.createElement('div');
-
-                                                        createDivCard.className = "cardd";
-
-                                                        var createInfo = document.createElement('div');
-
-                                                        createInfo.innerHTML = "<h3>" + dataaa["Name"] + "</h3><p style='color: blue;'>" + dataaa["Phone Number"] + "</p><p>Home Address: " + dataaa["Home Address"] + "</p><p>ICE: <span style='color: blue;'>"
-
-                                                            + dataaa["ICE"] + "</span></p><p>Position: " + dataaa["Position"] + "<p>Center: <span style='color: red;'><b>" + dataaa["Center"] + "</b></span></p>";
-
-
-                                                        createInfo.innerHTML +=
-
-                                                            "<button onClick=deleteUser(this.id,this.className) id =" + snapshottt.key + "  class = " + data['Center'] + "  style='color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-danger btn-xs'> Delete User </span> </button>"
-
-                                                            +
-
-                                                            "<button onClick=removeAdmin(this.id,this.className) id =" + snapshottt.key + " style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-warning btn-xs'> Remove admin </span></button>"
-
-                                                            +
-
-                                                            "<button onClick=makeAdmin(this.id)   id =" + snapshottt.key + " style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-primary btn-xs'> Make admin </span></button>";
-                                                    }
-                                                }
-
-                                                document.getElementById("PreLoaderBar").style.display = "none";
-                                                document.getElementById("inpt_hide_").style.visibility = "visible";
-                                                document.getElementById("titlee").innerHTML = "Users";
-                                                bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
-                                                //console.clear();
-                                            }
-                                        })
-
-                                    });
-
-                                }
-
-                            })
-
-                        }
-                    })
-
-                } else {
-
-
-                }
-
-
-            } else {
-                firstLoop = "true";
-            }
+        
+        
+        
+        
+        else{   //COMMENT THIS AND USE THE OTHER ONE
+            document.getElementById("allUsers").style.fontWeight = "bold";
+            document.getElementById("allUsers").innerHTML = "<br><br><br><br><br><br><br><h1>No name is searched!</h1>";
         }
-
-
-
-
-
-
-        }
+        //HERE FOR IF INPUT IS EMPTY --------------------------------------------------------
+        // else {
+        //     //alert($("#inpt_search").val().toString());
+        // if($("#inpt_search").val().toString() === "") {
+        //     //alert($("#inpt_search").val().toString());
+        //     //alert(firstLoop);
+        //
+        //     if (firstLoop === "true") {
+        //         firstLoop = "false";
+        //         document.getElementById("allUsers").innerHTML = "";
+        //         oncee = "false";
+        //         $(this).parent('label').removeClass('active');
+        //         var leadsRef = firebase.database().ref('user/LoR41MjKKz4V5V3UIdG');
+        //         var currentID;
+        //         var currentCenter;
+        //
+        //         var favoritemovie = localStorage.getItem("favoriteMovie");
+        //
+        //         if (favoritemovie != null) {
+        //
+        //             var bd = document.getElementById("allUsers");
+        //             var createDivRow = document.createElement('div');
+        //
+        //
+        //             firebase.database().ref('user/').child(favoritemovie).once('value', (snapshot) => {
+        //
+        //                 var data = snapshot.val();
+        //
+        //                 if (snapshot.exists()) {
+        //
+        //
+        //                     for (let key in data) {
+        //
+        //                         //console.log("data[key]",data["Center"]);
+        //
+        //                         currentCenter = data["Center"];
+        //
+        //                         //this.intVal.push(data[key]);
+        //
+        //                         //console.log("intVal",this.intVal);
+        //
+        //
+        //                     }
+        //
+        //
+        //                     firebase.database().ref('user/').orderByChild('Name').once('value', (snapshott) => {
+        //
+        //
+        //                         var dataa = snapshott.val();
+        //                         if (snapshott.exists()) {
+        //
+        //
+        //                             snapshott.forEach(function (child) {
+        //
+        //                                 //alert("TTsT" + child.key);
+        //                                 //alert($("#inpt_search").val().toString());
+        //
+        //                                 firebase.database().ref('user/').child(child.key).once('value', (snapshottt) => {
+        //
+        //                                     var dataaa = snapshottt.val();
+        //
+        //
+        //                                     if (snapshottt.exists()) {
+        //
+        //
+        //                                         for (let key in dataaa) {
+        //
+        //                                             if (snapshottt.key != favoritemovie) {
+        //
+        //                                                 createDivRow.className = "roww";
+        //
+        //                                                 var createDivColumn = document.createElement('div');
+        //
+        //                                                 createDivColumn.className = "columnn";
+        //
+        //                                                 var createDivCard = document.createElement('div');
+        //
+        //                                                 createDivCard.className = "cardd";
+        //
+        //                                                 var createInfo = document.createElement('div');
+        //
+        //                                                 createInfo.innerHTML = "<h3>" + dataaa["Name"] + "</h3><p style='color: blue;'>" + dataaa["Phone Number"] + "</p><p>Home Address: " + dataaa["Home Address"] + "</p><p>ICE: <span style='color: blue;'>"
+        //
+        //                                                     + dataaa["ICE"] + "</span></p><p>Position: " + dataaa["Position"] + "<p>Center: <span style='color: red;'><b>" + dataaa["Center"] + "</b></span></p>";
+        //
+        //
+        //                                                 createInfo.innerHTML +=
+        //
+        //                                                     "<button onClick=deleteUser(this.id,this.className) id =" + snapshottt.key + "  class = " + data['Center'] + "  style='color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-danger btn-xs'> Delete User </span> </button>"
+        //
+        //                                                     +
+        //
+        //                                                     "<button onClick=removeAdmin(this.id,this.className) id =" + snapshottt.key + " style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-warning btn-xs'> Remove admin </span></button>"
+        //
+        //                                                     +
+        //
+        //                                                     "<button onClick=makeAdmin(this.id)   id =" + snapshottt.key + " style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-primary btn-xs'> Make admin </span></button>";
+        //                                             }
+        //                                         }
+        //
+        //                                         document.getElementById("PreLoaderBar").style.display = "none";
+        //                                         document.getElementById("inpt_hide_").style.visibility = "visible";
+        //                                         document.getElementById("titlee").innerHTML = "Users";
+        //                                         bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
+        //                                         //console.clear();
+        //                                     }
+        //                                 })
+        //
+        //                             });
+        //
+        //                         }
+        //
+        //                     })
+        //
+        //                 }
+        //             })
+        //
+        //         } else {
+        //
+        //
+        //         }
+        //
+        //
+        //     } else {
+        //         firstLoop = "true";
+        //     }
+        // }
+        //
+        //
+        //
+        //
+        //
+        //
+        // }
 
 
     });
 
 </script>
 
-<script>
-    document.getElementById("inpt_hide_").style.visibility = "hidden";
-    var leadsRef = firebase.database().ref('user/LoR41MjKKz4V5V3UIdG');
-    var currentID;
-    var currentCenter;
+<!--<script>-->
+<!--    document.getElementById("inpt_hide_").style.visibility = "hidden";-->
+<!--    var currentID;-->
+<!--    var currentCenter;-->
 
-    var favoritemovie = sessionStorage.getItem("favoriteMovie");
+<!--    var favoritemovie = localStorage.getItem("favoriteMovie");-->
 
-    if(favoritemovie != null){
+<!--    if(favoritemovie != null){-->
 
-        var bd = document.getElementById("allUsers");
-        var createDivRow = document.createElement('div');
+<!--        var bd = document.getElementById("allUsers");-->
+<!--        var createDivRow = document.createElement('div');-->
+<!--    -->
+<!--        firebase.database().ref('user/').child(favoritemovie).once('value', (snapshot) => {-->
+<!--            var data = snapshot.val();-->
 
+<!--            if(snapshot.exists()){-->
 
-        firebase.database().ref('user/').child(favoritemovie).once('value', (snapshot) => {
+<!--                for(let key in data){-->
 
-            var data = snapshot.val();
+<!--                    //console.log("data[key]",data["Center"]);-->
 
-            if(snapshot.exists()){
+<!--                    currentCenter = data["Center"];-->
 
-                for(let key in data){
+<!--                    //this.intVal.push(data[key]);-->
 
-                    //console.log("data[key]",data["Center"]);
+<!--                    //console.log("intVal",this.intVal);-->
 
-                    currentCenter = data["Center"];
 
-                    //this.intVal.push(data[key]);
 
-                    //console.log("intVal",this.intVal);
+<!--                }-->
 
 
 
-                }
+<!--                firebase.database().ref('user/').orderByChild('Name').once('value', (snapshott) => {-->
 
+<!--                    //alert(snapshott);-->
 
 
-                firebase.database().ref('user/').orderByChild('Name').once('value', (snapshott) => {
 
-                    //alert(snapshott);
+<!--                    var dataa = snapshott.val();-->
 
 
 
-                    var dataa = snapshott.val();
+<!--                    // var createT = document.createElement('h1');-->
+<!--                    // createT.style.align = "center";-->
+<!--                    // createT.style.marginTop = "50px";-->
+<!--                    // createT.style.marginBottom = "50px";-->
+<!--                    //         createT.className =  "roww";-->
+<!--                    //         createT.innerHTML = "Users";-->
 
+<!--                    // <h1 align="center" style="margin-top: 50px; margin-bottom: 50px">Users</h1>-->
 
+<!--                    if(snapshott.exists()){-->
+<!--                        //alert("aaTTsT");-->
 
-                    // var createT = document.createElement('h1');
-                    // createT.style.align = "center";
-                    // createT.style.marginTop = "50px";
-                    // createT.style.marginBottom = "50px";
-                    //         createT.className =  "roww";
-                    //         createT.innerHTML = "Users";
 
-                    // <h1 align="center" style="margin-top: 50px; margin-bottom: 50px">Users</h1>
+<!--                        //firebase.database().ref('user/').child(key).once('value', (snapshottt) => {-->
 
-                    if(snapshott.exists()){
-                        //alert("aaTTsT");
 
+<!--                        //});-->
 
-                        //firebase.database().ref('user/').child(key).once('value', (snapshottt) => {
 
+<!--                        snapshott.forEach(function(child) {-->
+<!--                            //alert(child.key);-->
+<!--                            //});-->
+<!--                            //for(let key in dataa){-->
+<!--                            //alert(key);-->
 
-                        //});
+<!--                            firebase.database().ref('user/').child(child.key).once('value', (snapshottt) => {-->
+<!--                                //alert(key);-->
+<!--                                //alert(snapshott);-->
 
+<!--                                var dataaa = snapshottt.val();-->
 
-                        snapshott.forEach(function(child) {
-                            //alert(child.key);
-                            //});
-                            //for(let key in dataa){
-                            //alert(key);
 
-                            firebase.database().ref('user/').child(child.key).once('value', (snapshottt) => {
-                                //alert(key);
-                                //alert(snapshott);
 
-                                var dataaa = snapshottt.val();
 
 
+<!--                                if(snapshottt.exists()){-->
 
 
 
-                                if(snapshottt.exists()){
+<!--                                    for(let key in dataaa){-->
+<!--                                        //alert(dataaa["Name"]);-->
 
 
+<!--                                        if(snapshottt.key != favoritemovie){-->
+<!--                                            -->
+<!--                                            //alert(dataaa["Admin"]);-->
+<!--                                            if(dataaa["Admin"] === 1) {-->
+<!--    -->
+<!--    -->
+<!--                                                createDivRow.className = "roww";-->
+<!--    -->
+<!--    -->
+<!--                                                var createDivColumn = document.createElement('div');-->
+<!--    -->
+<!--                                                createDivColumn.className = "columnn";-->
+<!--    -->
+<!--    -->
+<!--                                                var createDivCard = document.createElement('div');-->
+<!--    -->
+<!--                                                createDivCard.className = "cardd";-->
+<!--    -->
+<!--    -->
+<!--                                                var createInfo = document.createElement('div');-->
+<!--    -->
+<!--    -->
+<!--                                                createInfo.innerHTML = "<h3>" + dataaa["Name"] + "</h3><p style='color: blue;'>" + dataaa["Phone Number"] + "</p><p>Home Address: " + dataaa["Home Address"] + "</p><p>ICE: <span style='color: blue;'>"-->
+<!--        -->
+<!--                                                    + dataaa["ICE"] + "</span></p><p>Position: " + dataaa["Position"] + "<p>Center: <span style='color: red;'><b>" + dataaa["Center"] + "</b></span></p>";-->
+<!--    -->
+<!--    -->
+<!--                                                createInfo.innerHTML +=-->
+<!--        -->
+<!--                                                    "<button onClick=deleteUser(this.id,this.className) id =" + snapshottt.key + "  class = " + data['Center'] + "  style='color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-danger btn-xs'> Delete User </span> </button>"-->
+<!--        -->
+<!--                                                    +-->
+<!--        -->
+<!--                                                    "<button onClick=removeAdmin(this.id,this.className) id =" + snapshottt.key + " style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-warning btn-xs'> Remove admin </span></button>"-->
+<!--        -->
+<!--                                                    +-->
+<!--        -->
+<!--                                                    "<button onClick=makeAdmin(this.id)   id =" + snapshottt.key + " style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-primary btn-xs'> Make admin </span></button>";-->
+<!--    -->
+<!--    -->
+<!--                                            }-->
+<!--                                        }-->
 
-                                    for(let key in dataaa){
-                                        //alert(dataaa["Name"]);
+<!--                                        //alert(dataaa["Center"]);-->
 
+<!--                                    }-->
 
-                                        if(snapshottt.key != favoritemovie){
 
+<!--                                    document.getElementById("PreLoaderBar").style.display = "none";-->
+<!--                                    document.getElementById("inpt_hide_").style.visibility = "visible";-->
+<!--                                    document.getElementById("titlee").innerHTML = "Users";-->
+<!--                                    bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);-->
+<!--                                    //console.clear();-->
+<!--                                }-->
 
+<!--                            })-->
 
+<!--                            //console.log("data[key]",data["Email"]);-->
 
+<!--                        });-->
 
-                                            createDivRow.className =  "roww";
+<!--                    }-->
 
 
+<!--                })-->
 
-                                            var createDivColumn = document.createElement('div');
 
-                                            createDivColumn.className =  "columnn";
 
+<!--            }-->
 
+<!--        })-->
 
-                                            var createDivCard = document.createElement('div');
 
-                                            createDivCard.className =  "cardd";
 
+<!--    }-->
 
 
-                                            var createInfo = document.createElement('div');
 
+<!--    else{-->
 
 
 
+<!--    }-->
 
-                                            createInfo.innerHTML = "<h3>"+dataaa["Name"]+"</h3><p style='color: blue;'>"+dataaa["Phone Number"]+"</p><p>Home Address: "+dataaa["Home Address"]+"</p><p>ICE: <span style='color: blue;'>"
 
-                                                +dataaa["ICE"]+"</span></p><p>Position: "+dataaa["Position"] + "<p>Center: <span style='color: red;'><b>" + dataaa["Center"] + "</b></span></p>";
 
 
-
-                                            createInfo.innerHTML +=
-
-                                                "<button onClick=deleteUser(this.id,this.className) id ="+snapshottt.key+"  class = "+data['Center']+"  style='color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-danger btn-xs'> Delete User </span> </button>"
-
-                                                +
-
-                                                "<button onClick=removeAdmin(this.id,this.className) id ="+snapshottt.key+" style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-warning btn-xs'> Remove admin </span></button>"
-
-                                                +
-
-                                                "<button onClick=makeAdmin(this.id)   id ="+snapshottt.key+" style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-primary btn-xs'> Make admin </span></button>";
-
-
-
-                                        }
-
-                                        //alert(dataaa["Center"]);
-
-                                    }
-
-
-                                    document.getElementById("PreLoaderBar").style.display = "none";
-                                    document.getElementById("inpt_hide_").style.visibility = "visible";
-                                    document.getElementById("titlee").innerHTML = "Users";
-                                    bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
-                                    //console.clear();
-                                }
-
-                            })
-
-
-
-
-                            //console.log("data[key]",data["Email"]);
-
-
-
-                        });
-
-
-
-                    }
-
-
-                })
-
-
-
-            }
-
-        })
-
-
-
-    }
-
-
-
-    else{
-
-
-
-    }
-
-
-
-
-</script>
+<!--</script>-->
 
 
 
@@ -1201,13 +1206,13 @@
 <script>
 
     function logout(){
-
+        
+        
         firebase.auth().signOut()
 
             .then(function() {
-
-                sessionStorage.clear();
-
+    
+                localStorage.clear();
                 window.location.href = 'index.html';
 
                 //location.reload();
