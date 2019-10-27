@@ -1185,7 +1185,7 @@
                                         firebase.database().ref('Centers/' + currentCenter + '/reports/low/').orderByKey().startAt(lowEm).limitToFirst(6).once('value', (snapshott) => {
                                             var firstLow = "true";
                                             var dataas = snapshott.val();
-
+                                            
                                             if (snapshott.exists()) {
 
 
@@ -1314,8 +1314,24 @@
                                                 var pageN = document.getElementById("pageNo");
 
                                                 var i;
-                                                for (i = 1; i <= totalPages ; i++) {
-                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>"
+                                                if(totalPages<6) {
+                                                    for (i = 1; i <= totalPages; i++) {
+                                                        pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                    }
+                                                }else{
+                                                    if((pageClickedNum+5)<totalPages) {
+                                                        for (i = pageClickedNum; i <= pageClickedNum+4; i++) {
+                                                            pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                        }
+                                                        pageN.innerHTML += "<a style='text-decoration: none; color: blue;'>... </a>";
+                                                        pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (totalPages) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (totalPages) + ");return false;'>" + (totalPages) + " </a>";
+                                                    }
+                                                    else{
+                                                        for (i = pageClickedNum; i <= totalPages; i++) {
+                                                            pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                        }
+                                                    }
+                                                    
                                                 }
 
                                             }
@@ -1325,7 +1341,7 @@
 
                                                 var i;
                                                 for (i = 1; i <= totalPages ; i++) {
-                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>"
+                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
                                                 }
 
                                             }
@@ -1464,7 +1480,7 @@
 
                                                 var i;
                                                 for (i = 1; i <= totalPages ; i++) {
-                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>"
+                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
                                                 }
 
 
@@ -1475,7 +1491,7 @@
 
                                                 var i;
                                                 for (i = 1; i <= totalPages ; i++) {
-                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>"
+                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
                                                 }
 
                                             }
@@ -2655,7 +2671,7 @@
 
                                             var i;
                                             for (i = 1; i <= totalPages ; i++) { //01312112
-                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>"
+                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
                                             }
 
 
@@ -2666,7 +2682,7 @@
 
                                             var i;
                                             for (i = 1; i <= totalPages ; i++) {
-                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>"
+                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
                                             }
                                         }
 
@@ -2809,11 +2825,44 @@
                                             }
                                             document.getElementById("PreLoaderBar").style.display = "none";
                                             var pageN = document.getElementById("pageNo");
-
+    
+    
+    
                                             var i;
-                                            for (i = 1; i <= totalPages ; i++) { //THIS ONE IS CAUSING TROUBLE
-                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>"
+                                            if(totalPages<6) {
+                                                for (i = 1; i <= totalPages; i++) {
+                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                }
+                                            }else{
+                                                if((pageClickedNum+5)<totalPages) {
+                                                    for (i = pageClickedNum; i <= pageClickedNum+4; i++) {
+                                                        pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                    }
+                                                    pageN.innerHTML += "<a style='text-decoration: none; color: blue;'>... </a>";
+                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (totalPages) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (totalPages) + ");return false;'>" + (totalPages) + " </a>";
+                                                }
+                                                else{
+                                                    for (i = 1; i <= totalPages; i++) {
+                                                        pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                    }
+                                                }
+        
                                             }
+                                            
+                                            /*
+                                            var i;
+                                            
+                                            if(totalPages>6) {
+                                                for (i = 1; i <= totalPages; i++) { //THIS ONE IS CAUSING TROUBLE //HERE FOR FIRST PAGE AA SHARET LOW EMERGENCY EXISTS
+                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                }
+                                            }
+                                            else{
+                                                for (i = pageClickedNum; i <= 6+pageClickedNum; i++) { //THIS ONE IS CAUSING TROUBLE //HERE FOR FIRST PAGE AA SHARET LOW EMERGENCY EXISTS
+                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                }
+                                            }
+                                             */
 
                                             //alert("aa");
 
@@ -2823,7 +2872,7 @@
 
                                             var i;
                                             for (i = 1; i <= totalPages ; i++) { //THIS ONE IS CAUSING TROUBLE
-                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>"
+                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
                                             }
                                             if(highEmergencyCounter != 0) {
                                                 document.getElementById("totalHE").innerHTML = highEmergencyCounter;
