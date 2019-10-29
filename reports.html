@@ -1321,8 +1321,12 @@
                                                 }else{
                                                     if((pageClickedNum+5)<totalPages) {
                                                         for (i = pageClickedNum; i <= pageClickedNum+4; i++) {
-                                                            pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
-                                                        }
+                                                            if(i == pageClickedNum){
+                                                                pageN.innerHTML += "<span style = 'color: darkgrey;'>" + (i) + " </span>";
+                                                            }
+                                                            else {
+                                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                            }                                                        }
                                                         pageN.innerHTML += "<a style='text-decoration: none; color: blue;'>... </a>";
                                                         pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (totalPages) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (totalPages) + ");return false;'>" + (totalPages) + " </a>";
                                                     }
@@ -2836,7 +2840,12 @@
                                             }else{
                                                 if((pageClickedNum+5)<totalPages) {
                                                     for (i = pageClickedNum; i <= pageClickedNum+4; i++) {
-                                                        pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                        if(i == pageClickedNum){
+                                                            pageN.innerHTML += "<span style = 'color: darkgrey;'>" + (i) + " </span>";
+                                                        }
+                                                        else {
+                                                            pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                        }
                                                     }
                                                     pageN.innerHTML += "<a style='text-decoration: none; color: blue;'>... </a>";
                                                     pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (totalPages) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (totalPages) + ");return false;'>" + (totalPages) + " </a>";
