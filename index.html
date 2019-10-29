@@ -120,7 +120,7 @@
     <div id="firebaseui-auth-container" style = "display: block; margin-left: auto; margin-right: auto; text-align: center;"></div>
     <br><br><br><br><br>
     
-    <div class="loader" id="PreLoaderBar" style="display: block; margin-top: 250px; margin-left: auto; margin-right: auto; text-align: center"></div>
+    <div class="loader" id="PreLoaderBar" style="display: block; margin-top: 250px; margin-left: auto; margin-right: auto; margin-bottom: 200px; text-align: center"></div>
     <br><br><br><br>
     
     
@@ -178,7 +178,13 @@
                                     } else {
                                         isUserAdmin = "0";
                                         localStorage.setItem("isUAdmin", isUserAdmin);
-                                        logout();
+                                        firebase.auth().signOut().then(function() {
+                                            localStorage.clear();
+                                            window.location.href = 'index.html';
+                                            // Sign-out successful.
+                                        }).catch(function(error) {
+                                            // An error happened.
+                                        });
                                         alert("You are not an admin!");
                                         document.getElementById('PreLoaderBar').style.display = 'none';
                                         window.location.href = 'index.html';
@@ -188,17 +194,27 @@
                             } else {
                                 isUserAdmin = "0";
                                 localStorage.setItem("isUAdmin", isUserAdmin);
-                                logout();
-                                alert("You are not an admin!");
-                                document.getElementById('PreLoaderBar').style.display = 'none';
-                                window.location.href = 'index.html';
+                                firebase.auth().signOut().then(function() {
+                                    localStorage.clear();
+                                    alert("You are not an admin!");
+                                    document.getElementById('PreLoaderBar').style.display = 'none';
+                                    window.location.href = 'index.html';
+                                    // Sign-out successful.
+                                    return false;
+                                }).catch(function(error) {
+                                    return false;
+                                    // An error happened.
+                                });
+                                
+                                
                                 //window.location.href = 'index.html';
                                 //locToGo = 'index.html';
                             }
                         })
                     }
-
-                    return true;
+    
+                    //WAS return true;
+                    return false;
                 },
                 signInFailure: function(error) {
                     // Some unrecoverable error occurred during sign-in.
@@ -212,7 +228,9 @@
                     // The widget is rendered.
                     // Hide the loader.
                     document.getElementById('PreLoaderBar').style.display = 'none';
+                    
                 }
+                
             },
 
             signInSuccessUrl: locToGo,
