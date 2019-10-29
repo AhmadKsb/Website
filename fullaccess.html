@@ -129,12 +129,12 @@
 
             box-shadow: 0 4px 8px 0 rgba(178, 15, 23, 1);
 
-            padding: 16px;
+            padding: 48px;
 
             text-align: center;
 
-            background-color: red;
-
+            background-color: rgba(178, 15, 23, 1);
+    
         }
 
 
@@ -388,11 +388,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-database.js"></script>
+<!--    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase.js"></script>-->
     <script src="https://cdn.firebase.com/libs/firebaseui/4.2.0/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/4.2.0/firebaseui.css" />
     <script src="bundle.js"></script>
-    <script src="app.js"></script>
+<!--    <script src="app.js"></script>-->
 
 
     <script>
@@ -599,14 +600,19 @@
 
 
                                                     var createDivCard = document.createElement('div');
-
-                                                    createDivCard.className = "cardd";
-
+    
+                                                    var adminText = "";
+                                                    if(dataaa["Admin"] === 1){
+                                                        adminText = "admin";
+                                                    }
+                                                        createDivCard.className = "cardd";
+                                                    
+                                                    
 
                                                     var createInfo = document.createElement('div');
 
 
-                                                    createInfo.innerHTML = "<h3>" + dataaa["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataaa["Phone Number"] + "'style='text-decoration: none; color: blue;'>" + dataaa["Phone Number"] + "</a></p><p>Home Address: " + dataaa["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
+                                                    createInfo.innerHTML = "<h3>" + dataaa["Name"] + " <span style='font-size: 18px; color: #d33'>" + adminText + "</span></h3><p style='color: blue;'><a href='tel:" + dataaa["Phone Number"] + "'style='text-decoration: none; color: blue;'>" + dataaa["Phone Number"] + "</a></p><p>Home Address: " + dataaa["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
     
                                                         + dataaa["ICE"] + "'style='text-decoration: none; color: blue;'>"+ dataaa["ICE"] + "</a></span></p><p>Position: " + dataaa["Position"] + "<p>Center: <span style='color: red;'><b>" + dataaa["Center"] + "</b></span></p>";
 

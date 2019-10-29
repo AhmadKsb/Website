@@ -119,12 +119,12 @@
 
             box-shadow: 0 4px 8px 0 rgba(178, 15, 23, 1);
 
-            padding: 16px;
+            padding: 48px;
 
             text-align: center;
 
             background-color: red;
-
+    
         }
 
 
@@ -284,11 +284,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-database.js"></script>
+<!--    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase.js"></script>-->
     <script src="https://cdn.firebase.com/libs/firebaseui/4.2.0/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/4.2.0/firebaseui.css"/>
     <script src="bundle.js"></script>
-    <script src="app.js"></script>
+<!--    <script src="app.js"></script>-->
 
 
     <script>
@@ -307,6 +308,9 @@
                 logout();
                 //window.location.href = 'index.html';
 
+            }
+            else{
+                showElements();
             }
         }
 
@@ -344,122 +348,123 @@
 
 <script>
 
-    var leadsRef = firebase.database().ref('user/LoR41MjKKz4V5V3UIdG');
-
-
-    var currentID;
-
-    var currentCenter;
-
-
-    var favoritemovie = localStorage.getItem("favoriteMovie");
-
-    if (favoritemovie != null) {
-
-
-        firebase.database().ref('user/').child(favoritemovie).once('value', (snapshot) => {
-
-            var data = snapshot.val();
-
-            if (snapshot.exists()) {
-
-                for (let key in data) {
-
-                    currentCenter = data["Center"];
-
-                }
-
-
-                firebase.database().ref('Centers/' + currentCenter + '/members/').once('value', (snapshott) => {
-
-                    var dataa = snapshott.val();
-
-                    var bd = document.getElementById("allUsers");
-
-                    if (snapshott.exists()) {
-
-                        var namesArray = [];
-
-                        for (let key in dataa) {
-                            namesArray.push(key);
-                        }
-                            
+    function showElements() {
+    
+        var bd = document.getElementById("allUsers");
+    
+        var currentID;
+    
+        var currentCenter;
+    
+    
+        var favoritemovie = localStorage.getItem("favoriteMovie");
+    
+        if (favoritemovie != null) {
+        
+        
+            firebase.database().ref('user/').child(favoritemovie).once('value', (snapshot) => {
+            
+                var data = snapshot.val();
+            
+                if (snapshot.exists()) {
+                
+                    for (let key in data) {
+                    
+                        currentCenter = data["Center"];
+                    
+                    }
+                
+                
+                    firebase.database().ref('Centers/' + currentCenter + '/members/').once('value', (snapshott) => {
+                    
+                        var dataa = snapshott.val();
+                    
+                    
+                        if (snapshott.exists()) {
+                        
+                            var namesArray = [];
+                        
+                            for (let key in dataa) {
+                                namesArray.push(key);
+                            }
+                        
                             //alert(key);
                             firebase.database().ref('user/').orderByChild('Name').once('value', (snapshottt) => {
                                 snapshottt.forEach(function (child) {
-                                    
-                                    if(namesArray.includes(child.key)){
-                                    //if (child.key === key) {
-                                        
+    
+                                    if (namesArray.includes(child.key)) {
+                                        //if (child.key === key) {
+        
                                         //alert("2 "+key);
-
+        
                                         firebase.database().ref('user/').child(child.key).once('value', (snapshottt) => {
-
+            
                                             var dataaa = snapshottt.val();
-
-                                            var bd = document.getElementById("allUsers");
-
+            
                                             if (snapshottt.exists()) {
-
-
+                
+                
                                                 for (let key in dataaa) {
-
+                    
                                                     if (snapshottt.key != favoritemovie) {
-
+                        
                                                         var shiftDay = "";
-
-                                                        if(dataaa["Shift"] === "1"){
+                        
+                                                        if (dataaa["Shift"] === "1") {
                                                             shiftDay = "Monday";
-                                                        }
-                                                        else if(dataaa["Shift"] === "2"){
+                                                        } else if (dataaa["Shift"] === "2") {
                                                             shiftDay = "Tuesday";
-                                                        }
-                                                        else if(dataaa["Shift"] === "3"){
+                                                        } else if (dataaa["Shift"] === "3") {
                                                             shiftDay = "Wednesday";
-                                                        }
-                                                        else if(dataaa["Shift"] === "4"){
+                                                        } else if (dataaa["Shift"] === "4") {
                                                             shiftDay = "Thursday";
-                                                        }
-                                                        else{
+                                                        } else {
                                                             shiftDay = "Friday";
                                                         }
-
+                        
+                        
                                                         var createDivRow = document.createElement('div');
                                                         createDivRow.className = "roww";
-
+                        
                                                         var createDivColumn = document.createElement('div');
                                                         createDivColumn.className = "columnn";
-
+                        
                                                         var createDivCard = document.createElement('div');
+                        
+                                                        var adminText = "";
+                                                        if (dataaa["Admin"] === 1) {
+                                                            adminText = "admin";
+                                                        }
+                        
                                                         createDivCard.className = "cardd";
-
-
+                        
+                        
                                                         var createInfo = document.createElement('div');
-
-
+                        
+                        
                                                         //<p>Shift Day: " + shiftDay + "</p>
-                                                        createInfo.innerHTML = "<h3>" + dataaa["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataaa["Phone Number"] + "'style='text-decoration: none; color: blue;'>" + dataaa["Phone Number"] + "</a></p><p>Blood Type: " + dataaa["Blood Type"] + "</p><p>Position: " + dataaa["Position"] + "</p><p>Home Address: " + dataaa["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
-
-                                                            + dataaa["ICE"] + "'style='text-decoration: none; color: blue;'>"+ dataaa["ICE"] + "</a></span></p>";
-
-
+                                                        createInfo.innerHTML = "<h3>" + dataaa["Name"] + " <span style='font-size: 18px; color: #d33'>" + adminText + "</span></h3><p style='color: blue;'><a href='tel:" + dataaa["Phone Number"] + "'style='text-decoration: none; color: blue;'>" + dataaa["Phone Number"] + "</a></p><p>Blood Type: " + dataaa["Blood Type"] + "</p><p>Position: " + dataaa["Position"] + "</p><p>Home Address: " + dataaa["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
+    
+                                                            + dataaa["ICE"] + "'style='text-decoration: none; color: blue;'>" + dataaa["ICE"] + "</a></span></p>";
+                        
+                        
                                                         createInfo.innerHTML +=
-
+                            
                                                             "<button onClick=deleteUser(this.id,this.className) id =" + snapshottt.key + "  class = " + data['Center'] + "  style='color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-danger btn-xs'> Delete User </span> </button>"
-
+                            
                                                             +
-
+                            
                                                             "<button onClick=removeAdmin(this.id,this.className) id =" + snapshottt.key + " style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-warning btn-xs'> Remove admin </span></button>"
-
+                            
                                                             +
-
+                            
                                                             "<button onClick=makeAdmin(this.id)   id =" + snapshottt.key + " style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-primary btn-xs'> Make admin </span></button>";
-
-
+                        
+                        
                                                     }
-
+                    
                                                 }
-
+                
                                                 document.getElementById("PreLoaderBar").style.display = "none";
                                                 document.getElementById("titlee").innerHTML = "Users";
                                                 bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
@@ -468,22 +473,21 @@
                                     }
                                 });
                             });
-                        //}
-                    }
-                })
-
-
-
-            }
-        })
-
-
-    } else {
-
-
+                            //}
+                        }
+                    })
+                
+                
+                }
+            })
+        
+        
+        } else {
+        
+        
+        }
+    
     }
-
-
 </script>
 
 
