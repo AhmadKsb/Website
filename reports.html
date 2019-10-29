@@ -502,7 +502,7 @@
 <div class="header" style="text-decoration: none">
 
     <div class="header-right">
-        <a class="active" href="reports.html">Reports</a>
+        <a id = "currentTabReport" class="active" href="reports.html">Reports</a>
         <a href="admin.html">Manage Users</a>
         <a onclick="logout()" style="cursor: pointer">Logout</a>
 
@@ -1668,6 +1668,9 @@
                                 function (isConfirm) {
             
                                     if (isConfirm) {
+                                        var cT = document.getElementById("currentTabReport");
+                                        cT.className = "";
+                                        
                                         var pageN = document.getElementById("pageNo");
                                         pageN.innerHTML = "";
                                         //swal("Account Removed!", "Your account is removed permanently!", "success");
@@ -1823,6 +1826,9 @@
                 
                 
                                     } else {
+                                        var cT = document.getElementById("currentTabReport");
+                                        cT.className = "";
+                                        
                                         var pageN = document.getElementById("pageNo");
                                         pageN.innerHTML = "";
                                         //swal("Hurray", "Account is not removed!", "error");
@@ -3098,6 +3104,9 @@
                             function (isConfirm) {
             
                                 if (isConfirm) {
+                                    var cT = document.getElementById("currentTabReport");
+                                    cT.className = "";
+                                    
                                     var pageN = document.getElementById("pageNo");
                                     pageN.innerHTML = "";
                                     
@@ -3253,6 +3262,9 @@
 
                 
                                 } else {
+                                    var cT = document.getElementById("currentTabReport");
+                                    cT.className = "";
+                                    
                                     var pageN = document.getElementById("pageNo");
                                     pageN.innerHTML = "";
                                     //swal("Hurray", "Account is not removed!", "error");
