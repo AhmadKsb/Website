@@ -376,15 +376,20 @@
 
                     if (snapshott.exists()) {
 
+                        var namesArray = [];
 
                         for (let key in dataa) {
-
-
+                            namesArray.push(key);
+                        }
+                            
+                            //alert(key);
                             firebase.database().ref('user/').orderByChild('Name').once('value', (snapshottt) => {
                                 snapshottt.forEach(function (child) {
                                     
-                                    
-                                    if (child.key === key) {
+                                    if(namesArray.includes(child.key)){
+                                    //if (child.key === key) {
+                                        
+                                        //alert("2 "+key);
 
                                         firebase.database().ref('user/').child(child.key).once('value', (snapshottt) => {
 
@@ -461,7 +466,7 @@
                                     }
                                 });
                             });
-                        }
+                        //}
                     }
                 })
 

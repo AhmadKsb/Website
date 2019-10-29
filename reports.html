@@ -1332,7 +1332,12 @@
                                                     }
                                                     else{
                                                         for (i = pageClickedNum; i <= totalPages; i++) {
-                                                            pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                            if(i == pageClickedNum){
+                                                                pageN.innerHTML += "<span style = 'color: darkgrey;'>" + (i) + " </span>";
+                                                            }
+                                                            else {
+                                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                            }
                                                         }
                                                     }
                                                     
@@ -1340,16 +1345,42 @@
 
                                             }
                                             else{
+                                                
                                                 document.getElementById("PreLoaderBar").style.display = "none";
                                                 var pageN = document.getElementById("pageNo");
-
+    
                                                 var i;
-                                                for (i = 1; i <= totalPages ; i++) {
-                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                if(totalPages<6) {
+                                                    for (i = 1; i <= totalPages; i++) {
+                                                        pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                    }
+                                                }else{
+                                                    if((pageClickedNum+5)<totalPages) {
+                                                        for (i = pageClickedNum; i <= pageClickedNum+4; i++) {
+                                                            if(i == pageClickedNum){
+                                                                pageN.innerHTML += "<span style = 'color: darkgrey;'>" + (i) + " </span>";
+                                                            }
+                                                            else {
+                                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                            }
+                                                        }
+                                                        pageN.innerHTML += "<a style='text-decoration: none; color: blue;'>... </a>";
+                                                        pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (totalPages) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (totalPages) + ");return false;'>" + (totalPages) + " </a>";
+                                                    }
+                                                    else{
+                                                        for (i = pageClickedNum; i <= totalPages; i++) {
+                                                            if(i == pageClickedNum){
+                                                                pageN.innerHTML += "<span style = 'color: darkgrey;'>" + (i) + " </span>";
+                                                            }
+                                                            else{
+                                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                            }
+                                                        }
+                                                    }
+        
                                                 }
 
                                             }
-
 
                                         });
 
@@ -1490,13 +1521,43 @@
 
                                             }
                                             else{
+    
                                                 document.getElementById("PreLoaderBar").style.display = "none";
                                                 var pageN = document.getElementById("pageNo");
-
+    
+    
+    
                                                 var i;
-                                                for (i = 1; i <= totalPages ; i++) {
-                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                if(totalPages<6) {
+                                                    for (i = 1; i <= totalPages; i++) {
+                                                        pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                    }
+                                                }else{
+                                                    if((pageClickedNum+5)<totalPages) {
+                                                        for (i = pageClickedNum; i <= pageClickedNum+4; i++) {
+                                                            if(i == pageClickedNum){
+                                                                pageN.innerHTML += "<span style = 'color: darkgrey;'>" + (i) + " </span>";
+                                                            }
+                                                            else {
+                                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                            }
+                                                        }
+                                                        pageN.innerHTML += "<a style='text-decoration: none; color: blue;'>... </a>";
+                                                        pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (totalPages) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (totalPages) + ");return false;'>" + (totalPages) + " </a>";
+                                                    }
+                                                    else{
+                                                        for (i = pageClickedNum; i <= totalPages; i++) {
+                                                            if(i == pageClickedNum){
+                                                                pageN.innerHTML += "<span style = 'color: darkgrey;'>" + (i) + " </span>";
+                                                            }else{
+                                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                            }
+                                                        }
+                                                    }
+        
                                                 }
+                                                
+                                                //SECOND PAGE LOW EM == NULL
 
                                             }
 
@@ -1510,198 +1571,215 @@
                     });
 
                     function deleteReport(id, classn) {
-                        if (confirm('Are you sure you want to delete this report?')) {
+    
+    
+                        swal({
+                                title: "Are you sure you want to delete this report?",
+            
+                                //text: "Are you sure to proceed?",
+                                type: 'warning',
+                                showCancelButton: true,
+                                text: "You won't be able to revert this!",
+                                confirmButtonColor: '#DD6B55',
+            
+                                confirmButtonText: "Delete",
+            
+            
+                                cancelButtonText: "Cancel",
+            
+            
+                                closeOnConfirm: true,
+            
+                                closeOnCancel: true
+                            },
+        
+                            function (isConfirm) {
+            
+                                if (isConfirm) {
+                
+                                    firebase.database().ref('Centers/' + currentCenter + '/reports/' + classn + '/' + id).remove();
+                
+                                    location.reload();
+                                }
+            
+                            });
 
-                            firebase.database().ref('Centers/' + currentCenter + '/reports/' + classn + '/' + id).remove();
-
-                            location.reload();
-
-
-                        } else {
-
-
-                        }
                     }
 
                     function showInfo(id, classn) {
-
-
-
-                        swal({   title: "Who do you want to see?",
-
-                                //text: "Are you sure to proceed?",
-
-
-                                showCancelButton: true,
-
-                                //confirmButtonColor: "#DD6B55",
-
-                                //confirmButtonColor: '#157efb',
-                                //cancelButtonColor: '#d33',
-
-                                confirmButtonColor: '#aaa',
-
-                                confirmButtonText: "Pending",
-
-
-                                cancelButtonText: "Accepted",
-
-
-                                closeOnConfirm: true,
-
-                                closeOnCancel: true },
-
-                            function(isConfirm){
-
-                                if (isConfirm)
-
-                                {
-
-                                    //swal("Account Removed!", "Your account is removed permanently!", "success");
-
-
-
-                                    if (event.target.toString() !== "[object HTMLElement]") {
-
+    
+                        if (event.target.toString() !== "[object HTMLElement]") {
+    
+    
+                            swal({
+                                    title: "Who do you want to see?",
+            
+                                    //text: "Are you sure to proceed?",
+            
+            
+                                    showCancelButton: true,
+            
+                                    //confirmButtonColor: "#DD6B55",
+            
+                                    //confirmButtonColor: '#157efb',
+                                    //cancelButtonColor: '#d33',
+            
+                                    confirmButtonColor: '#aaa',
+            
+                                    confirmButtonText: "Pending",
+            
+            
+                                    cancelButtonText: "Accepted",
+        
+                                    allowEscapeKey: false,
+                                    allowOutsideClick: false,
+            
+                                    closeOnConfirm: true,
+            
+                                    closeOnCancel: true
+                                },
+        
+                                function (isConfirm) {
+            
+                                    if (isConfirm) {
+                                        var pageN = document.getElementById("pageNo");
+                                        pageN.innerHTML = "";
+                                        //swal("Account Removed!", "Your account is removed permanently!", "success");
+                
+                
+                                        //if (event.target.toString() !== "[object HTMLElement]") {
+                
                                         document.getElementById("allReports").innerHTML = "";
-
+                
                                         document.getElementById("pageTitle").innerHTML = "Pending";
-
+                
                                         var yC = document.getElementsByClassName("pgeClck");
                                         for (i = 0; i < yC.length; i++) {
                                             yC[i].style.display = "none";
                                         }
-
-
+                
+                
                                         firebase.database().ref('Centers/' + currentCenter + '/reports/' + classn + '/' + id + '/didntcome/').once('value', (snapshotts) => {
                                             document.getElementById("PreLoaderBar").style.display = "flex";
-
-
+                    
+                    
                                             var createnewA = document.createElement('a');
-
+                    
                                             createnewA.href = "reports.html";
-
+                    
                                             createnewA.style.textDecoration = "none";
-
+                    
                                             createnewA.style.color = "blue";
-
+                    
                                             createnewA.style.cssFloat = "right";
-
+                    
                                             createnewA.style.marginRight = "15px";
-
+                    
                                             createnewA.style.marginTop = "5px";
-
+                    
                                             createnewA.innerHTML = "Reports";
-
+                    
                                             //var bdd = document.getElementById("branding");
-
+                    
                                             //bdd.appendChild(createnewA);
-
-
+                    
+                    
                                             var dataaess = snapshotts.val();
-
+                    
                                             if (snapshotts.exists()) {
-
-
-
+                        
+                        
                                                 document.getElementById("pageTitle").style.marginBottom = "25px";
-
-
-
-
+                        
+                        
                                                 var bd = document.getElementById("allReports");
-
+                        
                                                 var IDs = [];
-
+                        
                                                 for (let keyysye in dataaess) {
                                                     IDs.push(keyysye);
                                                 }
-
-
-
+                        
+                        
                                                 //firebase.database().ref('user/').orderByChild('Name').once('value', (snapshottt) => {
                                                 //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
                                                 //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottses) => {
                                                 //keyysy
-
-
+                        
+                        
                                                 firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
-
-
+                            
+                            
                                                     snapshottt.forEach(function (child2) {
                                                         //alert(child2.key);
-
+                                
                                                         if (IDs.includes(child2.key)) {
-
+                                    
                                                             firebase.database().ref('user/').child(child2.key).once('value', (snapshottss) => {
-
+                                        
                                                                 var dataasss = snapshottss.val();
-
+                                        
                                                                 if (snapshottss.exists()) {
-
-
+                                            
+                                            
                                                                     for (let keyysys in dataasss) {
                                                                         //alert(keyysys);
                                                                         var createDivRow = document.createElement('div');
-
+                                                
                                                                         createDivRow.className = "roww";
-
-
+                                                
+                                                
                                                                         var createDivColumn = document.createElement('div');
-
+                                                
                                                                         createDivColumn.className = "columnn";
-
-
+                                                
+                                                
                                                                         var createDivCard = document.createElement('div');
-
-
+                                                
+                                                
                                                                         if (classn === "high") {
-
-
+                                                    
+                                                    
                                                                             createDivCard.className = "cardd";
-
-
+                                                    
+                                                    
                                                                         } else if (classn === "medium") {
-
-
+                                                    
+                                                    
                                                                             createDivCard.className = "cardd";
-
+                                                    
                                                                         } else {
-
-
+                                                    
+                                                    
                                                                             createDivCard.className = "cardd";
-
+                                                    
                                                                         }
-
-
+                                                
+                                                
                                                                         var createInfo = document.createElement('div');
-
-
+                                                
+                                                
                                                                         var shiftDay = "";
-
+                                                
                                                                         //alert(dataasss["Shift"]);
-                                                                        if(dataasss["Shift"] === "1"){
+                                                                        if (dataasss["Shift"] === "1") {
                                                                             shiftDay = "Monday";
-                                                                        }
-                                                                        else if(dataasss["Shift"] === "2"){
+                                                                        } else if (dataasss["Shift"] === "2") {
                                                                             shiftDay = "Tuesday";
-                                                                        }
-                                                                        else if(dataasss["Shift"] === "3"){
+                                                                        } else if (dataasss["Shift"] === "3") {
                                                                             shiftDay = "Wednesday";
-                                                                        }
-                                                                        else if(dataasss["Shift"] === "4"){
+                                                                        } else if (dataasss["Shift"] === "4") {
                                                                             shiftDay = "Thursday";
-                                                                        }
-                                                                        else{
+                                                                        } else {
                                                                             shiftDay = "Friday";
                                                                         }
-
-
+                                                
+                                                
                                                                         createInfo.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataasss["Phone Number"] + "'style='text-decoration: none; color: blue;'>" + dataasss["Phone Number"] + "</a></p><p>Blood Type: " + dataasss["Blood Type"] + "</p><p>Position: " + dataasss["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
-
-                                                                            + dataasss["ICE"] + "'style='text-decoration: none; color: blue;'>"+ dataasss["ICE"] + "</a></span></p>";
-
-
+                                                    
+                                                                            + dataasss["ICE"] + "'style='text-decoration: none; color: blue;'>" + dataasss["ICE"] + "</a></span></p>";
+                                                
+                                                
                                                                     }
                                                                     document.getElementById("PreLoaderBar").style.display = "none";
                                                                     bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
@@ -1711,190 +1789,171 @@
                                                     });
                                                 });
                                                 //}
-                                            }
-                                            else{
+                                            } else {
                                                 document.getElementById("PreLoaderBar").style.display = "none";
                                             }
                                         })
-                                    }
-                                    else{
-                                        alert("1HAPPENED");
-                                    }
-
-
-                                }
-
-                                else {
-
-                                    //swal("Hurray", "Account is not removed!", "error");
-
-
-
-
-
-                                    if (event.target.toString() !== "[object HTMLElement]") {
-
-
-
+                                        //}
+                
+                
+                                    } else {
+                                        var pageN = document.getElementById("pageNo");
+                                        pageN.innerHTML = "";
+                                        //swal("Hurray", "Account is not removed!", "error");
+                
+                
+                                        //if (event.target.toString() !== "[object HTMLElement]") {
+                
+                
                                         document.getElementById("allReports").innerHTML = "";
-
+                
                                         document.getElementById("pageTitle").innerHTML = "Accepted";
-
+                
                                         var yC = document.getElementsByClassName("pgeClck");
                                         for (i = 0; i < yC.length; i++) {
                                             yC[i].style.display = "none";
                                         }
-
-
+                
+                
                                         firebase.database().ref('Centers/' + currentCenter + '/reports/' + classn + '/' + id + '/came/').once('value', (snapshotts) => {
                                             document.getElementById("PreLoaderBar").style.display = "flex";
-
+                    
                                             var createnewA = document.createElement('a');
-
+                    
                                             createnewA.href = "reports.html";
-
+                    
                                             createnewA.style.textDecoration = "none";
-
+                    
                                             createnewA.style.color = "blue";
-
+                    
                                             createnewA.style.cssFloat = "right";
-
+                    
                                             createnewA.style.marginRight = "15px";
-
+                    
                                             createnewA.style.marginTop = "5px";
-
+                    
                                             createnewA.innerHTML = "Reports";
-
+                    
                                             //var bdd = document.getElementById("branding");
-
+                    
                                             //bdd.appendChild(createnewA);
-
-
+                    
+                    
                                             var dataaess = snapshotts.val();
-
+                    
                                             if (snapshotts.exists()) {
-
-
-
-
+                        
+                        
                                                 document.getElementById("pageTitle").style.marginBottom = "25px";
-
-
-
-
+                        
+                        
                                                 var bd = document.getElementById("allReports");
-
+                        
                                                 var IDs = [];
-
+                        
                                                 for (let keyysye in dataaess) {
                                                     IDs.push(keyysye);
                                                 }
-
-
-
+                        
+                        
                                                 //firebase.database().ref('user/').orderByChild('Name').once('value', (snapshottt) => {
                                                 //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
                                                 //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottses) => {
                                                 //keyysy
-
-
+                        
+                        
                                                 firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
-
-
+                            
+                            
                                                     snapshottt.forEach(function (child2) {
                                                         //alert(child2.key);
-
+                                
                                                         if (IDs.includes(child2.key)) {
-
+                                    
                                                             firebase.database().ref('user/').child(child2.key).once('value', (snapshottss) => {
-
-
-                                                        var dataasss = snapshottss.val();
-
-                                                        if (snapshottss.exists()) {
-
-
-                                                            for (let keyysys in dataasss) {
-
-
-                                                                var createDivRow = document.createElement('div');
-
-                                                                createDivRow.className = "roww";
-
-
-                                                                var createDivColumn = document.createElement('div');
-
-                                                                createDivColumn.className = "columnn";
-
-
-                                                                var createDivCard = document.createElement('div');
-
-
-                                                                if (classn === "high") {
-
-
-                                                                    createDivCard.className = "cardd";
-
-
-                                                                } else if (classn === "medium") {
-
-
-                                                                    createDivCard.className = "cardd";
-
-                                                                } else {
-
-
-                                                                    createDivCard.className = "cardd";
-
+                                        
+                                        
+                                                                var dataasss = snapshottss.val();
+                                        
+                                                                if (snapshottss.exists()) {
+                                            
+                                            
+                                                                    for (let keyysys in dataasss) {
+                                                
+                                                
+                                                                        var createDivRow = document.createElement('div');
+                                                
+                                                                        createDivRow.className = "roww";
+                                                
+                                                
+                                                                        var createDivColumn = document.createElement('div');
+                                                
+                                                                        createDivColumn.className = "columnn";
+                                                
+                                                
+                                                                        var createDivCard = document.createElement('div');
+                                                
+                                                
+                                                                        if (classn === "high") {
+                                                    
+                                                    
+                                                                            createDivCard.className = "cardd";
+                                                    
+                                                    
+                                                                        } else if (classn === "medium") {
+                                                    
+                                                    
+                                                                            createDivCard.className = "cardd";
+                                                    
+                                                                        } else {
+                                                    
+                                                    
+                                                                            createDivCard.className = "cardd";
+                                                    
+                                                                        }
+                                                
+                                                
+                                                                        var createInfo = document.createElement('div');
+                                                
+                                                                        var shiftDay = "";
+                                                
+                                                                        if (dataasss["Shift"] === "1") {
+                                                                            shiftDay = "Monday";
+                                                                        } else if (dataasss["Shift"] === "2") {
+                                                                            shiftDay = "Tuesday";
+                                                                        } else if (dataasss["Shift"] === "3") {
+                                                                            shiftDay = "Wednesday";
+                                                                        } else if (dataasss["Shift"] === "4") {
+                                                                            shiftDay = "Thursday";
+                                                                        } else {
+                                                                            shiftDay = "Friday";
+                                                                        }
+                                                
+                                                
+                                                                        createInfo.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataasss["Phone Number"] + "'style='text-decoration: none; color: blue;'>" + dataasss["Phone Number"] + "</a></p><p>Blood Type: " + dataasss["Blood Type"] + "</p><p>Position: " + dataasss["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
+                                                    
+                                                                            + dataasss["ICE"] + "'style='text-decoration: none; color: blue;'>" + dataasss["ICE"] + "</a></span></p>";
+                                                
+                                                                    }
+                                                                    document.getElementById("PreLoaderBar").style.display = "none";
+                                                                    bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
                                                                 }
-
-
-                                                                var createInfo = document.createElement('div');
-
-                                                                var shiftDay = "";
-
-                                                                if(dataasss["Shift"] === "1"){
-                                                                    shiftDay = "Monday";
-                                                                }
-                                                                else if(dataasss["Shift"] === "2"){
-                                                                    shiftDay = "Tuesday";
-                                                                }
-                                                                else if(dataasss["Shift"] === "3"){
-                                                                    shiftDay = "Wednesday";
-                                                                }
-                                                                else if(dataasss["Shift"] === "4"){
-                                                                    shiftDay = "Thursday";
-                                                                }
-                                                                else{
-                                                                    shiftDay = "Friday";
-                                                                }
-
-
-                                                                createInfo.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataasss["Phone Number"] + "'style='text-decoration: none; color: blue;'>" + dataasss["Phone Number"] + "</a></p><p>Blood Type: " + dataasss["Blood Type"] + "</p><p>Position: " + dataasss["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
-
-                                                                    + dataasss["ICE"] + "'style='text-decoration: none; color: blue;'>"+ dataasss["ICE"] + "</a></span></p>";
-
-                                                            }
-                                                            document.getElementById("PreLoaderBar").style.display = "none";
-                                                            bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
-                                                        }
                                                             });
                                                         }
                                                     });
                                                 });
                                                 //}
-                                            }
-                                            else {
+                                            } else {
                                                 document.getElementById("PreLoaderBar").style.display = "none";
                                             }
                                         })
+                                        //}
+                
+                
                                     }
-                                    else{
-                                        alert("2HAPPENED");
-                                    }
-
-                                } });
-
+                                });
+    
+                        }
 
 
 
@@ -2851,8 +2910,13 @@
                                                     pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (totalPages) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (totalPages) + ");return false;'>" + (totalPages) + " </a>";
                                                 }
                                                 else{
-                                                    for (i = 1; i <= totalPages; i++) {
-                                                        pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                    for (i = pageClickedNum; i <= totalPages; i++) {
+                                                        if (i == pageClickedNum){
+                                                            pageN.innerHTML += "<span style = 'color: darkgrey;'>" + (i) + " </span>";
+                                                        }
+                                                        else{
+                                                            pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                        }
                                                     }
                                                 }
         
@@ -2873,15 +2937,42 @@
                                             }
                                              */
 
-                                            //alert("aa");
+                                            
 
                                         }else{
                                             document.getElementById("PreLoaderBar").style.display = "none";
                                             var pageN = document.getElementById("pageNo");
-
+    
                                             var i;
-                                            for (i = 1; i <= totalPages ; i++) { //THIS ONE IS CAUSING TROUBLE
-                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                            if(totalPages<6) {
+                                                for (i = 1; i <= totalPages; i++) {
+                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                }
+                                                
+                                            }else{
+                                                if((pageClickedNum+5)<totalPages) {
+                                                    for (i = pageClickedNum; i <= pageClickedNum+4; i++) {
+                                                        if(i == pageClickedNum){
+                                                            pageN.innerHTML += "<span style = 'color: darkgrey;'>" + (i) + " </span>";
+                                                        }
+                                                        else {
+                                                            pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                        }
+                                                    }
+                                                    pageN.innerHTML += "<a style='text-decoration: none; color: blue;'>... </a>";
+                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (totalPages) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (totalPages) + ");return false;'>" + (totalPages) + " </a>";
+                                                }
+                                                else{
+                                                    for (i = pageClickedNum; i <= totalPages; i++) {
+                                                        if (i == pageClickedNum){
+                                                            pageN.innerHTML += "<span style = 'color: darkgrey;'>" + (i) + " </span>";
+                                                        }
+                                                        else{
+                                                            pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                        }
+                                                    }
+                                                }
+        
                                             }
                                             if(highEmergencyCounter != 0) {
                                                 document.getElementById("totalHE").innerHTML = highEmergencyCounter;
@@ -2910,399 +3001,393 @@
                 });
 
                 function deleteReport(id, classn) {
-                    if (confirm('Are you sure you want to delete this report?')) {
+    
+    
+                    swal({
+                            title: "Are you sure you want to delete this report?",
+            
+                            //text: "Are you sure to proceed?",
+                        type: 'warning',
+                            showCancelButton: true,
+                            text: "You won't be able to revert this!",
+                            confirmButtonColor: '#DD6B55',
+            
+                            confirmButtonText: "Delete",
+            
+            
+                            cancelButtonText: "Cancel",
+            
+            
+                            closeOnConfirm: true,
+            
+                            closeOnCancel: true
+                        },
+        
+                        function (isConfirm) {
+    
+                            if (isConfirm) {
+    
+                                firebase.database().ref('Centers/' + currentCenter + '/reports/' + classn + '/' + id).remove();
+    
+                                location.reload();
+                            }
+    
+                        });
 
-                        firebase.database().ref('Centers/' + currentCenter + '/reports/' + classn + '/' + id).remove();
-
-                        location.reload();
-
-
-                    } else {
-
-
-                    }
+                    
                 }
 
                 function showInfo(id, classn) {
-
-
-
-                    swal({   title: "Who do you want to see?",
-
-                            //text: "Are you sure to proceed?",
-                            showCloseButton: true,
-
-                            showCancelButton: true,
-
-                            //confirmButtonColor: "#DD6B55",
-
-                            //confirmButtonColor: '#157efb',
-                            //cancelButtonColor: '#d33',
-
-                            confirmButtonColor: '#aaa',
-
-                            confirmButtonText: "Pending",
-
-
-                            cancelButtonText: "Accepted",
-
-                            allowEscapeKey : false,
-                            allowOutsideClick: false,
-                            closeOnConfirm: true,
-
-
-
-                            closeOnCancel: true },
-
-                        function(isConfirm){
-
-                            if (isConfirm)
-
-                            {
-
-                                //swal("Account Removed!", "Your account is removed permanently!", "success");
-
-
-
-                                if (event.target.toString() !== "[object HTMLElement]") {
-
+    
+                    if (event.target.toString() !== "[object HTMLElement]") {
+    
+                        swal({
+                                title: "Who do you want to see?",
+            
+                                //text: "Are you sure to proceed?",
+                                showCloseButton: true,
+            
+                                showCancelButton: true,
+            
+                                //confirmButtonColor: "#DD6B55",
+            
+                                //confirmButtonColor: '#157efb',
+                                //cancelButtonColor: '#d33',
+            
+                                confirmButtonColor: '#aaa',
+            
+                                confirmButtonText: "Pending",
+            
+            
+                                cancelButtonText: "Accepted",
+            
+                                allowEscapeKey: false,
+                                allowOutsideClick: false,
+                                closeOnConfirm: true,
+            
+            
+                                closeOnCancel: true
+                            },
+        
+                            function (isConfirm) {
+            
+                                if (isConfirm) {
+                                    var pageN = document.getElementById("pageNo");
+                                    pageN.innerHTML = "";
+                                    
+                                    //swal("Account Removed!", "Your account is removed permanently!", "success");
+                
+                
                                     document.getElementById("allReports").innerHTML = "";
-
+                
                                     document.getElementById("pageTitle").innerHTML = "Pending";
-
+                
                                     var yC = document.getElementsByClassName("pgeClck");
                                     for (i = 0; i < yC.length; i++) {
                                         yC[i].style.display = "none";
                                     }
-
-
+                
+                
                                     firebase.database().ref('Centers/' + currentCenter + '/reports/' + classn + '/' + id + '/didntcome/').once('value', (snapshotts) => {
                                         document.getElementById("PreLoaderBar").style.display = "flex";
-
-
+                    
+                    
                                         var createnewA = document.createElement('a');
-
+                    
                                         createnewA.href = "reports.html";
-
+                    
                                         createnewA.style.textDecoration = "none";
-
+                    
                                         createnewA.style.color = "blue";
-
+                    
                                         createnewA.style.cssFloat = "right";
-
+                    
                                         createnewA.style.marginRight = "15px";
-
+                    
                                         createnewA.style.marginTop = "5px";
-
+                    
                                         createnewA.innerHTML = "Reports";
-
+                    
                                         //var bdd = document.getElementById("branding");
-
+                    
                                         //bdd.appendChild(createnewA);
-
-
+                    
+                    
                                         var dataaess = snapshotts.val();
-
+                    
                                         if (snapshotts.exists()) {
-
-
-
+                        
+                        
                                             document.getElementById("pageTitle").style.marginBottom = "25px";
-
-
-
-
+                        
+                        
                                             var bd = document.getElementById("allReports");
-
+                        
                                             var IDs = [];
-
+                        
                                             for (let keyysye in dataaess) {
                                                 IDs.push(keyysye);
                                             }
-
-
-
-                                                //firebase.database().ref('user/').orderByChild('Name').once('value', (snapshottt) => {
-                                                //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
-                                                //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottses) => {
-                                                    //keyysy
-
-
-                                                    firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
-
-
-                                                    snapshottt.forEach(function (child2) {
-                                                        //alert(child2.key);
-
-                                                        if (IDs.includes(child2.key)) {
-
-                                                            firebase.database().ref('user/').child(child2.key).once('value', (snapshottss) => {
-
-                                                                var dataasss = snapshottss.val();
-
-                                                                if (snapshottss.exists()) {
-
-
-                                                                    for (let keyysys in dataasss) {
-                                                                        //alert(keyysys);
-                                                                        var createDivRow = document.createElement('div');
-
-                                                                        createDivRow.className = "roww";
-
-
-                                                                        var createDivColumn = document.createElement('div');
-
-                                                                        createDivColumn.className = "columnn";
-
-
-                                                                        var createDivCard = document.createElement('div');
-
-
-                                                                        if (classn === "high") {
-
-
-                                                                            createDivCard.className = "cardd";
-
-
-                                                                        } else if (classn === "medium") {
-
-
-                                                                            createDivCard.className = "cardd";
-
-                                                                        } else {
-
-
-                                                                            createDivCard.className = "cardd";
-
-                                                                        }
-
-
-                                                                        var createInfo = document.createElement('div');
-
-
-                                                                        var shiftDay = "";
-
-                                                                        //alert(dataasss["Shift"]);
-                                                                        if(dataasss["Shift"] === "1"){
-                                                                            shiftDay = "Monday";
-                                                                        }
-                                                                        else if(dataasss["Shift"] === "2"){
-                                                                            shiftDay = "Tuesday";
-                                                                        }
-                                                                        else if(dataasss["Shift"] === "3"){
-                                                                            shiftDay = "Wednesday";
-                                                                        }
-                                                                        else if(dataasss["Shift"] === "4"){
-                                                                            shiftDay = "Thursday";
-                                                                        }
-                                                                        else{
-                                                                            shiftDay = "Friday";
-                                                                        }
-
-
-                                                                        createInfo.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataasss["Phone Number"] + "'style='text-decoration: none; color: blue;'>" + dataasss["Phone Number"] + "</a></p><p>Blood Type: " + dataasss["Blood Type"] + "</p><p>Position: " + dataasss["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
-
-                                                                            + dataasss["ICE"] + "'style='text-decoration: none; color: blue;'>"+ dataasss["ICE"] + "</a></span></p>";
-
-
-                                                                    }
-                                                                    document.getElementById("PreLoaderBar").style.display = "none";
-                                                                    bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
-                                                                }
-                                                            });
-                                                        }
-                                                    });
-                                                });
-                                            //}
-                                        }
-                                        else{
-                                            document.getElementById("PreLoaderBar").style.display = "none";
-                                        }
-                                    })
-                                }
-                                else{
-                                    alert("3HAPPENED");
-                                }
-
-                            }
-
-                            else {
-
-                                //swal("Hurray", "Account is not removed!", "error");
-
-
-
-
-
-                                if (event.target.toString() !== "[object HTMLElement]") {
-
-
-
-                                    document.getElementById("allReports").innerHTML = "";
-
-                                    document.getElementById("pageTitle").innerHTML = "Accepted";
-
-                                    var yC = document.getElementsByClassName("pgeClck");
-                                    for (i = 0; i < yC.length; i++) {
-                                        yC[i].style.display = "none";
-                                    }
-
-
-                                    firebase.database().ref('Centers/' + currentCenter + '/reports/' + classn + '/' + id + '/came/').once('value', (snapshotts) => {
-                                        document.getElementById("PreLoaderBar").style.display = "flex";
-
-                                        var createnewA = document.createElement('a');
-
-                                        createnewA.href = "reports.html";
-
-                                        createnewA.style.textDecoration = "none";
-
-                                        createnewA.style.color = "blue";
-
-                                        createnewA.style.cssFloat = "right";
-
-                                        createnewA.style.marginRight = "15px";
-
-                                        createnewA.style.marginTop = "5px";
-
-                                        createnewA.innerHTML = "Reports";
-
-                                        //var bdd = document.getElementById("branding");
-
-                                        //bdd.appendChild(createnewA);
-
-
-                                        var dataaess = snapshotts.val();
-
-                                        if (snapshotts.exists()) {
-
-
-
-
-                                            document.getElementById("pageTitle").style.marginBottom = "25px";
-
-
-
-
-                                            var bd = document.getElementById("allReports");
-
-                                            var IDs = [];
-
-                                            for (let keyysye in dataaess) {
-                                                IDs.push(keyysye);
-                                            }
-
-
-
+                        
+                        
                                             //firebase.database().ref('user/').orderByChild('Name').once('value', (snapshottt) => {
                                             //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
                                             //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottses) => {
                                             //keyysy
-
-
+                        
+                        
                                             firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
-
-
+                            
+                            
                                                 snapshottt.forEach(function (child2) {
                                                     //alert(child2.key);
-
+                                
                                                     if (IDs.includes(child2.key)) {
-
+                                    
                                                         firebase.database().ref('user/').child(child2.key).once('value', (snapshottss) => {
-
-
-                                                    var dataasss = snapshottss.val();
-
-                                                    if (snapshottss.exists()) {
-
-
-                                                        for (let keyysys in dataasss) {
-
-
-                                                            var createDivRow = document.createElement('div');
-
-                                                            createDivRow.className = "roww";
-
-
-                                                            var createDivColumn = document.createElement('div');
-
-                                                            createDivColumn.className = "columnn";
-
-
-                                                            var createDivCard = document.createElement('div');
-
-
-                                                            if (classn === "high") {
-
-
-                                                                createDivCard.className = "cardd";
-
-
-                                                            } else if (classn === "medium") {
-
-
-                                                                createDivCard.className = "cardd";
-
-                                                            } else {
-
-
-                                                                createDivCard.className = "cardd";
-
+                                        
+                                                            var dataasss = snapshottss.val();
+                                        
+                                                            if (snapshottss.exists()) {
+                                            
+                                            
+                                                                for (let keyysys in dataasss) {
+                                                                    //alert(keyysys);
+                                                                    var createDivRow = document.createElement('div');
+                                                
+                                                                    createDivRow.className = "roww";
+                                                
+                                                
+                                                                    var createDivColumn = document.createElement('div');
+                                                
+                                                                    createDivColumn.className = "columnn";
+                                                
+                                                
+                                                                    var createDivCard = document.createElement('div');
+                                                
+                                                
+                                                                    if (classn === "high") {
+                                                    
+                                                    
+                                                                        createDivCard.className = "cardd";
+                                                    
+                                                    
+                                                                    } else if (classn === "medium") {
+                                                    
+                                                    
+                                                                        createDivCard.className = "cardd";
+                                                    
+                                                                    } else {
+                                                    
+                                                    
+                                                                        createDivCard.className = "cardd";
+                                                    
+                                                                    }
+                                                
+                                                
+                                                                    var createInfo = document.createElement('div');
+                                                
+                                                
+                                                                    var shiftDay = "";
+                                                
+                                                                    //alert(dataasss["Shift"]);
+                                                                    if (dataasss["Shift"] === "1") {
+                                                                        shiftDay = "Monday";
+                                                                    } else if (dataasss["Shift"] === "2") {
+                                                                        shiftDay = "Tuesday";
+                                                                    } else if (dataasss["Shift"] === "3") {
+                                                                        shiftDay = "Wednesday";
+                                                                    } else if (dataasss["Shift"] === "4") {
+                                                                        shiftDay = "Thursday";
+                                                                    } else {
+                                                                        shiftDay = "Friday";
+                                                                    }
+                                                
+                                                
+                                                                    createInfo.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataasss["Phone Number"] + "'style='text-decoration: none; color: blue;'>" + dataasss["Phone Number"] + "</a></p><p>Blood Type: " + dataasss["Blood Type"] + "</p><p>Position: " + dataasss["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
+                                                    
+                                                                        + dataasss["ICE"] + "'style='text-decoration: none; color: blue;'>" + dataasss["ICE"] + "</a></span></p>";
+                                                
+                                                
+                                                                }
+                                                                document.getElementById("PreLoaderBar").style.display = "none";
+                                                                bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
                                                             }
-
-
-                                                            var createInfo = document.createElement('div');
-
-                                                            var shiftDay = "";
-
-                                                            if(dataasss["Shift"] === "1"){
-                                                                shiftDay = "Monday";
-                                                            }
-                                                            else if(dataasss["Shift"] === "2"){
-                                                                shiftDay = "Tuesday";
-                                                            }
-                                                            else if(dataasss["Shift"] === "3"){
-                                                                shiftDay = "Wednesday";
-                                                            }
-                                                            else if(dataasss["Shift"] === "4"){
-                                                                shiftDay = "Thursday";
-                                                            }
-                                                            else{
-                                                                shiftDay = "Friday";
-                                                            }
-
-
-                                                            createInfo.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataasss["Phone Number"] + "'style='text-decoration: none; color: blue;'>" + dataasss["Phone Number"] + "</a></p><p>Blood Type: " + dataasss["Blood Type"] + "</p><p>Position: " + dataasss["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
-
-                                                                + dataasss["ICE"] + "'style='text-decoration: none; color: blue;'>"+ dataasss["ICE"] + "</a></span></p>";
-
-                                                        }
-                                                        document.getElementById("PreLoaderBar").style.display = "none";
-                                                        bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
-                                                    }
                                                         });
                                                     }
                                                 });
                                             });
                                             //}
-                                        }
-                                        else {
+                                        } else {
                                             document.getElementById("PreLoaderBar").style.display = "none";
                                         }
                                     })
+                                    //}
+            
+
+                
+                                } else {
+                                    var pageN = document.getElementById("pageNo");
+                                    pageN.innerHTML = "";
+                                    //swal("Hurray", "Account is not removed!", "error");
+                
+                
+                                    //if (event.target.toString() !== "[object HTMLElement]") {
+                
+                
+                                    document.getElementById("allReports").innerHTML = "";
+                
+                                    document.getElementById("pageTitle").innerHTML = "Accepted";
+                
+                                    var yC = document.getElementsByClassName("pgeClck");
+                                    for (i = 0; i < yC.length; i++) {
+                                        yC[i].style.display = "none";
+                                    }
+                
+                
+                                    firebase.database().ref('Centers/' + currentCenter + '/reports/' + classn + '/' + id + '/came/').once('value', (snapshotts) => {
+                                        document.getElementById("PreLoaderBar").style.display = "flex";
+                    
+                                        var createnewA = document.createElement('a');
+                    
+                                        createnewA.href = "reports.html";
+                    
+                                        createnewA.style.textDecoration = "none";
+                    
+                                        createnewA.style.color = "blue";
+                    
+                                        createnewA.style.cssFloat = "right";
+                    
+                                        createnewA.style.marginRight = "15px";
+                    
+                                        createnewA.style.marginTop = "5px";
+                    
+                                        createnewA.innerHTML = "Reports";
+                    
+                                        //var bdd = document.getElementById("branding");
+                    
+                                        //bdd.appendChild(createnewA);
+                    
+                    
+                                        var dataaess = snapshotts.val();
+                    
+                                        if (snapshotts.exists()) {
+                        
+                        
+                                            document.getElementById("pageTitle").style.marginBottom = "25px";
+                        
+                        
+                                            var bd = document.getElementById("allReports");
+                        
+                                            var IDs = [];
+                        
+                                            for (let keyysye in dataaess) {
+                                                IDs.push(keyysye);
+                                            }
+                        
+                        
+                                            //firebase.database().ref('user/').orderByChild('Name').once('value', (snapshottt) => {
+                                            //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
+                                            //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottses) => {
+                                            //keyysy
+                        
+                        
+                                            firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
+                            
+                            
+                                                snapshottt.forEach(function (child2) {
+                                                    //alert(child2.key);
+                                
+                                                    if (IDs.includes(child2.key)) {
+                                    
+                                                        firebase.database().ref('user/').child(child2.key).once('value', (snapshottss) => {
+                                        
+                                        
+                                                            var dataasss = snapshottss.val();
+                                        
+                                                            if (snapshottss.exists()) {
+                                            
+                                            
+                                                                for (let keyysys in dataasss) {
+                                                
+                                                
+                                                                    var createDivRow = document.createElement('div');
+                                                
+                                                                    createDivRow.className = "roww";
+                                                
+                                                
+                                                                    var createDivColumn = document.createElement('div');
+                                                
+                                                                    createDivColumn.className = "columnn";
+                                                
+                                                
+                                                                    var createDivCard = document.createElement('div');
+                                                
+                                                
+                                                                    if (classn === "high") {
+                                                    
+                                                    
+                                                                        createDivCard.className = "cardd";
+                                                    
+                                                    
+                                                                    } else if (classn === "medium") {
+                                                    
+                                                    
+                                                                        createDivCard.className = "cardd";
+                                                    
+                                                                    } else {
+                                                    
+                                                    
+                                                                        createDivCard.className = "cardd";
+                                                    
+                                                                    }
+                                                
+                                                
+                                                                    var createInfo = document.createElement('div');
+                                                
+                                                                    var shiftDay = "";
+                                                
+                                                                    if (dataasss["Shift"] === "1") {
+                                                                        shiftDay = "Monday";
+                                                                    } else if (dataasss["Shift"] === "2") {
+                                                                        shiftDay = "Tuesday";
+                                                                    } else if (dataasss["Shift"] === "3") {
+                                                                        shiftDay = "Wednesday";
+                                                                    } else if (dataasss["Shift"] === "4") {
+                                                                        shiftDay = "Thursday";
+                                                                    } else {
+                                                                        shiftDay = "Friday";
+                                                                    }
+                                                
+                                                
+                                                                    createInfo.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataasss["Phone Number"] + "'style='text-decoration: none; color: blue;'>" + dataasss["Phone Number"] + "</a></p><p>Blood Type: " + dataasss["Blood Type"] + "</p><p>Position: " + dataasss["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
+                                                    
+                                                                        + dataasss["ICE"] + "'style='text-decoration: none; color: blue;'>" + dataasss["ICE"] + "</a></span></p>";
+                                                
+                                                                }
+                                                                document.getElementById("PreLoaderBar").style.display = "none";
+                                                                bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
+                                                            }
+                                                        });
+                                                    }
+                                                });
+                                            });
+                                            //}
+                                        } else {
+                                            document.getElementById("PreLoaderBar").style.display = "none";
+                                        }
+                                    })
+                                    //}
+                                    //else{
+                                    //    alert("4HAPPENED");
+                                    //}
+                
+                
                                 }
-                                else{
-                                    alert("4HAPPENED");
-                                }
-
-
-
-
-
-
-
-
-                            } });
+                            });
+    
+    
+                    }
 
 
 
