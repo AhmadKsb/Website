@@ -257,8 +257,10 @@
             letter-spacing: 5px;
         }
     </style>
-
-
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    
 </head>
 
 
@@ -490,29 +492,52 @@
 <script>
 
     function removeAdmin(userID) {
-
-
-        if (confirm('Are you sure you want to remove ADMIN from this user?')) {
-
-
-            //if(isAdmin == true){
-
-            firebase.database().ref('user/' + userID).update({
-
-                Admin: 0
-
+        
+        swal({
+                title: "Are you sure?",
+            
+                text: "Are you sure you want to remove ADMIN from this user?",
+        
+                type: 'warning',
+                
+                showCloseButton: true,
+            
+                showCancelButton: true,
+            
+                //confirmButtonColor: "#DD6B55",
+            
+                //confirmButtonColor: '#157efb',
+                //cancelButtonColor: '#d33',
+            
+                confirmButtonColor: '#157efb',
+            
+                confirmButtonText: "Yes",
+            
+            
+                cancelButtonText: "No",
+            
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                closeOnConfirm: true,
+            
+            
+                closeOnCancel: true
+            },
+        
+            function (isConfirm) {
+    
+                if (isConfirm) {
+                    firebase.database().ref('user/' + userID).update({
+        
+                        Admin: 0
+        
+                    });
+    
+                    location.reload();
+                }
+    
             });
 
-            location.reload();
-
-
-            //}
-
-
-        } else {
-
-
-        }
 
 
     }
@@ -524,24 +549,50 @@
 <script>
 
     function makeAdmin(userID) {
-
-
-        if (confirm('Are you sure you want to make this user an admin?')) {
-
-            firebase.database().ref('user/' + userID).update({
-
-                Admin: 1
-
+        
+        swal({
+                title: "Are you sure?",
+            
+                text: "Are you sure you want to make this user an admin?",
+        
+                type: 'info',
+            
+                showCloseButton: true,
+            
+                showCancelButton: true,
+            
+                //confirmButtonColor: "#DD6B55",
+            
+                //confirmButtonColor: '#157efb',
+                //cancelButtonColor: '#d33',
+            
+                confirmButtonColor: '#157efb',
+            
+                confirmButtonText: "Yes",
+            
+            
+                cancelButtonText: "No",
+            
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                closeOnConfirm: true,
+            
+            
+                closeOnCancel: true
+            },
+        
+            function (isConfirm) {
+            
+                if (isConfirm) {
+                
+                
+                
+                
+                }
+            
             });
-
-            location.reload();
-
-
-        } else {
-
-
-        }
-
+        
+        
 
     }
 
@@ -551,9 +602,151 @@
 <script>
 
     function deleteUser(userID, centerLoc) {
-
-
-        if (confirm('Are you sure you want to delete this user?')) {
+    
+        swal({
+                title: "Are you sure?",
+            
+                text: "Are you sure you want to delete this user?",
+            
+                type: 'warning',
+            
+                showCloseButton: true,
+            
+                showCancelButton: true,
+            
+                //confirmButtonColor: "#DD6B55",
+            
+                //confirmButtonColor: '#157efb',
+                //cancelButtonColor: '#d33',
+            
+                confirmButtonColor: '#d33',
+            
+                confirmButtonText: "Yes",
+            
+            
+                cancelButtonText: "No",
+            
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                closeOnConfirm: true,
+            
+            
+                closeOnCancel: true
+            },
+        
+            function (isConfirm) {
+            
+                if (isConfirm) {
+    
+                    firebase.database().ref('user/').child(userID).once('value', (snapshottt) => {
+        
+                        var dataaa = snapshottt.val();
+        
+                        var bd = document.getElementById("allUsers");
+        
+                        if (snapshottt.exists()) {
+                            //alert(snapshottt.key);
+                            firebase.database().ref('user/').child(userID).remove();
+                        }
+        
+                    });
+    
+    
+    
+    
+                    firebase.database().ref('Centers/' + centerLoc + '/members/').child(userID).once('value', (snapshottt) => {
+        
+                        var dataaa = snapshottt.val();
+        
+        
+                        if (snapshottt.exists()) {
+                            //alert("HERE " + snapshottt.key);
+                            firebase.database().ref('Centers/' + centerLoc + '/members/').child(userID).remove();
+                        }
+        
+                    });
+    
+    
+    
+    
+    
+    
+    
+                    firebase.database().ref('Centers/' + centerLoc + '/broadcast/').once('value', (snapshottt) => {
+        
+                        var dataaa = snapshottt.val();
+        
+                        if (snapshottt.exists()) {
+            
+                            for (let key in dataaa) {
+                
+                                firebase.database().ref('Centers/' + centerLoc + '/broadcast/').child(key).child(userID).once('value', (snapshottt) => {
+                    
+                                    var dataaa = snapshottt.val();
+                                    if (snapshottt.exists()) {
+                                        //alert(key + " " + snapshottt.key);
+                                        firebase.database().ref('Centers/'+centerLoc+'/broadcast/').child(key).child(userID).remove();
+                                    }
+                                });
+                            }
+                        }
+                    });
+    
+    
+    
+    
+                    firebase.database().ref('Centers/' + centerLoc + '/reports/').once('value', (snapshottt) => {
+        
+                        var dataaa = snapshottt.val();
+        
+                        if (snapshottt.exists()) {
+            
+                            for (let key in dataaa) {
+                
+                                firebase.database().ref('Centers/' + centerLoc + '/reports/').child(key).once('value', (snapshottt) => {
+                    
+                                    var dataaa = snapshottt.val();
+                                    if (snapshottt.exists()) {
+                        
+                                        for (let keyy in dataaa) {
+                            
+                            
+                            
+                                            firebase.database().ref('Centers/' + centerLoc + '/reports/').child(key).child(keyy).once('value', (snapshottt) => {
+                                
+                                                var dataaaf = snapshottt.val();
+                                
+                                                if (snapshottt.exists()) {
+                                    
+                                                    if (snapshottt.child("didntcome").child(userID).exists()) {
+                                                        firebase.database().ref('Centers/' + centerLoc + '/reports/').child(key).child(keyy).child("didntcome").child(userID).remove();
+                                                    }
+                                                    if (snapshottt.child("came").child(userID).exists()) {
+                                                        firebase.database().ref('Centers/' + centerLoc + '/reports/').child(key).child(keyy).child("came").child(userID).remove();
+                                                    }
+                                    
+                                                }
+                                                location.reload();
+                                            });
+                            
+                            
+                                        }
+                        
+                                    }
+                                });
+                            }
+                        }
+                    });
+                
+                
+                }
+            
+            });
+        
+        
+        
+        /*
+        if (confirm('')) {
 
 
 
@@ -666,6 +859,9 @@
 
 
         }
+         */
+        
+        
 
 
     }
