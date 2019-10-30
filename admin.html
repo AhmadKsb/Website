@@ -739,11 +739,34 @@
                     firebase.database().ref('Centers/' + centerLoc + '/reports/').once('value', (snapshottt) => {
         
                         var dataaa = snapshottt.val();
-        
+                        var size = snapshottt.numChildren();
+                        
+                        var highEmergencyCounter = 0;
+                        var mediumEmergencyCounter = 0;
+                        var lowEmergencyCounter = 0;
+                        var totalNumberOfEmergencies = 0;
+                        
+                        if(snapshottt.child("high").exists()){
+                            highEmergencyCounter = snapshottt.child("high").numChildren();
+                            //alert(snapshott.child("high").numChildren()); //highEmergencyCounter
+                        }
+                        if(snapshottt.child("medium").exists()){
+                            mediumEmergencyCounter = snapshottt.child("medium").numChildren();
+                            //alert(snapshott.child("medium").numChildren()); //highEmergencyCounter
+                        }
+                        if(snapshottt.child("low").exists()){
+                            lowEmergencyCounter = snapshottt.child("low").numChildren();
+                            //alert(snapshott.child("low").numChildren()); //highEmergencyCounter
+                        }
+    
+                        totalNumberOfEmergencies = highEmergencyCounter + mediumEmergencyCounter + lowEmergencyCounter;
+                        
+                        var temp = 0;
                         if (snapshottt.exists()) {
-            
+                            
+                            
                             for (let key in dataaa) {
-                
+                                
                                 firebase.database().ref('Centers/' + centerLoc + '/reports/').child(key).once('value', (snapshottt) => {
                     
                                     var dataaa = snapshottt.val();
@@ -756,34 +779,37 @@
                                             firebase.database().ref('Centers/' + centerLoc + '/reports/').child(key).child(keyy).once('value', (snapshottt) => {
                                 
                                                 var dataaaf = snapshottt.val();
-                                
+                                                temp+=1;
+                                                
+                                                
                                                 if (snapshottt.exists()) {
                                     
-                                                    if (snapshottt.child("didntcome").child(userID).exists()) {
-                                                        firebase.database().ref('Centers/' + centerLoc + '/reports/').child(key).child(keyy).child("didntcome").child(userID).remove();
+                                                    if (snapshottt.child("notifications").child("Declined").child(userID).exists()) {
+                                                        firebase.database().ref('Centers/' + centerLoc + '/reports/').child(key).child(keyy).child("notifications").child("Declined").child(userID).remove();
                                                     }
-                                                    if (snapshottt.child("came").child(userID).exists()) {
-                                                        firebase.database().ref('Centers/' + centerLoc + '/reports/').child(key).child(keyy).child("came").child(userID).remove();
+                                                    if (snapshottt.child("notifications").child("Accepted").child(userID).exists()) {
+                                                        firebase.database().ref('Centers/' + centerLoc + '/reports/').child(key).child(keyy).child("notifications").child("Accepted").child(userID).remove();
                                                     }
+                                                    if (snapshottt.child("notifications").child("Pending").child(userID).exists()) {
+                                                        firebase.database().ref('Centers/' + centerLoc + '/reports/').child(key).child(keyy).child("notifications").child("Pending").child(userID).remove();
+                                                    }
+                                                    
                                     
                                                 }
-                                                location.reload();
+    
+                                                if(temp>=totalNumberOfEmergencies){
+                                                    //alert(temp);
+                                                    location.reload();
+                                                }
                                             });
-                            
-                            
                                         }
-                        
                                     }
                                 });
                             }
                         }
                     });
-                
-                
                 }
-            
             });
-        
         
         
         /*

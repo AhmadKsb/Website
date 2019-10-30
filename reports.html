@@ -1691,8 +1691,9 @@
                                         }
                 
                 
-                                        firebase.database().ref('Centers/' + currentCenter + '/reports/' + classn + '/' + id + '/didntcome/').once('value', (snapshotts) => {
+                                        firebase.database().ref('Centers/' + currentCenter + '/reports/' + classn + '/' + id + '/notifications/Pending').once('value', (snapshotts) => {
                                             document.getElementById("PreLoaderBar").style.display = "flex";
+                                            
     
     
                                             var createnewA = document.createElement('a');
