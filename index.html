@@ -89,7 +89,7 @@
 
 <!--        <script src="app.js"></script>-->
 
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<!--        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>-->
     </header>
 
     <img src='images/LogoRC.png' style='display: block; margin-left: auto; margin-right: auto; width:250px; height:250px;'/>
@@ -126,6 +126,15 @@
     
     <script type="text/javascript">
         // FirebaseUI config.
+        //document.cookie = 'cookie1=test asd af; expires=Fri, 19 Jun 2030 20:47:11 UTC; path=/';
+        //document.cookie = 'favoritemoviee=223124; expires=Fri, 19 Jun 2030 20:47:11 UTC; path=/';
+
+        //alert(document.cookie);
+        //alert(document.cookie.split('=')[1].split(';')[0]);
+        //alert(document.cookie.split('=')[2].split(';')[0]);
+        
+        //document.cookie
+        
         var locToGo = '';
         var uiConfig = {
 
@@ -142,16 +151,18 @@
 
                     document.getElementById('title').style.display = 'none';
                     document.getElementById('PreLoaderBar').style.display = 'flex';
-
-
+    
+    
+                    
 
 
 
                     var favoritemovie = user.uid;
                     var isUserAdmin;
                     //alert(user.uid);
+    
                     localStorage.setItem("favoriteMovie", favoritemovie);
-                    
+    
                     //document.cookie = "tagname = favoriteMovie;secure";
 
                     if (favoritemovie === "27t8hbCsGBMCBDXWyioPT5bqfkK2") {
@@ -174,6 +185,7 @@
                                             localStorage.setItem("isUAdmin", isUserAdmin);
                                             window.location.href = 'admin.html';
                                             //locToGo = 'admin.html';
+                                            
                                         }
                                     } else {
                                         isUserAdmin = "0";
@@ -212,6 +224,7 @@
                             }
                         })
                     }
+                    
     
                     //WAS return true;
                     return false;
