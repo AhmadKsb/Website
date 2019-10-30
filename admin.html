@@ -367,7 +367,7 @@
 <!--  margin-left: 42%; width:250px; height:250px;'/>-->
 
 <h1 id="titlee" style="display: block; margin-top: 50px; margin-bottom: 20px; margin-left: auto; margin-right: auto; text-align: center"></h1>
-<div id="allUsers" align="center"></div>
+<div align="center" id="allUsers"></div>
 <div class="loader" id="PreLoaderBar" style="display: block; margin-top: 250px; margin-left: auto; margin-right: auto; text-align: center"></div>
 
 
@@ -390,6 +390,7 @@
         //alert("NEW :" + document.cookie);
         
         var bd = document.getElementById("allUsers");
+        
     
         var currentID;
     
@@ -535,6 +536,7 @@
                                                 document.getElementById("PreLoaderBar").style.display = "none";
                                                 document.getElementById("titlee").innerHTML = "Users";
                                                 bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
+                                                
                                             }
                                         })
                                     }
