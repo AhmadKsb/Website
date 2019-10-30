@@ -391,7 +391,7 @@
         var totalNumberOfEmergencies = 0;
 
 
-        function checkPr() {
+        //function checkPr() {
             var privChecker = -1;
 
 
@@ -400,7 +400,27 @@
             
             if(isUserAdmin != "1"){
                 //alert("Reports: " + isUserAdmin);
-                logout();
+                firebase.auth().signOut()
+        
+                    .then(function () {
+            
+                        localStorage.clear();
+                        window.location.href = 'index.html';
+            
+                        //location.reload();
+            
+            
+                        // Sign-out successful.
+            
+                    })
+        
+                    .catch(function (error) {
+            
+                        alert("SIGN OUT ERROR");
+            
+                        // An error happened
+            
+                    });
 
                 //window.location.href = 'index.html';
 
@@ -409,10 +429,10 @@
             else {
 
 
-                var bd = document.getElementById("allReports");
-                bd.innerHTML = "";
-                var bd2 = document.getElementById("pageNo");
-                bd2.innerHTML = "";
+                //var bd = document.getElementById("allReports");
+                //bd.innerHTML = "";
+                //var bd2 = document.getElementById("pageNo");
+                //bd2.innerHTML = "";
 
 
                 var favoritemovie = localStorage.getItem("favoriteMovie");
@@ -478,7 +498,7 @@
 
 
 
-        }
+        //}
 
 
 
@@ -492,7 +512,8 @@
 
 
 
-<body id = "grad" onload="checkPr()" style="background-color:#ffffff;">
+<!--<body id = "grad" onload="checkPr()" style="background-color:#ffffff;">-->
+<body id = "grad" onload="pageClick(1)" style="background-color:#ffffff;">
 
 
 <div class="header" style="text-decoration: none">
