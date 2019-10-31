@@ -943,8 +943,8 @@
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         });
     }
-
-
+    
+    var doneSearch = false;
     var firstLoop = "false"
     var oncee = "false";
     $("#inpt_search").unbind("on").on('change textInput input', function (e) {
@@ -954,8 +954,10 @@
 
 
         if($("#inpt_search").val().toString() !== "") {
-            if (oncee === "false"){
-                document.getElementById("allUsers").innerHTML = "";
+            //$("#inpt_search").val().toString().length>2
+            if (oncee === "false" || $("#inpt_search").val().toString().length>1){
+    
+            
             //alert($("#inpt_search").val());
                 $("#inpt_search").unbind("on");
             //alert($("#inpt_search").val().toString());
@@ -979,7 +981,7 @@
 
                 var bd = document.getElementById("allUsers");
                 var createDivRow = document.createElement('div');
-
+                
 
                 firebase.database().ref('user/').child(favoritemovie).once('value', (snapshot) => {
                     oncee = "true";
@@ -995,7 +997,9 @@
 
 
                         }
-
+                        document.getElementById("PreLoaderBar").style.display = "flex";
+                        document.getElementById("allUsers").innerHTML = "";
+                        
                         var toLo = $("#inpt_search").val().toString();
                         var ppe = toLo[0].toUpperCase() + toLo.slice(1);
 
@@ -1013,7 +1017,8 @@
 
                             if (snapshott.exists()) {
                                 //alert("TTT");
-
+    
+                                
 
                                 snapshott.forEach(function (child) {
 
@@ -1032,7 +1037,8 @@
 
 
                                                 if (snapshottt.key != favoritemovie) {
-
+                                                    
+                                                    doneSearch = true;
 
                                                     createDivRow.className = "roww";
 
@@ -1120,6 +1126,16 @@
 
 
                             }
+                            else{
+                                document.getElementById("PreLoaderBar").style.display = "none";
+                                document.getElementById("allUsers").style.fontWeight = "normal";
+                                if($("#inpt_search").val().toString().length>0){
+                                    document.getElementById("allUsers").innerHTML = "<br><br><br><br><br><br><br><h1>"+ $("#inpt_search").val().toString() + " not found!</h1>";
+                                }
+                                else{
+                                    document.getElementById("allUsers").innerHTML = "<br><br><br><br><br><br><br><h1>No name is searched!</h1>";
+                                }
+                            }
 
 
                         })
@@ -1133,8 +1149,20 @@
 
             }
         }else{
+                oncee = "false";
+                if(doneSearch = true){
+                    document.getElementById("PreLoaderBar").style.display = "none";
+                    document.getElementById("allUsers").style.fontWeight = "normal";
+                    if($("#inpt_search").val().toString().length>0){
+                        document.getElementById("allUsers").innerHTML = "<br><br><br><br><br><br><br><h1>"+ $("#inpt_search").val().toString() + " not found!</h1>";
+                    }
+                    else{
+                        document.getElementById("allUsers").innerHTML = "<br><br><br><br><br><br><br><h1>No name is searched!</h1>";
+                    }
+                    doneSearch = false;
+                }
             }
-            oncee = "false";
+            
 
         }
         
