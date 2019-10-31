@@ -136,11 +136,13 @@
     
         var isUserAdmin = localStorage.getItem("isUAdmin");
     
-        if (isUserAdmin != "1") {
-            alert("AAA");
+        if (isUserAdmin == "1") {
+            window.location.href = 'admin.html';
+        }
+        else if(isUserAdmin == "2"){
+            window.location.href = 'fullaccess.html';
         }
         else{
-            //window.location.href = 'admin.html';
         }
         
     </script>
