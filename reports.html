@@ -603,7 +603,9 @@
 
 
     function pageClick(pageClicked) {
-
+        
+    
+    
         document.getElementById("PreLoaderBar").style.display = "flex";
         if (passedd == "true") {
 
@@ -812,7 +814,10 @@
                                                                 //document.getElementById("PreLoaderBar").style.display = "none";
 
                                                                 bd.appendChild(createInfo).appendChild(allContent).appendChild(closeButDiv).appendChild(cardB).appendChild(titleC).appendChild(cardD);
-
+    
+                                                                var elmnt = document.getElementById("allBody");
+                                                                elmnt.scrollIntoView();
+                                                                
                                                             }
 
                                                         })
@@ -823,6 +828,10 @@
                                                 }
 
 
+                                            }
+                                            else{
+                                                var elmnt = document.getElementById("allBody");
+                                                elmnt.scrollIntoView();
                                             }
 
 
@@ -951,7 +960,10 @@
                                                             //document.getElementById("PreLoaderBar").style.display = "none";
 
                                                             bd.appendChild(createInfo).appendChild(allContent).appendChild(closeButDiv).appendChild(cardB).appendChild(titleC).appendChild(cardD);
-
+    
+                                                            var elmnt = document.getElementById("allBody");
+                                                            elmnt.scrollIntoView();
+                                                            
                                                         }
 
                                                     })
@@ -959,6 +971,10 @@
                                                 }
 
 
+                                            }
+                                            else{
+                                                var elmnt = document.getElementById("allBody");
+                                                elmnt.scrollIntoView();
                                             }
 
                                         });
@@ -1081,7 +1097,10 @@
                                                                 //document.getElementById("PreLoaderBar").style.display = "none";
 
                                                                 bd.appendChild(createInfo).appendChild(allContent).appendChild(closeButDiv).appendChild(cardB).appendChild(titleC).appendChild(cardD);
-
+    
+                                                                var elmnt = document.getElementById("allBody");
+                                                                elmnt.scrollIntoView();
+                                                                
                                                             }
 
                                                         })
@@ -1092,6 +1111,10 @@
                                                 }
 
 
+                                            }
+                                            else{
+                                                var elmnt = document.getElementById("allBody");
+                                                elmnt.scrollIntoView();
                                             }
 
 
@@ -1215,7 +1238,10 @@
                                                             //document.getElementById("PreLoaderBar").style.display = "none";
 
                                                             bd.appendChild(createInfo).appendChild(allContent).appendChild(closeButDiv).appendChild(cardB).appendChild(titleC).appendChild(cardD);
-
+    
+                                                            var elmnt = document.getElementById("allBody");
+                                                            elmnt.scrollIntoView();
+                                                            
                                                         }
 
                                                     })
@@ -1223,6 +1249,10 @@
                                                 }
 
 
+                                            }
+                                            else{
+                                                var elmnt = document.getElementById("allBody");
+                                                elmnt.scrollIntoView();
                                             }
 
 
@@ -1349,8 +1379,9 @@
                                                                 document.getElementById("pageTitle").innerHTML = "Reports";
                                                                 //document.getElementById("PreLoaderBar").style.display = "none";
                                                                 bd.appendChild(createInfo).appendChild(allContent).appendChild(closeButDiv).appendChild(cardB).appendChild(titleC).appendChild(cardD);
-
-
+    
+                                                                var elmnt = document.getElementById("allBody");
+                                                                elmnt.scrollIntoView();
                                                             }
 
                                                         })
@@ -1366,7 +1397,12 @@
                                                 var i;
                                                 if(totalPages<6) {
                                                     for (i = 1; i <= totalPages; i++) {
-                                                        pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                        if(i <= pageClickedNum){
+                                                            pageN.innerHTML += "<span style = 'color: darkgrey;'>" + (i) + " </span>";
+                                                        }
+                                                        else{
+                                                            pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                        }
                                                     }
                                                 }else{
                                                     if((pageClickedNum+5)<totalPages) {
@@ -1392,9 +1428,11 @@
                                                     }
                                                     
                                                 }
-
                                             }
                                             else{
+    
+                                                var elmnt = document.getElementById("allBody");
+                                                elmnt.scrollIntoView();
                                                 
                                                 document.getElementById("PreLoaderBar").style.display = "none";
                                                 var pageN = document.getElementById("pageNo");
@@ -1402,7 +1440,12 @@
                                                 var i;
                                                 if(totalPages<6) {
                                                     for (i = 1; i <= totalPages; i++) {
-                                                        pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                        if(i <= pageClickedNum){
+                                                            pageN.innerHTML += "<span style = 'color: darkgrey;'>" + (i) + " </span>";
+                                                        }
+                                                        else{
+                                                            pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                        }
                                                     }
                                                 }else{
                                                     if((pageClickedNum+5)<totalPages) {
@@ -1434,7 +1477,7 @@
 
                                         });
 
-
+                                        
                                     } else {
 
 
@@ -1550,10 +1593,14 @@
                                                                 cardD.innerHTML = dataass["description"];
                                                                 cardD.innerHTML = cardD.innerHTML.replace(/\n/g, "<br>");
                                                             }
+                                                            
                                                             document.getElementById("pageTitle").innerHTML = "Reports";
+      
                                                             //document.getElementById("PreLoaderBar").style.display = "none";
                                                             bd.appendChild(createInfo).appendChild(allContent).appendChild(closeButDiv).appendChild(cardB).appendChild(titleC).appendChild(cardD);
-
+    
+                                                            var elmnt = document.getElementById("allBody");
+                                                            elmnt.scrollIntoView();
 
                                                         }
 
@@ -1565,13 +1612,20 @@
 
                                                 var i;
                                                 for (i = 1; i <= totalPages ; i++) {
-                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                    if(i == pageClickedNum){
+                                                        pageN.innerHTML += "<span style = 'color: darkgrey;'>" + (i) + " </span>";
+                                                    }
+                                                    else{
+                                                        pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                    }
                                                 }
-
 
                                             }
                                             else{
-    
+                                                
+                                                var elmnt = document.getElementById("allBody");
+                                                elmnt.scrollIntoView();
+                                                
                                                 document.getElementById("PreLoaderBar").style.display = "none";
                                                 var pageN = document.getElementById("pageNo");
     
@@ -1580,7 +1634,12 @@
                                                 var i;
                                                 if(totalPages<6) {
                                                     for (i = 1; i <= totalPages; i++) {
-                                                        pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                        if(i <= pageClickedNum){
+                                                            pageN.innerHTML += "<span style = 'color: darkgrey;'>" + (i) + " </span>";
+                                                        }
+                                                        else{
+                                                            pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                        }
                                                     }
                                                 }else{
                                                     if((pageClickedNum+5)<totalPages) {
@@ -2203,21 +2262,7 @@
             
             
                         }
-        
-        
-        
-        
-        
-        
-        
-        
-                        //if (confirm('Are you sure you want to delete this report?')) {
-        
-        
-        
-                        //}
-        
-        
+                        
         
                     }
                     
@@ -2250,6 +2295,36 @@
                     
 
                 }
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
             } else { //pageClicked = 1  AHMAD KASSABIEH
                 //alert("else: pageClicked: " + pageClicked);
                 //alert("else: pageClickedNum: " + pageClickedNum);
@@ -2460,7 +2535,10 @@
                                                             //document.getElementById("PreLoaderBar").style.display = "none";
 
                                                             bd.appendChild(createInfo).appendChild(allContent).appendChild(closeButDiv).appendChild(cardB).appendChild(titleC).appendChild(cardD);
-
+    
+                                                            var elmnt = document.getElementById("allBody");
+                                                            elmnt.scrollIntoView();
+                                                            
                                                         }
 
                                                     })
@@ -2471,6 +2549,10 @@
                                             }
 
 
+                                        }
+                                        else{
+                                            var elmnt = document.getElementById("allBody");
+                                            elmnt.scrollIntoView();
                                         }
 
 
@@ -2605,7 +2687,10 @@
                                                         //document.getElementById("PreLoaderBar").style.display = "none";
 
                                                         bd.appendChild(createInfo).appendChild(allContent).appendChild(closeButDiv).appendChild(cardB).appendChild(titleC).appendChild(cardD);
-
+    
+                                                        var elmnt = document.getElementById("allBody");
+                                                        elmnt.scrollIntoView();
+                                                        
                                                     }
 
                                                 })
@@ -2613,6 +2698,10 @@
                                             }
 
 
+                                        }
+                                        else{
+                                            var elmnt = document.getElementById("allBody");
+                                            elmnt.scrollIntoView();
                                         }
 
                                     });
@@ -2735,7 +2824,10 @@
                                                             //document.getElementById("PreLoaderBar").style.display = "none";
 
                                                             bd.appendChild(createInfo).appendChild(allContent).appendChild(closeButDiv).appendChild(cardB).appendChild(titleC).appendChild(cardD);
-
+    
+                                                            var elmnt = document.getElementById("allBody");
+                                                            elmnt.scrollIntoView();
+                                                            
                                                         }
 
                                                     })
@@ -2746,6 +2838,10 @@
                                             }
 
 
+                                        }
+                                        else{
+                                            var elmnt = document.getElementById("allBody");
+                                            elmnt.scrollIntoView();
                                         }
 
 
@@ -2869,7 +2965,10 @@
                                                         //document.getElementById("PreLoaderBar").style.display = "none";
 
                                                         bd.appendChild(createInfo).appendChild(allContent).appendChild(closeButDiv).appendChild(cardB).appendChild(titleC).appendChild(cardD);
-
+    
+                                                        var elmnt = document.getElementById("allBody");
+                                                        elmnt.scrollIntoView();
+                                                        
                                                     }
 
                                                 })
@@ -2877,6 +2976,10 @@
                                             }
 
 
+                                        }
+                                        else{
+                                            var elmnt = document.getElementById("allBody");
+                                            elmnt.scrollIntoView();
                                         }
 
 
@@ -3002,8 +3105,10 @@
                                                             document.getElementById("pageTitle").innerHTML = "Reports";
                                                             //document.getElementById("PreLoaderBar").style.display = "none";
                                                             bd.appendChild(createInfo).appendChild(allContent).appendChild(closeButDiv).appendChild(cardB).appendChild(titleC).appendChild(cardD);
-
-
+    
+                                                            var elmnt = document.getElementById("allBody");
+                                                            elmnt.scrollIntoView();
+                                                            
                                                         }
 
                                                     })
@@ -3017,23 +3122,39 @@
 
                                             var i;
                                             for (i = 1; i <= totalPages ; i++) { //01312112
-                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                if(i == pageClickedNum){
+                                                    pageN.innerHTML += "<span style = 'color: darkgrey;'>" + (i) + " </span>";
+                                                }
+                                                else{
+                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                }
                                             }
 
 
                                         }
                                         else{
+    
+                                            var elmnt = document.getElementById("allBody");
+                                            elmnt.scrollIntoView();
+                                            
                                             document.getElementById("PreLoaderBar").style.display = "none";
                                             var pageN = document.getElementById("pageNo");
 
                                             var i;
                                             for (i = 1; i <= totalPages ; i++) {
-                                                pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                if(i == pageClickedNum){
+                                                    pageN.innerHTML += "<span style = 'color: darkgrey;'>" + (i) + " </span>";
+                                                }
+                                                else{
+                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                }
                                             }
                                         }
 
 
                                     });
+    
+                                    
                                             //first page, LOW EMERGENCY != NULL
                                 } else {
 
@@ -3162,7 +3283,8 @@
                                                         document.getElementById("totalLE").innerHTML = lowEmergencyCounter;
                                                         document.getElementById("totalE").innerHTML = totalNumberOfEmergencies;
                                                         bd.appendChild(createInfo).appendChild(allContent).appendChild(closeButDiv).appendChild(cardB).appendChild(titleC).appendChild(cardD);
-
+                                                        var elmnt = document.getElementById("allBody");
+                                                        elmnt.scrollIntoView();
 
                                                     }
 
@@ -3177,7 +3299,12 @@
                                             var i;
                                             if(totalPages<6) {
                                                 for (i = 1; i <= totalPages; i++) {
-                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                    if(i <= pageClickedNum){
+                                                        pageN.innerHTML += "<span style = 'color: darkgrey;'>" + (i) + " </span>";
+                                                    }
+                                                    else{
+                                                        pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                    }
                                                 }
                                             }else{
                                                 if((pageClickedNum+5)<totalPages) {
@@ -3223,13 +3350,22 @@
                                             
 
                                         }else{
+    
+                                            var elmnt = document.getElementById("allBody");
+                                            elmnt.scrollIntoView();
+                                            
                                             document.getElementById("PreLoaderBar").style.display = "none";
                                             var pageN = document.getElementById("pageNo");
     
                                             var i;
                                             if(totalPages<6) {
                                                 for (i = 1; i <= totalPages; i++) {
-                                                    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                    if(i <= pageClickedNum){
+                                                        pageN.innerHTML += "<span style = 'color: darkgrey;'>" + (i) + " </span>";
+                                                    }
+                                                    else{
+                                                        pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                    }
                                                 }
                                                 
                                             }else{
@@ -3271,6 +3407,8 @@
                                         }
                                                 //first page, LOW EMERGENCY = NULL
                                     });
+    
+                                    
                                 }
 
 
