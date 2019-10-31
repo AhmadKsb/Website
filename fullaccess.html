@@ -1050,10 +1050,11 @@
     
                                                     
                                                     var adminText = "";
+                                                    
+                                                    
                                                     if(dataaa["Admin"] === 1){
                                                         adminText = "admin";
-    
-    
+                                                        
                                                         createInfo.innerHTML = "<h3>" + dataaa["Name"] + " <span style='font-size: 18px; color: #d33'>" + adminText + "</span></h3><p style='color: blue;'><a href='tel:" + dataaa["Phone Number"] + "'style='text-decoration: none; color: blue;'>" + dataaa["Phone Number"] + "</a></p><p>Home Address: " + dataaa["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
         
                                                             + dataaa["ICE"] + "'style='text-decoration: none; color: blue;'>"+ dataaa["ICE"] + "</a></span></p><p>Position: " + dataaa["Position"] + "<p>Center: <span style='color: red;'><b>" + dataaa["Center"] + "</b></span></p>";
@@ -1070,9 +1071,9 @@
                                                             +
         
                                                             "<button disabled onClick=makeAdmin(this.id)   id =" + snapshottt.key + " style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-primary btn-xs'> Make admin </span></button>";
-    
-    
+                                                        
                                                     }
+                                                    
                                                     else{
     
                                                         createInfo.innerHTML = "<h3>" + dataaa["Name"] + " <span style='font-size: 18px; color: #d33'>" + adminText + "</span></h3><p style='color: blue;'><a href='tel:" + dataaa["Phone Number"] + "'style='text-decoration: none; color: blue;'>" + dataaa["Phone Number"] + "</a></p><p>Home Address: " + dataaa["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
@@ -1095,15 +1096,8 @@
                                                     }
                                                     
                                                     
-
-                                                    
-
-
-                                                    
-
                                                 }
 
-                                                //alert(dataaa["Center"]);
 
                                             }
 
