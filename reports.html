@@ -616,7 +616,32 @@
                     document.getElementById("PreLoaderBar").style.display = "none";
 
                 } else if ((pageClickedNum + 1) !== pageClicked) {
-                    alert("Not Allowed To Go Back!\n\nNot Allowed To Go Forward By More Than 1 Page!");
+                    swal({
+                            title: "You can't go forward by more than 1 page!",
+            
+                            //text: "Are you sure to proceed?",
+                            type: 'error',
+                            //showCancelButton: true,
+                            confirmButtonColor: '#157efb',
+            
+                            confirmButtonText: "Ok",
+            
+            
+                            //cancelButtonText: "Cancel",
+            
+            
+                            closeOnConfirm: true,
+            
+                            closeOnCancel: true
+                        },
+        
+                        function (isConfirm) {
+    
+                            if (isConfirm) {
+        
+                            }
+                        });
+                    //alert("Not Allowed To Go Back!\n\nNot Allowed To Go Forward By More Than 1 Page!");
                     document.getElementById("PreLoaderBar").style.display = "none";
                     //alert("pageClicked: " + pageClicked);
                     //pageClickedNum += 1;
@@ -3312,8 +3337,12 @@
                                                         if(i == pageClickedNum){
                                                             pageN.innerHTML += "<span style = 'color: darkgrey;'>" + (i) + " </span>";
                                                         }
+                                                        //else if(i == (pageClickedNum+1)){
+                                                        //    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                        //}
                                                         else {
                                                             pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
+                                                            //pageN.innerHTML += "<span style = 'color: darkgrey;'>" + (i) + " </span>";
                                                         }
                                                     }
                                                     pageN.innerHTML += "<a style='text-decoration: none; color: blue;'>... </a>";
@@ -3324,6 +3353,7 @@
                                                         if (i == pageClickedNum){
                                                             pageN.innerHTML += "<span style = 'color: darkgrey;'>" + (i) + " </span>";
                                                         }
+                                                        
                                                         else{
                                                             pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i) + ");return false;'>" + (i) + " </a>";
                                                         }
