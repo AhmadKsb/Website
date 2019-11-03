@@ -624,9 +624,7 @@
     
     
     <style>
-        /*** COLORS ***/
-        /*** DEMO ***/
-        
+
         p {
             margin-top: 30px;
         }
@@ -642,7 +640,6 @@
             text-align: center;
             vertical-align: middle;
         }
-        /*** STYLES ***/
         .search {
             display: inline-block;
             position: relative;
@@ -703,8 +700,7 @@
     
     
 <style>
-    /*** COLORS ***/
-    /*** DEMO ***/
+
 
     p {
         margin-top: 30px;
@@ -721,7 +717,6 @@
         text-align: center;
         vertical-align: middle;
     }
-    /*** STYLES ***/
     .search {
         display: inline-block;
         position: relative;
@@ -812,50 +807,27 @@
 
 
         //function checkPr() {
-            //console.clear();
             var privChecker = -1;
             
             var isUserAdmin = localStorage.getItem("isUAdmin");
             
             if(isUserAdmin != "2"){
-                //alert("FULL ACCESS: " + isUserAdmin);
-                //alert("Full access");
                 firebase.auth().signOut()
         
                     .then(function () {
             
                         localStorage.clear();
                         window.location.href = 'index.html';
-            
-                        //location.reload();
-            
-            
-                        // Sign-out successful.
-            
                     })
         
                     .catch(function (error) {
             
                         alert("SIGN OUT ERROR");
-            
-                        // An error happened
-            
+                        
                     });
-
-                //window.location.href = 'index.html';
-
             }
-            /*
-            else{
-                document.getElementById("PreLoaderBar").style.display = "none";
-                document.getElementById("titlee").innerHTML = "Users";
-    
-                document.getElementById("allUsers").style.fontWeight = "bold";
-                document.getElementById("allUsers").innerHTML = "<br><br><br><br><br><br><br><h1>No name is searched!</h1>";
-            }
-             */
-            
-            
+
+        
             function checkSuccess(){
                 document.getElementById("PreLoaderBar").style.display = "none";
                 document.getElementById("titlee").innerHTML = "Users";
@@ -863,13 +835,8 @@
                 document.getElementById("allUsers").style.fontWeight = "bold";
                 document.getElementById("allUsers").innerHTML = "<br><br><br><br><br><br><br><h1>No name is searched!</h1>";
             }
-        //}
     </script>
-
-
-
-
-
+    
 </header>
 
 
@@ -951,23 +918,12 @@
 
 
         if($("#inpt_search").val().toString() !== "") {
-            //$("#inpt_search").val().toString().length>2
             if (oncee === "false" || $("#inpt_search").val().toString().length>1){
     
             
-            //alert($("#inpt_search").val());
                 $("#inpt_search").unbind("on");
-            //alert($("#inpt_search").val().toString());
 
             var keyz; //TODO after first search (WRITING LETTER A) it keeps updating
-
-
-            //firebase.database().ref('user/').orderByChild($("#inpt_search").val().toString()).once('value', (snapshott) => {
-
-            //snapshott.forEach(function(data) {
-            //alert(data.key);
-            //keyz = data.key;
-
 
             var leadsRef = firebase.database().ref('user/LoR41MjKKz4V5V3UIdG');
             var currentID;
@@ -988,12 +944,7 @@
                     if (snapshot.exists()) {
 
                         for (let key in data) {
-
-                            //console.log("data[key]", data["Center"]);
-
                             currentCenter = data["Center"];
-
-
                         }
                         document.getElementById("PreLoaderBar").style.display = "flex";
                         document.getElementById("allUsers").innerHTML = "";
@@ -1002,8 +953,7 @@
                         var ppe = toLo[0].toUpperCase() + toLo.slice(1);
 
                         var toT = toTitleCase(toLo);
-                        //alert("HERE: " + toT);
-                        //alert(ppe);
+
                         console.clear();
                         firebase.database().ref('user/').orderByChild('Name').equalTo(toT).once('value', (snapshott) => {
                             console.clear();
@@ -1015,17 +965,12 @@
                             var k = 0;
 
                             if (snapshott.exists()) {
-                                //alert("TTT");
-    
                                 
-
                                 snapshott.forEach(function (child) {
 
                                     firebase.database().ref('user/').child(child.key).once('value', (snapshottt) => {
                                         console.clear();
-                                        //alert(key);
-                                        //alert(snapshott);
-
+                                        
                                         var dataaa = snapshottt.val();
 
 
@@ -1033,9 +978,7 @@
 
 
                                             for (let key in dataaa) {
-                                                //alert(dataaa["Name"]);
-
-
+                                                
                                                 if (snapshottt.key != favoritemovie) {
                                                     
                                                     doneSearch = true;
@@ -1117,10 +1060,6 @@
                                         }
 
                                     })
-
-
-                                    //console.log("data[key]",data["Email"]);
-
 
                                 });
 
@@ -1333,22 +1272,15 @@
                 showCloseButton: true,
                 
                 showCancelButton: true,
-                
-                //confirmButtonColor: "#DD6B55",
-                
-                //confirmButtonColor: '#157efb',
-                //cancelButtonColor: '#d33',
-                
+
                 confirmButtonColor: '#157efb',
                 
                 confirmButtonText: "Yes",
-                
-                
+            
                 cancelButtonText: "No",
                 
                 closeOnConfirm: true,
-                
-                
+            
                 closeOnCancel: true
             },
             
@@ -1388,22 +1320,15 @@
                 showCloseButton: true,
                 
                 showCancelButton: true,
-                
-                //confirmButtonColor: "#DD6B55",
-                
-                //confirmButtonColor: '#157efb',
-                //cancelButtonColor: '#d33',
-                
+
                 confirmButtonColor: '#157efb',
                 
                 confirmButtonText: "Yes",
-                
-                
+            
                 cancelButtonText: "No",
                 
                 closeOnConfirm: true,
-                
-                
+            
                 closeOnCancel: true
             },
             
@@ -1445,22 +1370,15 @@
                 showCloseButton: true,
                 
                 showCancelButton: true,
-                
-                //confirmButtonColor: "#DD6B55",
-                
-                //confirmButtonColor: '#157efb',
-                //cancelButtonColor: '#d33',
-                
+
                 confirmButtonColor: '#d33',
                 
                 confirmButtonText: "Yes",
-                
-                
+            
                 cancelButtonText: "No",
                 
                 closeOnConfirm: true,
-                
-                
+            
                 closeOnCancel: true
             },
             
@@ -1475,10 +1393,8 @@
                         var bd = document.getElementById("allUsers");
                         
                         if (snapshottt.exists()) {
-                            //alert(snapshottt.key);
                             firebase.database().ref('user/').child(userID).remove();
                         }
-                        
                     });
                     
                     
@@ -1488,17 +1404,10 @@
                         
                         var dataaa = snapshottt.val();
                         
-                        
                         if (snapshottt.exists()) {
-                            //alert("HERE " + snapshottt.key);
                             firebase.database().ref('Centers/' + centerLoc + '/members/').child(userID).remove();
                         }
-                        
                     });
-                    
-                    
-                    
-                    
                     
                     
                     
@@ -1514,7 +1423,6 @@
                                     
                                     var dataaa = snapshottt.val();
                                     if (snapshottt.exists()) {
-                                        //alert(key + " " + snapshottt.key);
                                         firebase.database().ref('Centers/'+centerLoc+'/broadcast/').child(key).child(userID).remove();
                                     }
                                 });
@@ -1537,17 +1445,13 @@
                         
                         if(snapshottt.child("high").exists()){
                             highEmergencyCounter = snapshottt.child("high").numChildren();
-                            //alert(snapshott.child("high").numChildren()); //highEmergencyCounter
                         }
                         if(snapshottt.child("medium").exists()){
                             mediumEmergencyCounter = snapshottt.child("medium").numChildren();
-                            //alert(snapshott.child("medium").numChildren()); //highEmergencyCounter
                         }
                         if(snapshottt.child("low").exists()){
                             lowEmergencyCounter = snapshottt.child("low").numChildren();
-                            //alert(snapshott.child("low").numChildren()); //highEmergencyCounter
                         }
-                        
                         totalNumberOfEmergencies = highEmergencyCounter + mediumEmergencyCounter + lowEmergencyCounter;
                         
                         var temp = 0;
@@ -1587,7 +1491,6 @@
                                                 }
                                                 
                                                 if(temp>=totalNumberOfEmergencies){
-                                                    //alert(temp);
                                                     location.reload();
                                                 }
                                             });
@@ -1599,129 +1502,7 @@
                     });
                 }
             });
-        
-        
-        /*
-        if (confirm('')) {
-
-
-
-            firebase.database().ref('user/').child(userID).once('value', (snapshottt) => {
-
-                var dataaa = snapshottt.val();
-
-                var bd = document.getElementById("allUsers");
-
-                if (snapshottt.exists()) {
-                    //alert(snapshottt.key);
-                    firebase.database().ref('user/').child(userID).remove();
-                }
-
-            });
-
-
-
-
-            firebase.database().ref('Centers/' + centerLoc + '/members/').child(userID).once('value', (snapshottt) => {
-
-                var dataaa = snapshottt.val();
-
-
-                if (snapshottt.exists()) {
-                    //alert("HERE " + snapshottt.key);
-                    firebase.database().ref('Centers/' + centerLoc + '/members/').child(userID).remove();
-                }
-
-            });
-
-
-
-
-
-
-
-            firebase.database().ref('Centers/' + centerLoc + '/broadcast/').once('value', (snapshottt) => {
-
-                var dataaa = snapshottt.val();
-
-                if (snapshottt.exists()) {
-
-                    for (let key in dataaa) {
-
-                        firebase.database().ref('Centers/' + centerLoc + '/broadcast/').child(key).child(userID).once('value', (snapshottt) => {
-
-                            var dataaa = snapshottt.val();
-                            if (snapshottt.exists()) {
-                                //alert(key + " " + snapshottt.key);
-                                firebase.database().ref('Centers/'+centerLoc+'/broadcast/').child(key).child(userID).remove();
-                            }
-                        });
-                    }
-                }
-            });
-
-
-
-
-            firebase.database().ref('Centers/' + centerLoc + '/reports/').once('value', (snapshottt) => {
-
-                var dataaa = snapshottt.val();
-
-                if (snapshottt.exists()) {
-
-                    for (let key in dataaa) {
-
-                        firebase.database().ref('Centers/' + centerLoc + '/reports/').child(key).once('value', (snapshottt) => {
-
-                            var dataaa = snapshottt.val();
-                            if (snapshottt.exists()) {
-
-                                for (let keyy in dataaa) {
-
-
-
-                                    firebase.database().ref('Centers/' + centerLoc + '/reports/').child(key).child(keyy).once('value', (snapshottt) => {
-
-                                        var dataaaf = snapshottt.val();
-
-                                        if (snapshottt.exists()) {
-
-                                            if (snapshottt.child("didntcome").child(userID).exists()) {
-                                                firebase.database().ref('Centers/' + centerLoc + '/reports/').child(key).child(keyy).child("didntcome").child(userID).remove();
-                                            }
-                                            if (snapshottt.child("came").child(userID).exists()) {
-                                                firebase.database().ref('Centers/' + centerLoc + '/reports/').child(key).child(keyy).child("came").child(userID).remove();
-                                            }
-
-                                        }
-                                        location.reload();
-                                    });
-
-
-                                }
-
-                            }
-                        });
-                    }
-                }
-            });
-        }
-
-
-
-
-
-        else {
-
-
-        }
-         */
-        
-        
-        
-        
     }
-
 </script>
 
 
@@ -1736,20 +1517,10 @@
                 
                 localStorage.clear();
                 window.location.href = 'index.html';
-                
-                //location.reload();
-                
-                
-                // Sign-out successful.
-                
             })
             
             .catch(function (error) {
-                
                 alert("SIGN OUT ERROR");
-                
-                // An error happened
-                
             });
         
     }
@@ -1785,7 +1556,6 @@
     
     <p class="footer-company-name" style="color: black; font-size: 10px;">Lebanese Red Cross &copy; 2019. All Rights Reserved.</p>
 </footer>
-
 
 
 
