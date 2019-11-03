@@ -1753,22 +1753,13 @@
     
                             swal({
                                     title: "View Accepted or Pending Members?",
-            
-                                    //text: "Are you sure to proceed?",
-            
-            
+                                
                                     showCancelButton: true,
-            
-                                    //confirmButtonColor: "#DD6B55",
-            
-                                    //confirmButtonColor: '#157efb',
-                                    //cancelButtonColor: '#d33',
-            
+
                                     confirmButtonColor: '#aaa',
             
                                     confirmButtonText: "Pending",
-            
-            
+                                
                                     cancelButtonText: "Accepted",
         
                                     allowEscapeKey: false,
@@ -1787,11 +1778,7 @@
                                         
                                         var pageN = document.getElementById("pageNo");
                                         pageN.innerHTML = "";
-                                        //swal("Account Removed!", "Your account is removed permanently!", "success");
-                
-                
-                                        //if (event.target.toString() !== "[object HTMLElement]") {
-                
+                                        
                                         document.getElementById("allReports").innerHTML = "";
                                         document.getElementById("pageTitle").innerHTML = "";
                 
@@ -1806,8 +1793,6 @@
                                         firebase.database().ref('Centers/' + currentCenter + '/reports/' + classn + '/' + id + '/notifications/Pending').once('value', (snapshotts) => {
                                             document.getElementById("PreLoaderBar").style.display = "flex";
                                             
-    
-    
                                             var createnewA = document.createElement('a');
     
                                             createnewA.style.textDecoration = "none";
@@ -1822,12 +1807,7 @@
                                             };
     
                                             createnewA.innerHTML = "Show declined?";
-                    
-                                            //var bdd = document.getElementById("branding");
-                    
-                                            //bdd.appendChild(createnewA);
-                    
-                    
+
                                             var dataaess = snapshotts.val();
                     
                                             if (snapshotts.exists()) {
@@ -1850,18 +1830,11 @@
                                                     IDs.push(keyysye);
                                                 }
                         
-                        
-                                                //firebase.database().ref('user/').orderByChild('Name').once('value', (snapshottt) => {
-                                                //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
-                                                //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottses) => {
-                                                //keyysy
-                        
-                        
+ 
                                                 firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
                             
                             
                                                     snapshottt.forEach(function (child2) {
-                                                        //alert(child2.key);
                                 
                                                         if (IDs.includes(child2.key)) {
                                     
@@ -1873,7 +1846,6 @@
                                             
                                             
                                                                     for (let keyysys in dataasss) {
-                                                                        //alert(keyysys);
                                                                         var createDivRow = document.createElement('div');
                                                 
                                                                         createDivRow.className = "roww";
@@ -1911,7 +1883,6 @@
                                                 
                                                                         var shiftDay = "";
                                                 
-                                                                        //alert(dataasss["Shift"]);
                                                                         if (dataasss["Shift"] === "1") {
                                                                             shiftDay = "Monday";
                                                                         } else if (dataasss["Shift"] === "2") {
@@ -1925,9 +1896,9 @@
                                                                         }
                                                 
                                                 
-                                                                        createInfo.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataasss["Phone Number"] + "'style='text-decoration: none; color: blue;'>" + dataasss["Phone Number"] + "</a></p><p>Blood Type: " + dataasss["Blood Type"] + "</p><p>Position: " + dataasss["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
+                                                                        createInfo.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataasss["Phone Number"] + "' style='text-decoration: none; color: blue;'>" + dataasss["Phone Number"] + "</a></p><p>Blood Type: " + dataasss["Blood Type"] + "</p><p>Position: " + dataasss["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
                                                     
-                                                                            + dataasss["ICE"] + "'style='text-decoration: none; color: blue;'>" + dataasss["ICE"] + "</a></span></p>";
+                                                                            + dataasss["ICE"] + "' style='text-decoration: none; color: blue;'>" + dataasss["ICE"] + "</a></span></p>";
                                                 
                                                 
                                                                     }
@@ -2009,10 +1980,6 @@
                                                 }
                         
                         
-                                                //firebase.database().ref('user/').orderByChild('Name').once('value', (snapshottt) => {
-                                                //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
-                                                //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottses) => {
-                                                //keyysy
                         
                         
                                                 firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
@@ -2083,9 +2050,9 @@
                                                                         }
                                                 
                                                 
-                                                                        createInfo.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataasss["Phone Number"] + "'style='text-decoration: none; color: blue;'>" + dataasss["Phone Number"] + "</a></p><p>Blood Type: " + dataasss["Blood Type"] + "</p><p>Position: " + dataasss["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
+                                                                        createInfo.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataasss["Phone Number"] + "' style='text-decoration: none; color: blue;'>" + dataasss["Phone Number"] + "</a></p><p>Blood Type: " + dataasss["Blood Type"] + "</p><p>Position: " + dataasss["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
                                                     
-                                                                            + dataasss["ICE"] + "'style='text-decoration: none; color: blue;'>" + dataasss["ICE"] + "</a></span></p>";
+                                                                            + dataasss["ICE"] + "' style='text-decoration: none; color: blue;'>" + dataasss["ICE"] + "</a></span></p>";
                                                 
                                                                     }
                                                                     document.getElementById("PreLoaderBar").style.display = "none";
@@ -2108,19 +2075,7 @@
                                 });
     
                         }
-
-
-
-
-
-
-
-                        //if (confirm('Are you sure you want to delete this report?')) {
-
-
-
-                        //}
-
+                        
 
 
                     }
@@ -2144,9 +2099,7 @@
             
                             var pageN = document.getElementById("pageNo");
                             pageN.innerHTML = "";
-            
-                            //swal("Account Removed!", "Your account is removed permanently!", "success");
-            
+                            
             
                             document.getElementById("allReports").innerHTML = "";
                             document.getElementById("allPending").innerHTML = "";
@@ -2162,12 +2115,7 @@
                             firebase.database().ref('Centers/' + currentCenter + '/reports/' + classn + '/' + id + '/notifications/Declined/').once('value', (snapshotts) => {
                                 document.getElementById("PreLoaderBar").style.display = "flex";
                 
-                
-                
-                                //var bdd = document.getElementById("branding");
-                
-                                //bd.appendChild(createnewA);
-                
+                                
                 
                                 var dataaess = snapshotts.val();
                 
@@ -2186,18 +2134,12 @@
                                         IDs.push(keyysye);
                                     }
                     
-                    
-                                    //firebase.database().ref('user/').orderByChild('Name').once('value', (snapshottt) => {
-                                    //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
-                                    //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottses) => {
-                                    //keyysy
-                    
+
                     
                                     firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
                         
                         
                                         snapshottt.forEach(function (child2) {
-                                            //alert(child2.key);
                             
                                             if (IDs.includes(child2.key)) {
                                 
@@ -2247,7 +2189,6 @@
                                             
                                                             var shiftDay = "";
                                             
-                                                            //alert(dataasss["Shift"]);
                                                             if (dataasss["Shift"] === "1") {
                                                                 shiftDay = "Monday";
                                                             } else if (dataasss["Shift"] === "2") {
@@ -2261,9 +2202,9 @@
                                                             }
                                             
                                             
-                                                            createInfo.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataasss["Phone Number"] + "'style='text-decoration: none; color: blue;'>" + dataasss["Phone Number"] + "</a></p><p>Blood Type: " + dataasss["Blood Type"] + "</p><p>Position: " + dataasss["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
+                                                            createInfo.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataasss["Phone Number"] + "' style='text-decoration: none; color: blue;'>" + dataasss["Phone Number"] + "</a></p><p>Blood Type: " + dataasss["Blood Type"] + "</p><p>Position: " + dataasss["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
                                                 
-                                                                + dataasss["ICE"] + "'style='text-decoration: none; color: blue;'>" + dataasss["ICE"] + "</a></span></p>";
+                                                                + dataasss["ICE"] + "' style='text-decoration: none; color: blue;'>" + dataasss["ICE"] + "</a></span></p>";
                                             
                                             
                                                         }
@@ -2281,14 +2222,7 @@
                                     document.getElementById("allPending").innerHTML = "<br><br><br><br><br><br><br><br><br><h1>No Declined Members!</h1>";
                                 }
                             })
-            
-            
-            
-            
-                            //}
-            
-            
-            
+
             
             
             
@@ -2390,7 +2324,6 @@
 
                         for (let key in data) {
 
-                            //console.log("data[key]", data["Center"]);
 
                             currentCenter = data["Center"];
 
@@ -2401,19 +2334,14 @@
 
                             if(snapshott.child("high").exists()){
                                 highEmergencyCounter = snapshott.child("high").numChildren();
-                                //alert(snapshott.child("high").numChildren()); //highEmergencyCounter
                             }
                             if(snapshott.child("medium").exists()){
                                 mediumEmergencyCounter = snapshott.child("medium").numChildren();
-                                //alert(snapshott.child("medium").numChildren()); //highEmergencyCounter
                             }
                             if(snapshott.child("low").exists()){
                                 lowEmergencyCounter = snapshott.child("low").numChildren();
-                                //alert(snapshott.child("low").numChildren()); //highEmergencyCounter
                             }
-
                             totalNumberOfEmergencies = highEmergencyCounter + mediumEmergencyCounter + lowEmergencyCounter;
-                            //alert(totalNumberOfEmergencies);
 
                             var dataae = snapshott.val();
 
@@ -2422,29 +2350,12 @@
                                 if (passedd == "false") {
 
                                     passedd = "true";
-                                    // for (let keyyee in dataae) {
-                                    //     passedd = "true";
-                                    //     firebase.database().ref('Centers/' + currentCenter + '/reports/' + keyyee).once('value', (snapshotts) => {
-                                    //         //alert(snapshott.numChildren());
-                                    //         if (snapshott.numChildren() > max) {
-                                    //             max = Math.ceil(snapshotts.numChildren() / 5);
-                                    //             alert("N" + snapshott.numChildren() + " " + max);
-                                    //             totalPages = max;
-                                    //         }
-                                    //     });
-                                    //
-                                    // }
+
 
                                 } else {
                                     passedd = "true";
                                 }
 
-                                //var pageN = document.getElementById("pageNo");
-
-                                //var i;
-                                //for (i = -1; i < totalPages ; i++) {
-                                //    pageN.innerHTML += "<a href='#' class='pgeClck' id='" + (i + 2) + "' style='text-decoration: none; color: blue;' onclick='pageClick(" + (i + 2) + ");return false;'>" + (i + 2) + " </a>"
-                                //}
 
                                 if (highEm !== null) {
                                     var first = "true";
@@ -2559,7 +2470,6 @@
 
                                                                 cardD.innerHTML = dataass["description"];
                                                                 cardD.innerHTML = cardD.innerHTML.replace(/\n/g, "<br>");                                                                highEm = createInfo.id;
-                                                                //alert(createInfo.id);
 
                                                             }
                                                             document.getElementById("pageTitle").innerHTML = "Reports";
@@ -2607,7 +2517,6 @@
 
                                                 firebase.database().ref('Centers/' + currentCenter + '/reports/high/' + keyy).once('value', (snapshott) => {
                                                     highEm = snapshott.key;
-                                                    //alert(highEm);
 
                                                     var dataass = snapshott.val();
 
@@ -2631,23 +2540,15 @@
 
 
                                                             var tempp = dataass["date"];
-                                                            //alert("TEMPP " + tempp);
 
                                                             var res = tempp.substring(1);
-                                                            //alert("res " + res);
 
                                                             var year = res.substring(0, 4);
-                                                            //alert("year " + year);
-
 
                                                             var month = res.substring(4, 6);
-                                                            //alert("month " + month);
-
-
+                                                            
                                                             var day = res.substring(6);
-                                                            //alert("day " + day);
-    
-    
+                                                            
                                                             var reportTime = new Date(year, month-1, day).toDateString();
 
 
@@ -2656,9 +2557,7 @@
                                                             createInfo.className = "high";
 
                                                             createInfo.id = keyy;
-
-                                                            //alert(highEm);
-
+                                                            
                                                             createInfo.onclick = function () {
                                                                 showInfo(createInfo.id, createInfo.className)
                                                             };
@@ -2712,7 +2611,6 @@
 
                                                             cardD.innerHTML = dataass["description"];
                                                             cardD.innerHTML = cardD.innerHTML.replace(/\n/g, "<br>");
-                                                            //alert(createInfo.id);
                                                         }
                                                         document.getElementById("pageTitle").innerHTML = "Reports";
                                                         //document.getElementById("PreLoaderBar").style.display = "none";
@@ -3501,15 +3399,9 @@
                         swal({
                                 title: "View Accepted or Pending Members?",
                     
-                                //text: "Are you sure to proceed?",
                                 showCloseButton: true,
                     
                                 showCancelButton: true,
-                    
-                                //confirmButtonColor: "#DD6B55",
-                    
-                                //confirmButtonColor: '#157efb',
-                                //cancelButtonColor: '#d33',
                     
                                 confirmButtonColor: '#aaa',
                     
@@ -3536,9 +3428,6 @@
                         
                                     var pageN = document.getElementById("pageNo");
                                     pageN.innerHTML = "";
-                        
-                                    //swal("Account Removed!", "Your account is removed permanently!", "success");
-                        
                         
                                     document.getElementById("allReports").innerHTML = "";
                         
@@ -3569,11 +3458,7 @@
                                         };
                             
                                         createnewA.innerHTML = "Show declined?";
-                            
-                                        //var bdd = document.getElementById("branding");
-                            
-                                        //bd.appendChild(createnewA);
-                            
+                                        
                             
                                         var dataaess = snapshotts.val();
                             
@@ -3592,19 +3477,12 @@
                                             for (let keyysye in dataaess) {
                                                 IDs.push(keyysye);
                                             }
-                                
-                                
-                                            //firebase.database().ref('user/').orderByChild('Name').once('value', (snapshottt) => {
-                                            //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
-                                            //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottses) => {
-                                            //keyysy
-                                
+                                            
                                 
                                             firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
                                     
                                     
                                                 snapshottt.forEach(function (child2) {
-                                                    //alert(child2.key);
                                         
                                                     if (IDs.includes(child2.key)) {
                                             
@@ -3613,10 +3491,8 @@
                                                             var dataasss = snapshottss.val();
                                                 
                                                             if (snapshottss.exists()) {
-                                                    
-                                                    
+                                                                
                                                                 for (let keyysys in dataasss) {
-                                                                    //alert(keyysys);
                                                                     var createDivRow = document.createElement('div');
                                                         
                                                                     createDivRow.className = "roww";
@@ -3632,9 +3508,9 @@
                                                                     var createDivCard2 = document.createElement('div');
                                                                     createDivCard2.className = "cardd";
                                                                     var createInfo2 = document.createElement('div');
-                                                                    createInfo2.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataasss["Phone Number"] + "'style='text-decoration: none; color: blue;'>" + dataasss["Phone Number"] + "</a></p><p>Blood Type: " + dataasss["Blood Type"] + "</p><p>Position: " + dataasss["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
+                                                                    createInfo2.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataasss["Phone Number"] + "' style='text-decoration: none; color: blue;'>" + dataasss["Phone Number"] + "</a></p><p>Blood Type: " + dataasss["Blood Type"] + "</p><p>Position: " + dataasss["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
                                                             
-                                                                        + dataasss["ICE"] + "'style='text-decoration: none; color: blue;'>" + dataasss["ICE"] + "</a></span></p>";
+                                                                        + dataasss["ICE"] + "' style='text-decoration: none; color: blue;'>" + dataasss["ICE"] + "</a></span></p>";
                                                         
                                                         
                                                         
@@ -3665,7 +3541,6 @@
                                                         
                                                                     var shiftDay = "";
                                                         
-                                                                    //alert(dataasss["Shift"]);
                                                                     if (dataasss["Shift"] === "1") {
                                                                         shiftDay = "Monday";
                                                                     } else if (dataasss["Shift"] === "2") {
@@ -3679,9 +3554,9 @@
                                                                     }
                                                         
                                                         
-                                                                    createInfo.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataasss["Phone Number"] + "'style='text-decoration: none; color: blue;'>" + dataasss["Phone Number"] + "</a></p><p>Blood Type: " + dataasss["Blood Type"] + "</p><p>Position: " + dataasss["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
+                                                                    createInfo.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataasss["Phone Number"] + "' style='text-decoration: none; color: blue;'>" + dataasss["Phone Number"] + "</a></p><p>Blood Type: " + dataasss["Blood Type"] + "</p><p>Position: " + dataasss["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
                                                             
-                                                                        + dataasss["ICE"] + "'style='text-decoration: none; color: blue;'>" + dataasss["ICE"] + "</a></span></p>";
+                                                                        + dataasss["ICE"] + "' style='text-decoration: none; color: blue;'>" + dataasss["ICE"] + "</a></span></p>";
                                                         
                                                         
                                                                 }
@@ -3702,13 +3577,7 @@
                                     })
                         
                         
-                                    
-                        
-                        
-                        
-                        
-                        
-                                    //}
+                            
                         
                         
                         
@@ -3718,12 +3587,7 @@
                         
                                     var pageN = document.getElementById("pageNo");
                                     pageN.innerHTML = "";
-                                    //swal("Hurray", "Account is not removed!", "error");
-                        
-                        
-                                    //if (event.target.toString() !== "[object HTMLElement]") {
-                        
-                        
+                                    
                                     document.getElementById("allReports").innerHTML = "";
                         
                                     document.getElementById("pageTitle").innerHTML = "Members With Accepted Requests";
@@ -3753,10 +3617,6 @@
                             
                                         createnewA.innerHTML = "Reports";
                             
-                                        //var bdd = document.getElementById("branding");
-                            
-                                        //bdd.appendChild(createnewA);
-                            
                             
                                         var dataaess = snapshotts.val();
                             
@@ -3775,17 +3635,10 @@
                                             }
                                 
                                 
-                                            //firebase.database().ref('user/').orderByChild('Name').once('value', (snapshottt) => {
-                                            //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
-                                            //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottses) => {
-                                            //keyysy
-                                
-                                
                                             firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
                                     
                                     
                                                 snapshottt.forEach(function (child2) {
-                                                    //alert(child2.key);
                                         
                                                     if (IDs.includes(child2.key)) {
                                             
@@ -3849,9 +3702,9 @@
                                                                     }
                                                         
                                                         
-                                                                    createInfo.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataasss["Phone Number"] + "'style='text-decoration: none; color: blue;'>" + dataasss["Phone Number"] + "</a></p><p>Blood Type: " + dataasss["Blood Type"] + "</p><p>Position: " + dataasss["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
+                                                                    createInfo.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataasss["Phone Number"] + "' style='text-decoration: none; color: blue;'>" + dataasss["Phone Number"] + "</a></p><p>Blood Type: " + dataasss["Blood Type"] + "</p><p>Position: " + dataasss["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
                                                             
-                                                                        + dataasss["ICE"] + "'style='text-decoration: none; color: blue;'>" + dataasss["ICE"] + "</a></span></p>";
+                                                                        + dataasss["ICE"] + "' style='text-decoration: none; color: blue;'>" + dataasss["ICE"] + "</a></span></p>";
                                                         
                                                                 }
                                                                 document.getElementById("PreLoaderBar").style.display = "none";
@@ -3867,12 +3720,7 @@
                                             document.getElementById("allReports").innerHTML = "<br><br><br><br><br><br><br><br><br><h1>No Accepted Members!</h1>";
                                         }
                                     })
-                                    //}
-                                    //else{
-                                    //    alert("4HAPPENED");
-                                    //}
-                        
-                        
+ 
                                 }
                             });
             
@@ -3883,14 +3731,7 @@
         
         
         
-        
-        
-        
-                    //if (confirm('Are you sure you want to delete this report?')) {
-        
-        
-        
-                    //}
+                    
         
         
         
@@ -3969,9 +3810,6 @@
                                     var pageN = document.getElementById("pageNo");
                                     pageN.innerHTML = "";
                         
-                                    //swal("Account Removed!", "Your account is removed permanently!", "success");
-                        
-                        
                                     document.getElementById("allReports").innerHTML = "";
                                     document.getElementById("allPending").innerHTML = "";
                         
@@ -3987,11 +3825,6 @@
                                         document.getElementById("PreLoaderBar").style.display = "flex";
                                         
                                         
-                            
-                                        //var bdd = document.getElementById("branding");
-                            
-                                        //bd.appendChild(createnewA);
-                            
                             
                                         var dataaess = snapshotts.val();
                             
@@ -4009,19 +3842,12 @@
                                             for (let keyysye in dataaess) {
                                                 IDs.push(keyysye);
                                             }
-                                
-                                
-                                            //firebase.database().ref('user/').orderByChild('Name').once('value', (snapshottt) => {
-                                            //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
-                                            //firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottses) => {
-                                            //keyysy
-                                
+                                            
                                 
                                             firebase.database().ref('user/').orderByChild('Shift').once('value', (snapshottt) => {
                                     
                                     
                                                 snapshottt.forEach(function (child2) {
-                                                    //alert(child2.key);
                                         
                                                     if (IDs.includes(child2.key)) {
                                             
@@ -4033,7 +3859,6 @@
                                                     
                                                     
                                                                 for (let keyysys in dataasss) {
-                                                                    //alert(keyysys);
                                                                     var createDivRow = document.createElement('div');
                                                         
                                                                     createDivRow.className = "roww";
@@ -4071,7 +3896,6 @@
                                                         
                                                                     var shiftDay = "";
                                                         
-                                                                    //alert(dataasss["Shift"]);
                                                                     if (dataasss["Shift"] === "1") {
                                                                         shiftDay = "Monday";
                                                                     } else if (dataasss["Shift"] === "2") {
@@ -4085,9 +3909,9 @@
                                                                     }
                                                         
                                                         
-                                                                    createInfo.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataasss["Phone Number"] + "'style='text-decoration: none; color: blue;'>" + dataasss["Phone Number"] + "</a></p><p>Blood Type: " + dataasss["Blood Type"] + "</p><p>Position: " + dataasss["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
+                                                                    createInfo.innerHTML = "<h3>" + dataasss["Name"] + "</h3><p style='color: blue;'><a href='tel:" + dataasss["Phone Number"] + "' style='text-decoration: none; color: blue;'>" + dataasss["Phone Number"] + "</a></p><p>Blood Type: " + dataasss["Blood Type"] + "</p><p>Position: " + dataasss["Position"] + "</p><p>Shift Day: " + shiftDay + "</p><p>Home Address: " + dataasss["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
                                                             
-                                                                        + dataasss["ICE"] + "'style='text-decoration: none; color: blue;'>" + dataasss["ICE"] + "</a></span></p>";
+                                                                        + dataasss["ICE"] + "' style='text-decoration: none; color: blue;'>" + dataasss["ICE"] + "</a></span></p>";
                                                         
                                                         
                                                                 }
@@ -4107,30 +3931,13 @@
                                     })
                         
                                     
-                        
-                        
-                                    //}
-                        
-                        
-                        
+              
                                 
             
             
                     }
         
-        
-        
-        
-        
-        
-        
-        
-                    //if (confirm('Are you sure you want to delete this report?')) {
-        
-        
-        
-                    //}
-        
+
         
         
                 }
