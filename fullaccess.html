@@ -14,7 +14,7 @@
 
 
     <style type="text/css">
-    
+
         #footerRef{
             color: #157efb;
         }
@@ -63,7 +63,7 @@
             min-height: 100%;
             height: auto !important;
             height: 100%;
-            margin: 0 auto -336px;
+            margin: 0;
     
             width: 100%;
         }
@@ -211,7 +211,7 @@
             min-height: 100%;
             height: auto !important;
             height: 100%;
-            margin: 0 auto -336px;
+            margin: 0;
             background-image: linear-gradient(to bottom, #ffffff , #e6e6e6);
         }
 
@@ -944,7 +944,7 @@
 <div class="loader" id="PreLoaderBar" style="display: block; margin-top: 250px; margin-left: auto; margin-right: auto; text-align: center"></div>
 
 <script>
-
+    console.clear();
     function toTitleCase(str) {
         return str.replace(/\w\S*/g, function(txt){
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
@@ -954,6 +954,7 @@
     var doneSearch = false;
     var firstLoop = "false"
     var oncee = "false";
+    console.clear();
     $("#inpt_search").unbind("on").on('change textInput input', function (e) {
 
 
@@ -988,9 +989,10 @@
 
                 var bd = document.getElementById("allUsers");
                 var createDivRow = document.createElement('div');
-                
-
+    
+                console.clear();
                 firebase.database().ref('user/').child(favoritemovie).once('value', (snapshot) => {
+                    console.clear();
                     oncee = "true";
                     var data = snapshot.val();
 
@@ -1013,8 +1015,9 @@
                         var toT = toTitleCase(toLo);
                         //alert("HERE: " + toT);
                         //alert(ppe);
+                        console.clear();
                         firebase.database().ref('user/').orderByChild('Name').equalTo(toT).once('value', (snapshott) => {
-
+                            console.clear();
 
 
                             var dataa = snapshott.val();
@@ -1030,6 +1033,7 @@
                                 snapshott.forEach(function (child) {
 
                                     firebase.database().ref('user/').child(child.key).once('value', (snapshottt) => {
+                                        console.clear();
                                         //alert(key);
                                         //alert(snapshott);
 
@@ -1113,7 +1117,7 @@
 
 
                                             }
-
+                                            console.clear();
                                             document.getElementById("allUsers").innerHTML = "";
                                             document.getElementById("allUsers").style.fontWeight = "normal";
                                             document.getElementById("PreLoaderBar").style.display = "none";
@@ -1134,6 +1138,7 @@
 
                             }
                             else{
+                                console.clear();
                                 document.getElementById("PreLoaderBar").style.display = "none";
                                 document.getElementById("allUsers").style.fontWeight = "normal";
                                 if($("#inpt_search").val().toString().length>0){
@@ -1151,11 +1156,12 @@
                     }
 
                 })
-
+                console.clear();
             } else {
 
             }
         }else{
+                console.clear();
                 oncee = "false";
                 if(doneSearch = true){
                     document.getElementById("PreLoaderBar").style.display = "none";
@@ -1179,6 +1185,7 @@
         else{   //COMMENT THIS AND USE THE OTHER ONE
             document.getElementById("allUsers").style.fontWeight = "bold";
             document.getElementById("allUsers").innerHTML = "<br><br><br><br><br><br><br><h1>No name is searched!</h1>";
+            console.clear();
         }
         //HERE FOR IF INPUT IS EMPTY --------------------------------------------------------
         // else {
@@ -1319,182 +1326,6 @@
     });
 
 </script>
-
-<!--<script>-->
-<!--    document.getElementById("inpt_hide_").style.visibility = "hidden";-->
-<!--    var currentID;-->
-<!--    var currentCenter;-->
-
-<!--    var favoritemovie = localStorage.getItem("favoriteMovie");-->
-
-<!--    if(favoritemovie != null){-->
-
-<!--        var bd = document.getElementById("allUsers");-->
-<!--        var createDivRow = document.createElement('div');-->
-<!--    -->
-<!--        firebase.database().ref('user/').child(favoritemovie).once('value', (snapshot) => {-->
-<!--            var data = snapshot.val();-->
-
-<!--            if(snapshot.exists()){-->
-
-<!--                for(let key in data){-->
-
-<!--                    //console.log("data[key]",data["Center"]);-->
-
-<!--                    currentCenter = data["Center"];-->
-
-<!--                    //this.intVal.push(data[key]);-->
-
-<!--                    //console.log("intVal",this.intVal);-->
-
-
-
-<!--                }-->
-
-
-
-<!--                firebase.database().ref('user/').orderByChild('Name').once('value', (snapshott) => {-->
-
-<!--                    //alert(snapshott);-->
-
-
-
-<!--                    var dataa = snapshott.val();-->
-
-
-
-<!--                    // var createT = document.createElement('h1');-->
-<!--                    // createT.style.align = "center";-->
-<!--                    // createT.style.marginTop = "50px";-->
-<!--                    // createT.style.marginBottom = "50px";-->
-<!--                    //         createT.className =  "roww";-->
-<!--                    //         createT.innerHTML = "Users";-->
-
-<!--                    // <h1 align="center" style="margin-top: 50px; margin-bottom: 50px">Users</h1>-->
-
-<!--                    if(snapshott.exists()){-->
-<!--                        //alert("aaTTsT");-->
-
-
-<!--                        //firebase.database().ref('user/').child(key).once('value', (snapshottt) => {-->
-
-
-<!--                        //});-->
-
-
-<!--                        snapshott.forEach(function(child) {-->
-<!--                            //alert(child.key);-->
-<!--                            //});-->
-<!--                            //for(let key in dataa){-->
-<!--                            //alert(key);-->
-
-<!--                            firebase.database().ref('user/').child(child.key).once('value', (snapshottt) => {-->
-<!--                                //alert(key);-->
-<!--                                //alert(snapshott);-->
-
-<!--                                var dataaa = snapshottt.val();-->
-
-
-
-
-
-<!--                                if(snapshottt.exists()){-->
-
-
-
-<!--                                    for(let key in dataaa){-->
-<!--                                        //alert(dataaa["Name"]);-->
-
-
-<!--                                        if(snapshottt.key != favoritemovie){-->
-<!--                                            -->
-<!--                                            //alert(dataaa["Admin"]);-->
-<!--                                            if(dataaa["Admin"] === 1) {-->
-<!--    -->
-<!--    -->
-<!--                                                createDivRow.className = "roww";-->
-<!--    -->
-<!--    -->
-<!--                                                var createDivColumn = document.createElement('div');-->
-<!--    -->
-<!--                                                createDivColumn.className = "columnn";-->
-<!--    -->
-<!--    -->
-<!--                                                var createDivCard = document.createElement('div');-->
-<!--    -->
-<!--                                                createDivCard.className = "cardd";-->
-<!--    -->
-<!--    -->
-<!--                                                var createInfo = document.createElement('div');-->
-<!--    -->
-<!--    -->
-<!--                                                createInfo.innerHTML = "<h3>" + dataaa["Name"] + "</h3><p style='color: blue;'>" + dataaa["Phone Number"] + "</p><p>Home Address: " + dataaa["Home Address"] + "</p><p>ICE: <span style='color: blue;'>"-->
-<!--        -->
-<!--                                                    + dataaa["ICE"] + "</span></p><p>Position: " + dataaa["Position"] + "<p>Center: <span style='color: red;'><b>" + dataaa["Center"] + "</b></span></p>";-->
-<!--    -->
-<!--    -->
-<!--                                                createInfo.innerHTML +=-->
-<!--        -->
-<!--                                                    "<button onClick=deleteUser(this.id,this.className) id =" + snapshottt.key + "  class = " + data['Center'] + "  style='color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-danger btn-xs'> Delete User </span> </button>"-->
-<!--        -->
-<!--                                                    +-->
-<!--        -->
-<!--                                                    "<button onClick=removeAdmin(this.id,this.className) id =" + snapshottt.key + " style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-warning btn-xs'> Remove admin </span></button>"-->
-<!--        -->
-<!--                                                    +-->
-<!--        -->
-<!--                                                    "<button onClick=makeAdmin(this.id)   id =" + snapshottt.key + " style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-primary btn-xs'> Make admin </span></button>";-->
-<!--    -->
-<!--    -->
-<!--                                            }-->
-<!--                                        }-->
-
-<!--                                        //alert(dataaa["Center"]);-->
-
-<!--                                    }-->
-
-
-<!--                                    document.getElementById("PreLoaderBar").style.display = "none";-->
-<!--                                    document.getElementById("inpt_hide_").style.visibility = "visible";-->
-<!--                                    document.getElementById("titlee").innerHTML = "Users";-->
-<!--                                    bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);-->
-<!--                                    //console.clear();-->
-<!--                                }-->
-
-<!--                            })-->
-
-<!--                            //console.log("data[key]",data["Email"]);-->
-
-<!--                        });-->
-
-<!--                    }-->
-
-
-<!--                })-->
-
-
-
-<!--            }-->
-
-<!--        })-->
-
-
-
-<!--    }-->
-
-
-
-<!--    else{-->
-
-
-
-<!--    }-->
-
-
-
-
-<!--</script>-->
-
 
 
 

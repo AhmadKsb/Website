@@ -141,7 +141,8 @@
         var privChecker = -1;
     
         var isUserAdmin = localStorage.getItem("isUAdmin");
-    
+
+        console.clear();
         if (isUserAdmin == "1") {
             window.location.href = 'admin.html';
         }
@@ -192,7 +193,7 @@
                     //alert(user.uid);
     
                     localStorage.setItem("favoriteMovie", favoritemovie);
-    
+                    console.clear();
                     //document.cookie = "tagname = favoriteMovie;secure";
 
                     if (favoritemovie === "27t8hbCsGBMCBDXWyioPT5bqfkK2") {
@@ -200,6 +201,7 @@
                             isUserAdmin = "2";
                             localStorage.setItem("isUAdmin", isUserAdmin);
                             window.location.href = 'fullaccess.html';
+                            console.clear();
                             //locToGo = 'fullaccess.html';
                         }
                     } else {
@@ -214,6 +216,7 @@
                                             isUserAdmin = "1";
                                             localStorage.setItem("isUAdmin", isUserAdmin);
                                             window.location.href = 'admin.html';
+                                            console.clear();
                                             //locToGo = 'admin.html';
                                             
                                         }
@@ -222,6 +225,7 @@
                                         localStorage.setItem("isUAdmin", isUserAdmin);
                                         firebase.auth().signOut().then(function() {
                                             localStorage.clear();
+                                            console.clear();
                                             //window.location.href = 'index.html'; //uncomment
                                             // Sign-out successful.
                                         }).catch(function(error) {
@@ -349,6 +353,7 @@
                 }
             ]
         };
+        console.clear();
 
 
 
@@ -361,7 +366,7 @@
         // The start method will wait until the DOM is loaded.
 
         ui.start('#firebaseui-auth-container', uiConfig);
-
+        console.clear();
 
 
     </script>
