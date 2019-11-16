@@ -968,11 +968,7 @@
                                 
                                 
                                 snapshott.forEach(function (child) {
-                                    if (child.key === favoritemovie){
-                                        //alert(child.key);
-                                    }
                                     
-                                    else {
                                         firebase.database().ref('user/').child(child.key).once('value', (snapshottt) => {
                                             console.clear();
         
@@ -1063,7 +1059,7 @@
                                             }
         
                                         })
-                                    }
+                                    
                                     
                                     
                                     
