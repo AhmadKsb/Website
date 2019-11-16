@@ -966,100 +966,110 @@
 
                             if (snapshott.exists()) {
                                 
+                                
                                 snapshott.forEach(function (child) {
-
-                                    firebase.database().ref('user/').child(child.key).once('value', (snapshottt) => {
-                                        console.clear();
-                                        
-                                        var dataaa = snapshottt.val();
-
-
-                                        if (snapshottt.exists()) {
-
-
-                                            for (let key in dataaa) {
-                                                
-                                                if (snapshottt.key != favoritemovie) {
-                                                    
-                                                    doneSearch = true;
-
-                                                    createDivRow.className = "roww";
-
-
-                                                    var createDivColumn = document.createElement('div');
-
-                                                    createDivColumn.className = "columnn";
-
-
-                                                    var createDivCard = document.createElement('div');
-    
-    
-                                                    var createInfo = document.createElement('div');
-                                                    createDivCard.className = "cardd";
-    
-                                                    
-                                                    var adminText = "";
-                                                    
-                                                    
-                                                    if(dataaa["Admin"] === 1){
-                                                        adminText = "admin";
-                                                        
-                                                        createInfo.innerHTML = "<h3>" + dataaa["Name"] + " <span style='font-size: 18px; color: #d33'>" + adminText + "</span></h3><p style='color: blue;'><a href='tel:" + dataaa["Phone Number"] + "' style='text-decoration: none; color: blue;'>" + dataaa["Phone Number"] + "</a></p><p>Home Address: " + dataaa["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
-        
-                                                            + dataaa["ICE"] + "' style='text-decoration: none; color: blue;'>"+ dataaa["ICE"] + "</a></span></p><p>Position: " + dataaa["Position"] + "<p>Center: <span style='color: red;'><b>" + dataaa["Center"] + "</b></span></p>";
-    
-    
-                                                        createInfo.innerHTML +=
-        
-                                                            "<button onClick=deleteUser(this.id,this.className) id =" + snapshottt.key + "  class = " + data['Center'] + "  style='color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-danger btn-xs'> Delete User </span> </button>"
-        
-                                                            +
-        
-                                                            "<button onClick=removeAdmin(this.id,this.className) id =" + snapshottt.key + " style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-warning btn-xs'> Remove admin </span></button>"
-        
-                                                            +
-        
-                                                            "<button disabled onClick=makeAdmin(this.id)   id =" + snapshottt.key + " style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-primary btn-xs'> Make admin </span></button>";
-                                                        
-                                                    }
-                                                    
-                                                    else{
-    
-                                                        createInfo.innerHTML = "<h3>" + dataaa["Name"] + " <span style='font-size: 18px; color: #d33'>" + adminText + "</span></h3><p style='color: blue;'><a href='tel:" + dataaa["Phone Number"] + "' style='text-decoration: none; color: blue;'>" + dataaa["Phone Number"] + "</a></p><p>Home Address: " + dataaa["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
-        
-                                                            + dataaa["ICE"] + "' style='text-decoration: none; color: blue;'>"+ dataaa["ICE"] + "</a></span></p><p>Position: " + dataaa["Position"] + "<p>Center: <span style='color: red;'><b>" + dataaa["Center"] + "</b></span></p>";
-    
-    
-                                                        createInfo.innerHTML +=
-        
-                                                            "<button onClick=deleteUser(this.id,this.className) id =" + snapshottt.key + "  class = " + data['Center'] + "  style='color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-danger btn-xs'> Delete User </span> </button>"
-        
-                                                            +
-        
-                                                            "<button disabled onClick=removeAdmin(this.id,this.className) id =" + snapshottt.key + " style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-warning btn-xs'> Remove admin </span></button>"
-        
-                                                            +
-        
-                                                            "<button onClick=makeAdmin(this.id)   id =" + snapshottt.key + " style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-primary btn-xs'> Make admin </span></button>";
-    
-                                                    }
-                                                    
-                                                    
-                                                }
-
-
-                                            }
+                                    if (child.key === favoritemovie){
+                                        //alert(child.key);
+                                    }
+                                    
+                                    else {
+                                        firebase.database().ref('user/').child(child.key).once('value', (snapshottt) => {
                                             console.clear();
-                                            document.getElementById("allUsers").innerHTML = "";
-                                            document.getElementById("allUsers").style.fontWeight = "normal";
-                                            document.getElementById("PreLoaderBar").style.display = "none";
-                                            document.getElementById("inpt_hide_").style.visibility = "visible";
-                                            document.getElementById("titlee").innerHTML = "Users";
-                                            bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
-                                            //console.clear();
-                                        }
-
-                                    })
+        
+                                            var dataaa = snapshottt.val();
+        
+        
+                                            if (snapshottt.exists()) {
+            
+            
+                                                for (let key in dataaa) {
+                
+                                                    if (snapshottt.key != favoritemovie) {
+                    
+                                                        doneSearch = true;
+                    
+                                                        createDivRow.className = "roww";
+                    
+                    
+                                                        var createDivColumn = document.createElement('div');
+                    
+                                                        createDivColumn.className = "columnn";
+                    
+                    
+                                                        var createDivCard = document.createElement('div');
+                    
+                    
+                                                        var createInfo = document.createElement('div');
+                                                        createDivCard.className = "cardd";
+                    
+                    
+                                                        var adminText = "";
+                    
+                    
+                                                        if (dataaa["Admin"] === 1) {
+                                                            adminText = "admin";
+                        
+                                                            createInfo.innerHTML = "<h3>" + dataaa["Name"] + " <span style='font-size: 18px; color: #d33'>" + adminText + "</span></h3><p style='color: blue;'><a href='tel:" + dataaa["Phone Number"] + "' style='text-decoration: none; color: blue;'>" + dataaa["Phone Number"] + "</a></p><p>Home Address: " + dataaa["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
+                            
+                                                                + dataaa["ICE"] + "' style='text-decoration: none; color: blue;'>" + dataaa["ICE"] + "</a></span></p><p>Position: " + dataaa["Position"] + "<p>Center: <span style='color: red;'><b>" + dataaa["Center"] + "</b></span></p>";
+                        
+                        
+                                                            createInfo.innerHTML +=
+                            
+                                                                "<button onClick=deleteUser(this.id,this.className) id =" + snapshottt.key + "  class = " + data['Center'] + "  style='color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-danger btn-xs'> Delete User </span> </button>"
+                            
+                                                                +
+                            
+                                                                "<button onClick=removeAdmin(this.id,this.className) id =" + snapshottt.key + " style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-warning btn-xs'> Remove admin </span></button>"
+                            
+                                                                +
+                            
+                                                                "<button disabled onClick=makeAdmin(this.id)   id =" + snapshottt.key + " style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-primary btn-xs'> Make admin </span></button>";
+                        
+                                                        } else {
+                        
+                                                            createInfo.innerHTML = "<h3>" + dataaa["Name"] + " <span style='font-size: 18px; color: #d33'>" + adminText + "</span></h3><p style='color: blue;'><a href='tel:" + dataaa["Phone Number"] + "' style='text-decoration: none; color: blue;'>" + dataaa["Phone Number"] + "</a></p><p>Home Address: " + dataaa["Home Address"] + "</p><p>ICE: <span style='color: blue;'><a href='tel:"
+                            
+                                                                + dataaa["ICE"] + "' style='text-decoration: none; color: blue;'>" + dataaa["ICE"] + "</a></span></p><p>Position: " + dataaa["Position"] + "<p>Center: <span style='color: red;'><b>" + dataaa["Center"] + "</b></span></p>";
+                        
+                        
+                                                            createInfo.innerHTML +=
+                            
+                                                                "<button onClick=deleteUser(this.id,this.className) id =" + snapshottt.key + "  class = " + data['Center'] + "  style='color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-danger btn-xs'> Delete User </span> </button>"
+                            
+                                                                +
+                            
+                                                                "<button disabled onClick=removeAdmin(this.id,this.className) id =" + snapshottt.key + " style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-warning btn-xs'> Remove admin </span></button>"
+                            
+                                                                +
+                            
+                                                                "<button onClick=makeAdmin(this.id)   id =" + snapshottt.key + " style='margin-right: 5px; color: #e6e6e6; border: none; text-decoration: none; padding: 0; float: right;'> <span class='btn btn-primary btn-xs'> Make admin </span></button>";
+                        
+                                                        }
+                    
+                    
+                                                    }
+                
+                
+                                                }
+                                                console.clear();
+                                                document.getElementById("allUsers").innerHTML = "";
+                                                document.getElementById("allUsers").style.fontWeight = "normal";
+                                                document.getElementById("PreLoaderBar").style.display = "none";
+                                                document.getElementById("inpt_hide_").style.visibility = "visible";
+                                                document.getElementById("titlee").innerHTML = "Users";
+                                                bd.appendChild(createDivRow).appendChild(createDivColumn).appendChild(createDivCard).appendChild(createInfo);
+                                                //console.clear();
+                                            }
+        
+                                        })
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
 
                                 });
 
