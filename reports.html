@@ -1809,16 +1809,19 @@
                                             createnewA.innerHTML = "Show declined?";
 
                                             var dataaess = snapshotts.val();
-                    
+                                            
+                                            document.getElementById("showP").style.marginBottom = "25px";
+                                            document.getElementById("showP").appendChild(createnewA);
+                                            
                                             if (snapshotts.exists()) {
     
-                                                document.getElementById("showP").style.marginBottom = "25px";
+                                                
     
     
                                                 var bd = document.getElementById("allReports");
                                                 var bdd2 = document.getElementById("allPending");
                                                 var bdd22 = document.getElementById("allDeclined");
-                                                document.getElementById("showP").appendChild(createnewA);
+                                                
                                                 
                                                 
                         
@@ -3461,17 +3464,19 @@
                                         
                             
                                         var dataaess = snapshotts.val();
-                            
+    
+                                        document.getElementById("showP").style.marginBottom = "25px";
+                                        document.getElementById("showP").appendChild(createnewA);
+                                        
                                         if (snapshotts.exists()) {
-                                
-                                
-                                            document.getElementById("showP").style.marginBottom = "25px";
-                                
-                                
+                                            
+                                            
+                                            
                                             var bd = document.getElementById("allReports");
                                             var bdd2 = document.getElementById("allPending");
                                             var bdd22 = document.getElementById("allDeclined");
-                                            document.getElementById("showP").appendChild(createnewA);
+                                            
+                                            
                                             var IDs = [];
                                 
                                             for (let keyysye in dataaess) {
